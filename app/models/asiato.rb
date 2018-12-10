@@ -1,0 +1,2 @@
+class Asiato < ApplicationRecord
+end
