@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
     def index
+        @events = Event.page(params[:page]).reverse_order
     end
 
     def show
