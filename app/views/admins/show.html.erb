@@ -1,2 +1,39 @@
-<h1>Admins#show</h1>
-<p>Find me in app/views/admins/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-2">
+			<p></p>
+			<p>CD追加</p>
+			<p>イベント追加</p>
+			<p>ユーザー情報</p>
+			<p>購入履歴</p>
+			<p>CD在庫管理</p>
+			<p>アクセス解析</p>
+		</div>
+		<div class="col-lg-8" style="background-color: gray;">
+			<h2>CD追加</h2>
+			<%= form_for @cd do |f| %>
+			    <p><%= f.label :CD %>
+			   	  <%= f.text_field :cd_title %></p>
+			    <p><%= f.label :ジャンル %>
+			   	  <%= select :cd_genre, :cd_genre, @genres, :include_blank => true %>
+			   	  <%= f.text_field :cd_genre %></p>
+                <p><%= f.label :レーベル名 %>
+			      <%= select :cd_label, :cd_label, @labels, :include_blank => true %>
+			      <%= f.text_field :cd_label %></p>
+			    <p><%= f.label :値段 %>
+			      <%= f.text_field :cd_price %>円</p>
+			    <p><%= f.label :在庫数 %>
+			      <%= f.number_field :cd_stock %>枚</p>
+			    <p><%= f.label :ジャケット画像 %>
+			      <%= f.attachment_field :cd_image, placeholder: "ジャケット画像を検索" %></p>
+			    <p><%= fields_for @artist do |i| %>
+			      <%= i.label :新規アーティスト追加 %>
+		          <%= i.text_field :aritist_name %>
+		          <%= i.submit "アーティスト追加" %></p>
+                <% end %>
+			<% end %>
+		</div>
+		<div class="col-lg-2">
+		</div>
+	</div>
+</div>
