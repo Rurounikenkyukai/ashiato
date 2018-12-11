@@ -77,6 +77,8 @@ gem 'geocoder'
 
 gem 'kaminari'
 
+gem "pry-rails"
+
 
 
 

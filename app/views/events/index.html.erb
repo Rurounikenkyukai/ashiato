@@ -1,16 +1,32 @@
+<div class="event_main">
+
+
 <h1>イベント一覧画面(TOP画面)</h1>
-<% @events.each do |event| %>
+
+	<%=form_for @event, url: event_search_path do |f| %>
+
+		<%= f.date_field :event_day %>
+		<%= f.label :"区を選択" %>
+	  	<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
+
+		<%= f.submit "検索する" %>
+	<% end %>
+
+
+<h2><%= @events[0].event_day %>のイベント</h2>
+	<% @events.each do |event| %>
+
 		<p>event</p>
-		<h2><%= event.day %>のイベント</h2>
 		<div>
 			<div>
-				<%= attachment_image_tag event.event_image_id, :event_image_id, :fill, 100, 100, format: 'jpeg',fallback: "no_image.jpg" %>
+				<%= attachment_image_tag event,:event_image %>
 			</div>
 			<div>
-				<h3><%= event.title %></h3>
-				<h4><%= event.day %></h4>
+				<h3><%= event.event_title %></h3>
+				<h4><%= event.event_day %></h4>
 			</div>
 		</div>
 	<% end %>
 
 	<%= paginate @events, class: "pagenate" %>
+</div>
