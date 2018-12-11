@@ -1,3 +1,3 @@
 class Event < ApplicationRecord
-	attachment :event_image_id
+	attachment :event_image
 end
