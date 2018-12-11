@@ -20,7 +20,12 @@ class EventsController < ApplicationController
 	end
 
   def search
-    puts params[:content]
-    Cd.where(name: params[:content])
+    if params[:happy] == "1"
+      cd = Cd.where(params[:content])
+    elsif params[:happy] =="2"
+      event = Event.where(params[:content])
+    else
+      artist = Artist.where(params[:content])
+    end
   end
 end
