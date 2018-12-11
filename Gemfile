@@ -69,6 +69,8 @@ gem "refile-mini_magick"
 
 gem 'bootstrap-sass'
 
+gem 'nested_form'
+
 gem 'jquery-rails'
 
 gem 'gmaps4rails'
