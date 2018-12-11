@@ -44,25 +44,11 @@
           <div class="row">
 
             <%= form_tag(search_path,method: :post) do %>
-            <%= select_tag "name",options_for_select([[1,3],[2,4]]) %>
+            <%= select_tag "happy",options_for_select([["cd","1"],["event","2"]]) %>
             <%= label_tag :入力してください %>
             <%= text_field_tag :content %>
             <%= submit_tag %>
             <% end %>
-
-
-              <div class="form-group">
-		            <label class="control-label" for="usage1select3">低い高さのセレクトボックス</label>
-		            <select class="form-control input-sm" id="usage1select3">
-		            	<option>選択肢１</option>
-			            <option>選択肢２</option>
-		            	<option>選択肢３</option>
-	            	</select>
-                <div class="form-group">
-					        <input type="text" class="form-control" placeholder="検索キーワード">
-			        	</div>
-				        <button type="submit" class="btn btn-default">検索</button>
-	            </div>
 
 
           </div>
