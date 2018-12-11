@@ -4,6 +4,33 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <ul style="list-style: none;">
+      <li>
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "(姓)" %>
+      </li>
+      <li>
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "(名)" %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="field">
+    <ul style="list-style: none;">
+      <li>
+        <%= f.label :kana_first_name %><br />
+        <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "(カナ姓)" %>
+      </li>
+      <li>
+        <%= f.label :kana_last_name %><br />
+        <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "(カナ名)" %>
+      </li>
+    </ul>
+  </div>
+
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
