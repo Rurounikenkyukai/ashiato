@@ -10,6 +10,75 @@
   </head>
 
   <body>
+  <!-- header -->
+  <header class="navbar navbar-fixed-top ">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <%= link_to events_path do %>
+            <img src="" class="" alt="あしあと画像">
+          <% end %>
+        </nav>
+        <nav>
+          <div class="row">
+            <ul class="nav navbar-nav navbar-right">
+
+              <% if user_signed_in? && current_user.admin%>
+                 <li><%=link_to " kanrisya", "admin_path", class: "glyphicon glyphicon-user users" %></li>
+                 <li><%=link_to " Users", "user_path", class: "glyphicon glyphicon-user users" %></li>
+                 <li><%=link_to " cart", "cart_item_path", class: "glyphicon glyphicon-book books" %></li>
+                 <li><%=link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout " %></li>
+
+
+              <% elsif user_signed_in?  %>
+                  <li><%=link_to " Users", "user_path", class: "glyphicon glyphicon-user users" %></li>
+                  <li><%=link_to " cart", "cart_item_path", class: "glyphicon glyphicon-book books" %></li>
+                  <li><%=link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout " %></li>
+
+              <% else %>
+                <li><%=link_to " sign up", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %></li>
+                <li><%=link_to " login", new_user_session_path,  class: "glyphicon glyphicon-log-in sign_in"%></li>
+               <% end %>
+
+            </ul>
+          </div>
+          <div class="row">
+
+            <%= form_tag(search_path,method: :post) do %>
+            <%= select_tag "name",options_for_select([[1,3],[2,4]]) %>
+            <%= label_tag :入力してください %>
+            <%= text_field_tag :content %>
+            <%= submit_tag %>
+            <% end %>
+
+
+              <div class="form-group">
+		            <label class="control-label" for="usage1select3">低い高さのセレクトボックス</label>
+		            <select class="form-control input-sm" id="usage1select3">
+		            	<option>選択肢１</option>
+			            <option>選択肢２</option>
+		            	<option>選択肢３</option>
+	            	</select>
+                <div class="form-group">
+					        <input type="text" class="form-control" placeholder="検索キーワード">
+			        	</div>
+				        <button type="submit" class="btn btn-default">検索</button>
+	            </div>
+
+
+          </div>
+        </nav>
+      </div>
+  </header>
     <%= yield %>
+    <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+           <%=link_to "お問合せ", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %>
+           <h3>ｃ流浪IN研究会</h3>
+        </div>
+      </div>
+    </div>
+    </footer>
   </body>
 </html>
