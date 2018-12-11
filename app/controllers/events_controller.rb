@@ -19,4 +19,8 @@ class EventsController < ApplicationController
 	def destroy
 	end
 
+  def search
+    puts params[:content]
+    Cd.where(name: params[:content])
+  end
 end
