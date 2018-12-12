@@ -13,7 +13,7 @@
 		</div>
 		<div class="col-lg-8" style="background-color: gray;">
 			<h2>CD追加</h2>
-			<%= nested_form_for @cd do |f| %>
+			<%= form_for @cd do |f| %>
 			    <p><%= f.label :CD %>
 			   	  <%= f.text_field :cd_title %></p>
 			    <p><%= f.label :ジャンル %>
@@ -33,11 +33,9 @@
 		         　 <%= i.text_field :artist_name %>
 		            <%= i.submit "アーティスト追加" %></p>
 	            <% end %>
-		          <%= f.add_nested_fields_link :discs, 'Disc追加', class: 'btn btn-primary', role: 'button' %>
-		            <%= f.nested_fields_for :discs, wrapper_tag: :div do |d| %>
-                       <p><%= d.label :Disc, class: 'form-control' %>
-                         <%= d.number_field :disc_number, class: 'form-control' %></p>                         
-                         <%= d.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
+		            <%= f.fields_for :discs do |d| %>
+                       <p><%= d.label :Disc %>
+                         <%= d.number_field :disc_number %></p>
                     <% end %>                
             <%= f.submit %>    
             <% end %>
