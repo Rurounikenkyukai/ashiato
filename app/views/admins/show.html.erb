@@ -45,13 +45,31 @@
             <h2>イベント追加</h2>
 
 
-
-
-
-
-
+            <h2>ユーザー情報</h2>
+                <table class="table table-striped table-bordered table-hover">
+                	<thead>
+                		<tr>
+                			<th>ユーザー画像</th>
+                			<th>名前</th>
+                			<th>編集画面</th>
+                			<th>ユーザー削除</th>
+                		</tr>
+                	</thead>
+                	<% @users.each do |user| %>
+                	<tbody>
+                		<tr>
+                			<td><%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/image/no_image.jpg", size: "30×30" %></td>
+                			<td><%= user.nick_name %></td>
+                			<td><%= link_to "編集画面へ", edit_user_path(user.id) %></td>
+                			<td><%= link_to "削除", user_path, method: :'delete' %></td>
+                		</tr>
+                	</tbody>
+                	<% end %>
+                	<%= paginate @users, class: "pagenate" %>
+                </table>
 
 		</div>
+
 
 		<div class="col-lg-2">
 		</div>

@@ -5,7 +5,8 @@ class AdminsController < ApplicationController
   	@cds = Cd.all
   	@artist = Artist.new
   	@artists = Artist.all
- 
+  	@users = User.page(params[:page]).reverse_order
+
   	@genres = []
   	@cds.each do |cd|
   		if !@genres.include?([cd.cd_genre,cd.cd_genre])
