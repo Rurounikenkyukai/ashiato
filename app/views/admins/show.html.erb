@@ -36,10 +36,10 @@
 		          <%= f.add_nested_fields_link :discs, 'Disc追加', class: 'btn btn-primary', role: 'button' %>
 		            <%= f.nested_fields_for :discs, wrapper_tag: :div do |d| %>
                        <p><%= d.label :Disc, class: 'form-control' %>
-                         <%= d.number_field :disc_number, class: 'form-control' %></p>                         
+                         <%= d.number_field :disc_number, class: 'form-control' %></p>
                          <%= d.remove_nested_fields_link 'Delete', class: 'btn btn-danger', role: 'button' %>
-                    <% end %>                
-            <%= f.submit %>    
+                    <% end %>
+            <%= f.submit %>
             <% end %>
 
             <h2>イベント追加</h2>
