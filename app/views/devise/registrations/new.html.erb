@@ -29,6 +29,27 @@
     </ul>
   </div>
 
+  <div class="field">
+    <%= f.label :nick_name %><br />
+    <%= f.text_field :nick_name, autofocus: true, autocomplete: "ニックネーム" %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
