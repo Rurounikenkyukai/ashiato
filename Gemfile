@@ -81,6 +81,7 @@ gem 'kaminari'
 
 gem "pry-rails"
 
+gem 'nested_form_fields'
 
 
 

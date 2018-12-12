@@ -5,8 +5,10 @@ class EventsController < ApplicationController
             @events = Event.page(params[:page]).reverse_order
         else
             @events = []
-            params["events_id"].each do |a|
-                @events.push(Event.find(a.to_i))
+            if params["events_id"] != ["0"]
+                params["events_id"].each do |a|
+                    @events.push(Event.find(a.to_i))
+                end
             end
         end
     end
@@ -36,6 +38,7 @@ class EventsController < ApplicationController
     ##  end
     end
 
+
     def event_search
       event_day = params[:event][:event_day]
       event_city = params[:event][:event_city]
@@ -44,6 +47,19 @@ class EventsController < ApplicationController
       @events.each do |a|
         event_id.push(a.id)
       end
-      redirect_to events_path(events_id: events_id)
+
+  def event_search
+    event_day = params[:event][:event_day]
+    event_city = params[:event][:event_city]
+    @events = Event.where(event_day: event_day).where(event_city: event_city)
+    events_id = []
+    @events.each do |event|
+        event_id.push(event.id)
     end
+    if events_id == []
+        events_id = [0]
+    end
+    redirect_to events_path(events_id: events_id)
+  end
+
 end

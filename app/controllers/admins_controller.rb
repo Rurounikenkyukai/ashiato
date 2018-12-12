@@ -29,4 +29,6 @@ class AdminsController < ApplicationController
 
   end
 
+  private
+
 end

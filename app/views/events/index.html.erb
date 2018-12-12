@@ -13,20 +13,27 @@
 	<% end %>
 
 
-<h2><%= @events[0].event_day %>のイベント</h2>
-	<% @events.each do |event| %>
 
-		<p>event</p>
-		<div>
+  	<% if @events.count == 0 %>
+
+  	 <h3>該当する検索結果はありません</h3>
+
+  	<% else %>
+	<h2><%= @events[0].event_day %>のイベント</h2>
+		<% @events.each do |event| %>
+
 			<div>
-				<%= attachment_image_tag event,:event_image %>
+				<div>
+					<p>イベント画像</p>
+					<%= attachment_image_tag event,:event_image %>
+				</div>
+				<div>
+					<h3><%= event.event_title %></h3>
+					<h4><%= event.event_day %></h4>
+				</div>
 			</div>
-			<div>
-				<h3><%= event.event_title %></h3>
-				<h4><%= event.event_day %></h4>
-			</div>
-		</div>
+			<%= paginate @events, class: "pagenate" %>
+		<% end %>
 	<% end %>
 
-	<%= paginate @events, class: "pagenate" %>
 </div>
