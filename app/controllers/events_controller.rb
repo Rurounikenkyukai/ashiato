@@ -38,16 +38,6 @@ class EventsController < ApplicationController
     ##  end
     end
 
-
-    def event_search
-      event_day = params[:event][:event_day]
-      event_city = params[:event][:event_city]
-      @events = Event.where(event_day: event_day).where(event_city: event_city)
-      events_id = []
-      @events.each do |a|
-        event_id.push(a.id)
-      end
-
   def event_search
     event_day = params[:event][:event_day]
     event_city = params[:event][:event_city]
