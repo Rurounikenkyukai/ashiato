@@ -23,15 +23,15 @@
             <ul class="nav navbar-nav navbar-right">
 
               <% if user_signed_in? && current_user.admin%>
-                 <li><%=link_to " kanrisya", "admin_path", class: "glyphicon glyphicon-user users" %></li>
-                 <li><%=link_to " Users", "user_path", class: "glyphicon glyphicon-user users" %></li>
-                 <li><%=link_to " cart", "cart_item_path", class: "glyphicon glyphicon-book books" %></li>
+                 <li><%=link_to " kanrisya", admin_path(current_user.id), class: "glyphicon glyphicon-user users" %></li>
+                 <li><%=link_to " Users", user_path(current_user.id), class: "glyphicon glyphicon-user users" %></li>
+                 <li><%=link_to " cart", cart_item_path(current_user.id), class: "glyphicon glyphicon-book books" %></li>
                  <li><%=link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout " %></li>
 
 
               <% elsif user_signed_in?  %>
-                  <li><%=link_to " Users", "user_path", class: "glyphicon glyphicon-user users" %></li>
-                  <li><%=link_to " cart", "cart_item_path", class: "glyphicon glyphicon-book books" %></li>
+                  <li><%=link_to " Users", user_path(current_user.id), class: "glyphicon glyphicon-user users" %></li>
+                  <li><%=link_to " cart", cart_item_path(current_user.id), class: "glyphicon glyphicon-book books" %></li>
                   <li><%=link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout " %></li>
 
               <% else %>
