@@ -39,27 +39,18 @@ class EventsController < ApplicationController
     end
 
 
-    def event_search
-      event_day = params[:event][:event_day]
-      event_city = params[:event][:event_city]
-      @events = Event.where(event_day: event_day).where(event_city: event_city)
-      events_id = []
-      @events.each do |a|
-        event_id.push(a.id)
-      end
-
-  def event_search
-    event_day = params[:event][:event_day]
-    event_city = params[:event][:event_city]
-    @events = Event.where(event_day: event_day).where(event_city: event_city)
-    events_id = []
-    @events.each do |event|
+     def event_search
+        event_day = params[:event][:event_day]
+        event_city = params[:event][:event_city]
+        @events = Event.where(event_day: event_day).where(event_city: event_city)
+        events_id = []
+        @events.each do |event|
         event_id.push(event.id)
     end
-    if events_id == []
+        if events_id == []
         events_id = [0]
+        end
+        redirect_to events_path(events_id: events_id)
     end
-    redirect_to events_path(events_id: events_id)
-  end
 
 end
