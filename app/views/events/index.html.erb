@@ -3,7 +3,7 @@
 
 <h1>イベント一覧画面(TOP画面)</h1>
 
-	<%=form_for @event, url: event_search_path do |f| %>
+	<%=form_for @event, url: events_path do |f| %>
 
 		<%= f.date_field :event_day %>
 		<%= f.label :"区を選択" %>
@@ -14,7 +14,7 @@
 
 
 
-  	<% if @events.count == 0 %>
+  	<% if @events.count == nil %>
 
   	 <h3>該当する検索結果はありません</h3>
 
@@ -32,7 +32,7 @@
 					<h4><%= event.event_day %></h4>
 				</div>
 			</div>
-			<%= paginate @events, class: "pagenate" %>
 		<% end %>
+		<%= paginate @events, class: "paginate" %>
 	<% end %>
 </div>
