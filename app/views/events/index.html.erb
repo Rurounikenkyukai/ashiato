@@ -3,7 +3,7 @@
 
 <h1>イベント一覧画面(TOP画面)</h1>
 
-	<%=form_for @event, url: events_path do |f| %>
+	<%=form_for @event, url: event_search_path do |f| %>
 
 		<%= f.date_field :event_day %>
 		<%= f.label :"区を選択" %>
@@ -19,7 +19,7 @@
   	 <h3>該当する検索結果はありません</h3>
 
   	<% else %>
-	<h2><%= @events[0].event_day %>のイベント</h2>
+	<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
 		<% @events.each do |event| %>
 
 			<div>
