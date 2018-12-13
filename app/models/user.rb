@@ -4,10 +4,19 @@ class User < ApplicationRecord
   attachment :user_image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,:trackable, :validatable
+
   has_many :asiatos
+
   has_many :comments
+
   has_many :cart_items
+
   has_many :purchase_historys
+
+  has_many :events, through: :asiatos
+  has_many :events, through: :comments
+
+
   validates :first_name, presence: true
   validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "全角ひらがな、全角カタカナ、漢字で入力してください" }
   validates :kana_first_name, presence: true, format: { with: /\A[ァ-ンー－]+\z/, message: "全角カタカナで入力してください" }
