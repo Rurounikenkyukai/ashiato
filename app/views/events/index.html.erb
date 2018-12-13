@@ -5,9 +5,31 @@
            <h4><%= f.event_title %></h4>
 
 
+
       <% end %>
 
+<%=form_for @event, url: event_search_path do |f| %>
 
 
+  	<% if @events.count == nil %>
 
+  	 <h3>該当する検索結果はありません</h3>
+
+  	<% else %>
+	<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
+		<% @events.each do |event| %>
+
+			<div>
+				<div>
+					<p>イベント画像</p>
+					<%= attachment_image_tag event,:event_image %>
+				</div>
+				<div>
+					<h3><%= event.event_title %></h3>
+					<h4><%= event.event_day %></h4>
+				</div>
+			</div>
+		<% end %>
+		<%= paginate @events, class: "paginate" %>
+	<% end %>
 </div>
