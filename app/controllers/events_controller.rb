@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     def destroy
     end
 
-     def event_search
+    def event_search
         event_day = params[:event][:event_day]
         event_city = params[:event][:event_city]
         @events = Event.where(event_day: event_day).where(event_city: event_city)
