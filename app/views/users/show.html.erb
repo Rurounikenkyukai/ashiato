@@ -1,14 +1,18 @@
-<div class="container">
+<div class="container" style="margin-top: 200px;">
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-4" style="border: 1px solid red;">
+     <%= attachment_image_tag current_user, :user_image, :fill, 100, 100, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+     <br />
+     <%= @user.nick_name %>
+     <br />
+     <%= link_to "ユーザ編集画面", edit_user_path %>
+     <br />
+     <%=link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？", method: :delete %>
+   </div>
+    <div class="col-lg-8" style="border: 1px solid blue;">
+    <h1>行ったイベント</h1>
      
-    </div>
-    <div class="col-lg-8">
-      <h1>行ったイベント</h1>
-      <each></each>
-
-      <h1>購入履歴</h1>
-      <each></each>
+    <h2>購入履歴</h2>
 
     </div>
   </div>
