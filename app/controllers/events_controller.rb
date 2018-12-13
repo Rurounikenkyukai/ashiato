@@ -11,6 +11,7 @@ class EventsController < ApplicationController
             end
             @events = Kaminari.paginate_array(@events_array).page(params[:page])
         end
+
     end
 
     def show
