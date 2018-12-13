@@ -1,17 +1,14 @@
 <div class="event_main">
 
+<% @people.each do |f| %>
 
-<h1>イベント一覧画面(TOP画面)</h1>
+           <h4><%= f.event_title %></h4>
 
-	<%=form_for @event, url: event_search_path do |f| %>
 
-		<%= f.date_field :event_day %>
-		<%= f.label :"区を選択" %>
-	  	<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
 
-		<%= f.submit "検索する" %>
-	<% end %>
+      <% end %>
 
+<%=form_for @event, url: event_search_path do |f| %>
 
 
   	<% if @events.count == nil %>

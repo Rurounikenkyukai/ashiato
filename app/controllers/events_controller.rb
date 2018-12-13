@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
     def index
+      @q = Event.ransack(params[:q])
+      @people = @q.result(distinct: true)
           if params[:events_id].nil?
             @event = Event.new
             @events = Event.page(params[:page]).reverse_order
@@ -38,6 +40,11 @@ class EventsController < ApplicationController
     ##  end
     end
 
+<<<<<<< HEAD
+	  def destroy
+	  end
+end
+=======
 
      def event_search
         event_day = params[:event][:event_day]
@@ -51,3 +58,4 @@ class EventsController < ApplicationController
     end
 
 end
+>>>>>>> 0646da04a5391e4ce877215bdefe887675136a83
