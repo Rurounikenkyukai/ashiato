@@ -14,7 +14,7 @@
 
 
 
-  	<% if @events.count == 0 %>
+  	<% if @events.count == nil %>
 
   	 <h3>該当する検索結果はありません</h3>
 
@@ -32,8 +32,8 @@
 					<h4><%= event.event_day %></h4>
 				</div>
 			</div>
-			<%= paginate @events, class: "pagenate" %>
 		<% end %>
+		<%= paginate @events, class: "pagenate" %>
 	<% end %>
-	
+
 </div>

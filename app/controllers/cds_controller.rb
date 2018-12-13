@@ -1,6 +1,8 @@
 class CdsController < ApplicationController
 
     def index
+        @cd = Cd.new
+        @cds = Cd.page(params[:page])
     end
 
     def show
@@ -26,5 +28,5 @@ class CdsController < ApplicationController
         params.require(:cd).permit(:cd_title, :cd_image, :cd_genre, :cd_price, :cd_stock, :cd_label,
             discs_attributes: [:id, :cd_id, :disc_number, :_destroy, musics_attributes: [:id, :disc_id, :music_title, :music_number, :_destroy]]
             )
-    end
+    end 
 end
