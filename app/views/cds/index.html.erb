@@ -1,9 +1,9 @@
+<div class = "cds-index", style="border: 1px solid red;" >
 <h1>商品一覧画面</h1>
 
 	<h3>検索結果の検索結果</h3>
 
 		<% @cds.each do |cd| %>
-
 		  <div>
 
 			<div>
@@ -30,8 +30,10 @@
 						<%= "購入できません" %>
 					<% else %>
 						<%=form_for @cart_items do |f| %>
-						<%= f.hidden_field :user_id,  :value => current_user.id %>
-						<%# f.hidden_field :user_id, :current_user.id %>
+
+						<%= f.hidden_field :user_id,  :value => 1 %>
+						<%# f.hidden_field :user_id, :value => current_user.id %>
+
 						<%= f.hidden_field :cd_id, :value => cd.id %>
 						<h4>枚数を選択：<%= f.select :cd_quantity,(0..cd.cd_stock).to_a %></h4>
 
@@ -42,3 +44,5 @@
 		</div>
 		<% end %>
 			<%= paginate @cds, class: "pagenate" %>
+</div>
+

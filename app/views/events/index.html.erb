@@ -1,4 +1,4 @@
-<div class="event_main">
+<div class="event_main", style="border: 1px solid red;" >
 
 
 <h1>イベント一覧画面(TOP画面)</h1>
@@ -25,7 +25,7 @@
 			<div>
 				<div>
 					<p>イベント画像</p>
-					<%= attachment_image_tag event,:event_image %>
+					<%= attachment_image_tag event,:event_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg"  %>
 				</div>
 				<div>
 					<h3><%= event.event_title %></h3>
