@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 
     post "/search" => "events#search", as: "search"
     post "/event_search" => "events#event_search", as: "event_search"
+    get "/cart_item" => "cart_items#show", as: "cart_item_buy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
