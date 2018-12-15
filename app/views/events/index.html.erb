@@ -14,12 +14,12 @@
 
 
 
-  	<% if @events.count == 0 %>
+  	<% if @events.count == nil %>
 
   	 <h3>該当する検索結果はありません</h3>
 
   	<% else %>
-	<h2><%= @events[0].event_day %>のイベント</h2>
+	<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
 		<% @events.each do |event| %>
 
 			<div>
@@ -32,8 +32,8 @@
 					<h4><%= event.event_day %></h4>
 				</div>
 			</div>
-			<%= paginate @events, class: "pagenate" %>
 		<% end %>
+		<%= paginate @events, class: "pagenate" %>
 	<% end %>
 
 </div>

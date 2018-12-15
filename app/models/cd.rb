@@ -1,6 +1,8 @@
 class Cd < ApplicationRecord
 	attachment :cd_image
 	has_many :discs, inverse_of: :cd
+	has_many :purchase_items
+	has_many :cart_items
 	accepts_nested_attributes_for :discs, allow_destroy: true
 	validates :cd_title, presence: true
 	validates :cd_genre, presence: true, length: { maximum:15 }

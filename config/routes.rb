@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :artists, only: [:create, :update, :destroy]
   resources :cart_items, only: [:show, :create, :destroy]
   resources :cds, only: [:index, :show, :edit, :create, :update, :destroy]
-  resources :events, only: [:index, :show, :edit, :create, :update, :destroy]
+  resources :events, only: [:index, :show, :edit, :create, :update, :destroy] do
+    resource :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :purchase_historys, only: [:new, :create]
 
     post "/search" => "events#search", as: "search"

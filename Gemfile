@@ -81,7 +81,7 @@ gem "pry-rails"
 
 gem 'cocoon'
 
-
+gem 'ransack'
 
 
 

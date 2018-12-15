@@ -1,15 +1,15 @@
 class EventsController < ApplicationController
     def index
-        @event = Event.new
-        if params["events_id"] == nil
+          if params[:events_id].nil?
+            @event = Event.new
             @events = Event.page(params[:page]).reverse_order
         else
-            @events = []
-            if params["events_id"] != ["0"]
-                params["events_id"].each do |a|
-                    @events.push(Event.find(a.to_i))
-                end
+            @event = Event.new
+            @events_array = []
+            params[:events_id].each do |a|
+            @events_array.push(Event.find(a))
             end
+            @events = Kaminari.paginate_array(@events_array).page(params[:page])
         end
     end
 
@@ -30,33 +30,19 @@ class EventsController < ApplicationController
         end
 	end
 
-  	def update
-	  end
-
-	  def destroy
-	  end
-
-    def search
-    ##  if params[:happy] == "1"
-      ##  @cd = Cd.where(params[:content])
-      ##elsif params[:happy] =="2"
-        @events = Event.where(params[:content])
-      ##else
-      ##  @artist = Artist.where(params[:content])
-    ##  end
+    def update
     end
 
+    def destroy
+    end
 
-     def event_search
+    def event_search
         event_day = params[:event][:event_day]
         event_city = params[:event][:event_city]
         @events = Event.where(event_day: event_day).where(event_city: event_city)
         events_id = []
         @events.each do |event|
-        event_id.push(event.id)
-    end
-        if events_id == []
-        events_id = [0]
+        events_id.push(event.id)
         end
         redirect_to events_path(events_id: events_id)
     end
