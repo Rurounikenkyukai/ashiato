@@ -3,6 +3,7 @@ class CdsController < ApplicationController
     def index
         @cd = Cd.new
         @cds = Cd.page(params[:page])
+        @cart_items = CartItem.new
     end
 
     def show
