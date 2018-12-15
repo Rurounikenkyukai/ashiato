@@ -12,7 +12,8 @@ class AdminsController < ApplicationController
   	@event = Event.new
     @event.performers.build
 
-    #@purchases = Purchase_history.all %>
+    @purchase = PurchaseHistory.find(params[:id])
+    @purchases = PurchaseHistory.all
 
   	@genres = []
   	@cds.each do |cd|

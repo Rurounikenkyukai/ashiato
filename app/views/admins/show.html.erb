@@ -56,7 +56,10 @@
             		<%= f.label :イベント名 %>
             		<%= f.text_field :event_title %>
             	</div>
-			   	<%# 開催日　%>
+			   	<div>
+			   		<%= f.label :開催日時 %>
+			   		<%= f.date_field :event_day %>
+			   	</div>
 			   	<div>
 			   		<%= f.label :開催場所画像 %>
 			   		<%= f.attachment_field :event_image, placeholder: "イメージ画像を選択" %>
@@ -105,21 +108,47 @@
                 	<%= paginate @users, class: "pagenate" %>
                 </table>
             <h2>購入履歴</h2>
-               <%# <table class="table table-striped table-bordered table-hover">
+                <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 	</thead>
                 	<% @purchases.each do |purchase| %>
-                <%#	<tbody>
+                	<tbody>
                 		<tr>
                 			<td><%= purchase.send_name %></td> 
-                <%#			<td><%= purchase.purchase_at %></td>
-                <%#			<td><%= link_to "編集画面へ", edit_user_path(user.id) %></td>
-                <%#			<td><%= link_to "削除", user_path, method: :'delete' %></td> 
-                <%#		</tr>
+                			<td><%= purchase.purchase_at %></td>
+                			<td><%= purchase.send_status %></td>
+                			<td>
+                				<%= form_for(@purchase) do |f| %>
+                				<label>
+                					<%= f.radio_button :send_status, "受注" %>受注
+                				</label>
+                				<label>
+                					<%= f.radio_button :send_status, "商品準備中" %>商品準備中
+                				</label> 
+                				<label>
+                					<%= f.radio_button :send_status, "出荷済み" %>出荷済み
+                				</label>
+                				<%= f.submit "ステータスを変更" %>
+                				<% end %>
+                			</td>
+                		</tr>
                 	</tbody>
                 	<% end %>
-               <%# 	<%= paginate @users, class: "pagenate" %>
-              <%#  </table>  %>
+                	<%= paginate @users, class: "pagenate" %>
+                </table>
+                <h2>CD在庫管理</h2>
+                <table class="table table-striped table-bordered table-hover">
+                	<thead>
+                	</thead>
+                	<% @cds.each do |cd| %>
+                	<tbody>
+                		<tr>
+                			<td><%= cd.cd_title %></td>
+                			<td><%= cd.cd_stock %></td>
+                		</tr>
+                	</tbody>
+                	<% end %>
+                </table>
 		</div>
 
 

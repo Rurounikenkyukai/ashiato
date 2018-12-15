@@ -26,6 +26,9 @@ class EventsController < ApplicationController
            @event.errors.full_messages
            redirect_to event_path(@event.id)
         else
+            puts "------------------------------" 
+            puts @event.errors.full_messages
+            puts "------------------------------" 
            redirect_to admin_path(@user.id)
         end
 	end
