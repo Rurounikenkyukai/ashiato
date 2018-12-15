@@ -2,7 +2,7 @@
 <h1>商品一覧画面</h1>
 
 	<h3>検索結果の検索結果</h3>
-
+    
 		<% @cds.each do |cd| %>
 		  <div>
 
@@ -45,4 +45,3 @@
 		<% end %>
 			<%= paginate @cds, class: "pagenate" %>
 </div>
-
