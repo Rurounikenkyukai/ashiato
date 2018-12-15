@@ -26,9 +26,9 @@ class EventsController < ApplicationController
            @event.errors.full_messages
            redirect_to event_path(@event.id)
         else
-            puts "------------------------------" 
+            puts "------------------------------"
             puts @event.errors.full_messages
-            puts "------------------------------" 
+            puts "------------------------------"
            redirect_to admin_path(@user.id)
         end
 	end
@@ -38,6 +38,8 @@ class EventsController < ApplicationController
 
     def destroy
     end
+
+
 
     def event_search
         event_day = params[:event][:event_day]
