@@ -3,9 +3,16 @@ class AdminsController < ApplicationController
   def show
   	@cd = Cd.new
   	@cds = Cd.all
+
   	@artist = Artist.new
   	@artists = Artist.all
+
   	@users = User.page(params[:page]).reverse_order
+
+  	@event = Event.new
+    @event.performers.build
+
+    #@purchases = Purchase_history.all %>
 
   	@genres = []
   	@cds.each do |cd|
@@ -27,6 +34,13 @@ class AdminsController < ApplicationController
   			@artist_names.push([ar.artist_name,ar.artist_name])
   		end
   	end
+
+  	@artist_names_id = []
+  	@artists.each do |ar|
+  		if !@artist_names_id.include?([ar.artist_name,ar.id])
+  			@artist_names_id.push([ar.artist_name,ar.id])
+  		end
+    end
 
   end
 
