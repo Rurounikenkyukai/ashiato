@@ -36,15 +36,17 @@ class CdsController < ApplicationController
             redirect_to admin_path(@user.id)
         end
 
-        
-        
-	end
+	      end
 
-	def update
-	end
+	      def update
+	      end
 
-	def destroy
-	end
+	      def destroy
+	      end
+
+        def search
+          
+        end
 
     private
     def cd_params
