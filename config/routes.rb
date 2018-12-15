@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resource :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  resources :purchase_historys, only: [:new, :create]
+  resources :purchase_historys, only: [:new, :create, :update]
 
     post "/search" => "events#search", as: "search"
     post "/event_search" => "events#event_search", as: "event_search"
