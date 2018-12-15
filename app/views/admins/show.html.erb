@@ -56,7 +56,10 @@
             		<%= f.label :イベント名 %>
             		<%= f.text_field :event_title %>
             	</div>
-			   	<%# 開催日　%>
+			   	<div>
+			   		<%= f.label :開催日時 %>
+			   		<%= f.date_field :event_day %>
+			   	</div>
 			   	<div>
 			   		<%= f.label :開催場所画像 %>
 			   		<%= f.attachment_field :event_image, placeholder: "イメージ画像を選択" %>
