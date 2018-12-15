@@ -19,8 +19,16 @@ class EventsController < ApplicationController
     def edit
     end
 
-    def create
-    end
+  	def create
+        @event = Event.new(event_params)
+        @user = User.find(current_user.id)
+        if @event.save
+           @event.errors.full_messages
+           redirect_to event_path(@event.id)
+        else
+           redirect_to admin_path(@user.id)
+        end
+	end
 
     def update
     end
@@ -37,6 +45,12 @@ class EventsController < ApplicationController
         events_id.push(event.id)
         end
         redirect_to events_path(events_id: events_id)
+    end
+
+    private
+
+    def event_params
+        params.require(:event).permit(:event_day, :event_title, :event_image, :event_city, :event_address, performers_attributes: [:id, :artist_id, :event_id, :_destroy])
     end
 
 end

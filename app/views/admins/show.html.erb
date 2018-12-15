@@ -1,3 +1,4 @@
+<div class="adminpage"> 
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2">
@@ -13,36 +14,72 @@
 		</div>
 		<div class="col-lg-8" style="background-color: gray;">
 			<h2>CD追加</h2>
+	      <div>
 			<%= form_for @cd do |f| %>
 			    <p><%= f.label :CD %>
 			   	  <%= f.text_field :cd_title %></p>
 			    <p><%= f.label :ジャンル %>
+			    	<input name="cdgenre" value="cdgenre">
 			   	  <%= f.select :cd_genre, @genres, :include_blank => true %>
-			   	  <%= f.text_field :cd_genre %></p>
                 <p><%= f.label :レーベル名 %>
+                	<input name="cdlabel" value="cdlabel">
 			      <%= f.select :cd_label, @labels, :include_blank => true %>
-			      <%= f.text_field :cd_label %></p>
 			    <p><%= f.label :値段 %>
 			      <%= f.text_field :cd_price %>円</p>
 			    <p><%= f.label :在庫数 %>
 			      <%= f.number_field :cd_stock %>枚</p>
 			    <p><%= f.label :ジャケット画像 %>
-			      <%= f.attachment_field :cd_image, placeholder: "ジャケット画像を検索" %></p>
-			    <p><%= fields_for @artist do |i| %>
-			    　  <%= i.label :新規アーティスト追加 %>
-		         　 <%= i.text_field :artist_name %>
-		            <%= i.submit "アーティスト追加" %></p>
-	            <% end %>
-
-		            <%= f.fields_for :discs do |d| %>
-                       <p><%= d.label :Disc %>
-                         <%= d.number_field :disc_number %></p>
-                    <% end %>                
-            <%= f.submit %>    
+			      <%= f.attachment_field :cd_image, placeholder: "ジャケット画像を選択" %></p>
+	            <div>
+	            	<%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
+	            </div>
+	            <div>
+		            <%= f.fields_for :discs do |disc| %>
+                    <%= render 'disc_fields', f: disc %>
+                    <% end %>
+                </div>  
+                                   
+            <div><%= f.submit %></div>   
 
             <% end %>
+              <h2>アーティスト追加</h2>
+              <div><%= form_for @artist do |i| %>
+		         　 <%= i.text_field :artist_name %>
+		            <%= i.submit "アーティストを追加", class:"btn btn-default" %>
+	            <% end %>
+	            </div>
 
             <h2>イベント追加</h2>
+            <div>
+            	<%= form_for @event do |f| %>
+            	<div>
+            		<%= f.label :イベント名 %>
+            		<%= f.text_field :event_title %>
+            	</div>
+			   	<%# 開催日　%>
+			   	<div>
+			   		<%= f.label :開催場所画像 %>
+			   		<%= f.attachment_field :event_image, placeholder: "イメージ画像を選択" %>
+			   	</div>
+			   	<div>
+			   		<%= f.label :開催区 %>
+			   		<%= f.select :event_city, [["渋谷","渋谷区"], ["新宿","新宿区"],["港","港区"]] %>
+			   	</div>
+			   	<div>
+			   		<%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
+			   	</div>
+			   	<div>
+			   		<%= f.fields_for :performers do |performer| %>
+                    <%= render 'performer_fields', f: performer %>
+                    <% end %>
+			   	</div>
+			   	<div>
+			   		<%= f.label :MAP表示させたい位置情報の住所 %>
+			   		<%= f.text_field :event_address %>
+			   	</div>
+			   	 <%= f.submit "イベントを追加", class:"btn btn-default" %>
+                <% end %>
+            </div>
 
 
             <h2>ユーザー情報</h2>
@@ -67,11 +104,27 @@
                 	<% end %>
                 	<%= paginate @users, class: "pagenate" %>
                 </table>
-
+            <h2>購入履歴</h2>
+               <%# <table class="table table-striped table-bordered table-hover">
+                	<thead>
+                	</thead>
+                	<% @purchases.each do |purchase| %>
+                <%#	<tbody>
+                		<tr>
+                			<td><%= purchase.send_name %></td> 
+                <%#			<td><%= purchase.purchase_at %></td>
+                <%#			<td><%= link_to "編集画面へ", edit_user_path(user.id) %></td>
+                <%#			<td><%= link_to "削除", user_path, method: :'delete' %></td> 
+                <%#		</tr>
+                	</tbody>
+                	<% end %>
+               <%# 	<%= paginate @users, class: "pagenate" %>
+              <%#  </table>  %>
 		</div>
 
 
 		<div class="col-lg-2">
 		</div>
 	</div>
+</div>
 </div>
