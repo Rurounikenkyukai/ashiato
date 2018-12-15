@@ -19,25 +19,25 @@
 			    <p><%= f.label :CD %>
 			   	  <%= f.text_field :cd_title %></p>
 			    <p><%= f.label :ジャンル %>
-			    	<input name="cdgenre" value="cdgenre">
+			    	<input name="cdgenre">
 			   	  <%= f.select :cd_genre, @genres, :include_blank => true %>
                 <p><%= f.label :レーベル名 %>
-                	<input name="cdlabel" value="cdlabel">
+                	<input name="cdlabel">
 			      <%= f.select :cd_label, @labels, :include_blank => true %>
 			    <p><%= f.label :値段 %>
 			      <%= f.text_field :cd_price %>円</p>
 			    <p><%= f.label :在庫数 %>
 			      <%= f.number_field :cd_stock %>枚</p>
 			    <p><%= f.label :ジャケット画像 %>
-			      <%= f.attachment_field :cd_image, placeholder: "ジャケット画像を選択" %></p>
-	            <div>
-	            	<%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
-	            </div>
+			      <%= f.attachment_field :cd_image %></p>
 	            <div>
 		            <%= f.fields_for :discs do |disc| %>
-                    <%= render 'disc_fields', f: disc %>
+                        <%= render 'disc_fields', f: disc %>
                     <% end %>
-                </div>  
+                    <div>
+                	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
+                    </div>
+                </div> 
                                    
             <div><%= f.submit %></div>   
 
@@ -69,12 +69,12 @@
 			   		<%= f.select :event_city, [["渋谷","渋谷区"], ["新宿","新宿区"],["港","港区"]] %>
 			   	</div>
 			   	<div>
-			   		<%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
-			   	</div>
-			   	<div>
 			   		<%= f.fields_for :performers do |performer| %>
                     <%= render 'performer_fields', f: performer %>
                     <% end %>
+			   	</div>
+			   	<div>
+			   		<%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
 			   	</div>
 			   	<div>
 			   		<%= f.label :MAP表示させたい位置情報の住所 %>
@@ -98,7 +98,7 @@
                 	<% @users.each do |user| %>
                 	<tbody>
                 		<tr>
-                			<td><%= attachment_image_tag user, :user_image, format: 'jpeg', fallback: "/image/no_image.jpg", size: "30×30" %></td>
+                			<td><%= attachment_image_tag user, :user_image,:fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg", size: "60x60" %></td>
                 			<td><%= user.nick_name %></td>
                 			<td><%= link_to "編集画面へ", edit_user_path(user.id) %></td>
                 			<td><%= link_to "削除", user_path, method: :'delete' %></td>
@@ -139,6 +139,10 @@
                 <h2>CD在庫管理</h2>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
+                		<tr>
+                			<th>CD名</th>
+                			<th>在庫数</th>
+                		</tr>
                 	</thead>
                 	<% @cds.each do |cd| %>
                 	<tbody>
@@ -149,6 +153,10 @@
                 	</tbody>
                 	<% end %>
                 </table>
+                <div>
+                　<p>アクセス解析</p>
+                </div>
+
 		</div>
 
 

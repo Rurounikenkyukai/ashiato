@@ -3,8 +3,7 @@
 		<%= f.number_field :music_number %>
 		<%= f.label :曲名 %>
         <%= f.text_field :music_title %>
-        	<%= f.fields_for :recording_artists do |f| %>
-            <%= f.select :artist_id, @artist_names_id, :include_blank => true %>
-            <% end %>
+        <%= f.label :アーティスト名 %>
+        <%= f.select :artist_id, @artist_names_id, :include_blank => true %>
     	<%= link_to_remove_association "曲を削除", f, class:"btn btn-default" %>
 </div>
