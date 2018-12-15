@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :events, through: :comments
 
 
+
   validates :first_name, presence: true
   validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "全角ひらがな、全角カタカナ、漢字で入力してください" }
   validates :kana_first_name, presence: true, format: { with: /\A[ァ-ンー－]+\z/, message: "全角カタカナで入力してください" }
