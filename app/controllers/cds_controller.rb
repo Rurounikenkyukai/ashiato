@@ -12,19 +12,27 @@ class CdsController < ApplicationController
     end
 
   	def create
-        @cd = Cd.new(cd_params)
         @user = User.find(current_user.id)
-        if params[:cd_label].blank?
-           params[:cd_label] =params[:cdlabel]
+       puts "start check params"
+       puts params[:cd][:cd_label]
+        if params[:cd][:cd_label].blank?
+           params[:cd][:cd_label] = params[:cdlabel]
+           puts "check params"
+           puts params[:cd][:cd_label]
         end
-        if params[:cd_genre].blank?
-           params[:cd_genre] =params[:cdgenre]
+       puts "finish check params"
+       puts params[:cd][:cd_genre]
+        if params[:cd][:cd_genre].blank?
+           params[:cd][:cd_genre] = params[:cdgenre]
         end
+        @cd = Cd.new(cd_params)
         if @cd.save
-           @cd.errors.full_messages
            redirect_to cd_path(@cd.id)
         else
-           redirect_to admin_path(@user.id)
+            puts "------------------------------" 
+            puts @cd.errors.full_messages
+            puts "------------------------------" 
+            redirect_to admin_path(@user.id)
         end
 
         
