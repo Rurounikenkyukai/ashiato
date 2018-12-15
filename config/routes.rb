@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
   resources :purchase_historys, only: [:new, :create, :update]
 
-    post "/search" => "events#search", as: "search"
+    post "/search" => "cds#search", as: "search"
     post "/event_search" => "events#event_search", as: "event_search"
     get "/cart_item" => "cart_items#show", as: "cart_item_buy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
