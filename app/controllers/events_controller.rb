@@ -14,6 +14,8 @@ class EventsController < ApplicationController
     end
 
     def show
+        @event = Event.find(params[:id])
+        @comment = Comment.new
     end
 
     def edit
@@ -37,6 +39,9 @@ class EventsController < ApplicationController
     end
 
     def destroy
+        @event = Event.find(params[:id])
+        @event.destroy
+        redirect_to events_path(@event)
     end
 
 
