@@ -51,11 +51,13 @@ class CdsController < ApplicationController
        content = params[:search][:content]
        if category == "イベント"
          @events = Event.where(event_title: content)
+         redirect_to cds_path(@events)
        elsif category == "CD"
          @cds = Cd.where(cd_title: content)
+         
        elsif category == "アーティスト"
          @cds = Artist.where(artist_name: content)
-       else 
+       else
 
        end
 

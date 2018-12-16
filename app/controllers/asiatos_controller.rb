@@ -2,8 +2,8 @@ class AsiatosController < ApplicationController
 
   def create
     event = Event.find(params[:event_id])
-    asiato = current_user.asiato.new(event_id: event.id)
-    asiato.save
+    asiatos = current_user.asiato.new(event_id: event.id)
+    asiatos.save
     redirect_to event_path(event)
   end
 
