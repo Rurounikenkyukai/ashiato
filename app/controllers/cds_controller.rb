@@ -55,6 +55,8 @@ class CdsController < ApplicationController
          @cds = Cd.where(cd_title: content)
        elsif category == "アーティスト"
          @cds = Artist.where(artist_name: content)
+       else 
+
        end
 
 
