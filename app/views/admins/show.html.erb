@@ -114,11 +114,14 @@
                 	<% @purchases.each do |purchase| %>
                 	<tbody>
                 		<tr>
-                			<td><%= purchase.send_name %></td> 
+                			<td>
+                			    <%= purchase.user.first_name %>
+                			    <%= purchase.user.last_name %>
+                			</td> 
                 			<td><%= purchase.purchase_at %></td>
                 			<td><%= purchase.send_status %></td>
                 			<td>
-                				<%= form_for(@purchase) do |f| %>
+                				<%= form_for (purchase) do |f| %>
                 				<label>
                 					<%= f.radio_button :send_status, "受注" %>受注
                 				</label>
@@ -134,7 +137,6 @@
                 		</tr>
                 	</tbody>
                 	<% end %>
-                	<%= paginate @users, class: "pagenate" %>
                 </table>
                 <h2>CD在庫管理</h2>
                 <table class="table table-striped table-bordered table-hover">

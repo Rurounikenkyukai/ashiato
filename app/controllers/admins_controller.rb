@@ -6,13 +6,12 @@ class AdminsController < ApplicationController
 
   	@artist = Artist.new
   	@artists = Artist.all
-
+    
   	@users = User.page(params[:page]).reverse_order
 
   	@event = Event.new
     @event.performers.build
 
-    @purchase = PurchaseHistory.find(params[:id])
     @purchases = PurchaseHistory.all
 
   	@genres = []

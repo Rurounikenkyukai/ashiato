@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resource :asiatos, only: [:create, :destroy]
   end
 
-  resources :purchase_historys, only: [:new, :create, :update]
+  resources :purchase_histories, only: [:new, :create, :update]
 
     post "/search" => "cds#search", as: "search"
     post "/event_search" => "events#event_search", as: "event_search"

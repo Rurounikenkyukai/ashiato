@@ -7,6 +7,7 @@ class CdsController < ApplicationController
     def show
         @cd = Cd.find(params[:id])
         @cart_items = CartItem.new
+
     end
 
     def edit
