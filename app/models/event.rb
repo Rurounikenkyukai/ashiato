@@ -14,7 +14,7 @@ class Event < ApplicationRecord
 	validates :event_city, presence: true
 	validates :event_address, presence: true
 
-	def favorited_by?(user)
-	  asiatos.where(user_id: user.id).exists?
+	def favorited_by?(id)
+	    asiatos.where(user_id: id).exists?
 	end
 end

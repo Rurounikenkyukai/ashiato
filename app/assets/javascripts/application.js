@@ -18,8 +18,6 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
-
-
 $(window).scroll( function() {
      var pager = $("#read_more");
      var scrollBottom = $(window).scrollTop() + $(window).height();
