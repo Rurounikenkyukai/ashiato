@@ -1,2 +1,33 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<h2>イベント編集画面</h2>
+<div>
+	<%= form_for @event do |f| %>
+	<div>
+		<%= f.label :イベント名 %><%= f.text_field :event_title %>	
+	</div>
+	<div>
+	    <%= f.label :開催日時 %>
+		<%= f.date_field :event_day %>
+	</div>
+	<div>
+		<%= f.label :開催場所画像 %>
+	    <%= f.attachment_field :event_image, placeholder: "イメージ画像を選択" %>
+	</div>
+	<div>
+	    <%= f.label :開催区 %>
+		<%= f.select :event_city, [["渋谷","渋谷区"], ["新宿","新宿区"],["港","港区"]] %>
+	</div>
+	<div>
+	    <%= f.fields_for :performers do |performer| %>
+        <%= render 'performer_fields', f: performer %>
+        <% end %>
+	</div>
+	<div>
+	    <%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
+	</div>
+	<div>
+	    <%= f.label :MAP表示させたい位置情報の住所 %>
+	    <%= f.text_field :event_address %>
+	</div>
+		<%= f.submit "イベントを更新", class:"btn btn-default" %>
+	    <% end %>
+</div>

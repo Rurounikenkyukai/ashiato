@@ -1,10 +1,59 @@
+<div class="cartpage">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-2"></div>
-		<div class="col-lg-8" style="background-color: gray;">
-			<h2>カートの中身</h2>
+		<div class="col-lg-2">
 			
 		</div>
-		<div class="col-lg-2"></div>
+		<div class="col-lg-8" style="background-color: gray;">
+			<h2>カートの中身</h2>
+			<div>
+				<% @cart_items.each do |cart| %>
+				<div>
+				    <%= attachment_image_tag cart.cd, :cd_image,:fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg", size: "60x60" %>
+			    </div>
+			    <div>
+				    <h4>商品名</h4>
+				    <%= cart.cd.cd_title %>
+				    <h4>値段</h4>
+				    <%= cart.cd.cd_price %>円
+				    <h4>購入枚数</h4>
+				    <%= cart.cd_quantity %>枚
+				</div>				
+				<div>
+				    <% cart.cd.discs.each do |d| %>
+				        <% d.musics.each do |m| %>
+				        <%= m.artist.artist_name %>
+				        <% end %>
+				    <% end %>
+				</div>
+				<div>
+					<%= link_to "カートから削除", cart_item_path, method: :delete %>
+				</div>
+			    <% end %>
+		    </div>
+		     <ul>
+		     	<li><input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る</li>
+		     	<li><input type="radio" name="btn" id="b">他の住所に送る</li>
+		     </ul>
+		     <div class="text text01">
+		     	<%= current_user.address %>に送る
+		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post %>
+		     </div>
+		     <div class="text text02">
+		     	<%= form_for @purchase do |f| %>
+		     	<p>送付先郵便番号<%= f.text_field :send_postal_code %></p>
+		     	<p>送付先宛名<%= f.text_field :send_name %></p>
+		     	<p>送付先住所<%= f.text_field :send_address %></p>
+		     	<%= f.submit "購入する" %>
+		     	<% end %>
+		     </div>
+		     <div>
+		     	総計<%= @total_price %>
+		     </div>
+		</div>
+		<div class="col-lg-2">
+			
+		</div>
 	</div>
+</div>
 </div>

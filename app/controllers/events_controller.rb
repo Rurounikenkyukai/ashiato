@@ -20,6 +20,15 @@ class EventsController < ApplicationController
     end
 
     def edit
+        @event = Event.find(params[:id])
+
+        @artists = Artist.all
+        @artist_names_id = []
+        @artists.each do |ar|
+            if !@artist_names_id.include?([ar.artist_name,ar.id])
+            @artist_names_id.push([ar.artist_name,ar.id])
+            end
+        end
     end
 
   	def create
@@ -37,6 +46,12 @@ class EventsController < ApplicationController
 	end
 
     def update
+        @event = Event.find(params[:id])
+        if @event.update(event_params)
+           redirect_to event_path(@event.id)
+        else
+           redirect_to edit_event_path(@event.id)
+        end
     end
 
     def destroy
