@@ -15,6 +15,7 @@ class EventsController < ApplicationController
 
     def show
         @event = Event.find(params[:id])
+        @users = User.page(params[:page]).reverse_order
         @comment = Comment.new
     end
 
