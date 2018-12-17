@@ -1,2 +1,30 @@
-<h1>Cds#edit</h1>
-<p>Find me in app/views/cds/edit.html.erb</p>
+<div class = "edit-field" >
+<h2>CD編集画面</h2>
+	      <div>
+			<%= form_for @cd do |f| %>
+			    <p><%= f.label :CD %>
+			   	  <%= f.text_field :cd_title %></p>
+			    <p><%= f.label :ジャンル %>
+			    	<input name="cdgenre">
+			   	  <%= f.select :cd_genre, @genres, :include_blank => true %>
+                <p><%= f.label :レーベル名 %>
+                	<input name="cdlabel">
+			      <%= f.select :cd_label, @labels, :include_blank => true %>
+			    <p><%= f.label :値段 %>
+			      <%= f.text_field :cd_price %>円</p>
+			    <p><%= f.label :在庫数 %>
+			      <%= f.number_field :cd_stock %>枚</p>
+			    <p><%= f.label :ジャケット画像 %>
+			      <%= f.attachment_field :cd_image %></p>
+	            <div>
+		            <%= f.fields_for :discs do |disc| %>
+                        <%= render 'disc_fields', f: disc %>
+                    <% end %>
+                    <div>
+                	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
+                    </div>
+                </div>
+            <div><%= f.submit %></div>
+
+            <% end %>
+</div>

@@ -1,18 +1,51 @@
-<div class="container" style="margin-top: 200px;">
-  <div class="row">
-    <div class="col-lg-4" style="border: 1px solid red">
-     <%= attachment_image_tag  @cd, :cd_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
-    </div>
-    <div class="col-lg-8">
-      <%= @cd.cd_genre %>
-      <%= @cd.cd_label%>
-      <%= @cd.cd_title %>
-      
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
 
-      </div>
-    </div>
-  </div>
-</div>
+<h1>CD詳細画面</h1>
+
+		<div>
+
+		  	<div>
+				<p>CDジャケット画像</p>
+				<%= attachment_image_tag @cd, :cd_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+		  	</div>
+
+		    <div>
+				<h4>CDタイトル：<%= @cd.cd_title %></h4>
+
+				<h4>アーティスト名：<% @cd.discs.each do |disc| %>
+					 <% disc.musics.each do |music| %>
+					  	<%= music.artist.artist_name %></h4>
+				     <% end %>
+					 <% end %>
+
+				<h4>ジャンル名：<%= @cd.cd_genre %></h4>
+				<h4>価格：<%= @cd.cd_price %></h4>
+			</div>
+
+				<% if @cd.cd_stock == 0 %>
+					<%= "購入できません" %>
+				<% else %>
+					<%=form_for @cart_items do |f| %>
+
+					<%= f.hidden_field :user_id,  :value => 1 %>
+					<%# f.hidden_field :user_id, :value => current_user.id %>
+
+					<%= f.hidden_field :cd_id, :value => @cd.id %>
+					<h4>枚数を選択：<%= f.select :cd_quantity,(0..@cd.cd_stock).to_a %></h4>
+
+
+					<%= f.submit "カートに入れる" %>
+					<% end %>
+				<% end %>
+
+
+			<div>
+				<% @cd.discs.each.with_index(1) do |disc, idx| %>
+				<div>
+					<h4>ディスクナンバー：<%= idx %></h4>
+				</div>
+					<% disc.musics.each do |music| %>
+					<h4>曲名：<%= music.music_title %></h4>
+							<% end %>
+				<% end %>
+
+

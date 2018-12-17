@@ -10,13 +10,14 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.timestamps
     end
   end
-end
-def up
-  t.string   :event_prefectures, default: "東京都"
-  t.string   :event_address
-end
 
-def down
-  t.string   :event_prefectures
-  t.string   :event_address, default: "東京都"
+  def up
+    t.string   :event_prefectures, default: "東京都"
+    t.string   :event_address
+  end
+
+  def down
+    t.string   :event_prefectures
+    t.string   :event_address, default: "東京都"
+  end
 end
