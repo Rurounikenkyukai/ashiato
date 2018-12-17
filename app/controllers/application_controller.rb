@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :cart_count
   def cart_count
+     if current_user
       @count = current_user.cart_items.length
+    end
   end
 
 

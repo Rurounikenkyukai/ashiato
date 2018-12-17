@@ -48,6 +48,7 @@ class CdsController < ApplicationController
       content = params[:search][:content]
                      #[:search]無くてもいい
        if category == "イベント"
+
               @event = Event.new
               if    content.empty?
                     @events = Event.page(params[:page]).reverse_order
