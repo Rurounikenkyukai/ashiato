@@ -14,7 +14,7 @@ class PurchaseHistorysController < ApplicationController
 	end
 
 	private
-	def purchase_params 
+	def purchase_params
 		params.require(:purchase_history).permit(:send_status)
 	end
 end

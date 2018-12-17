@@ -7,6 +7,7 @@ class CdsController < ApplicationController
     end
 
     def show
+        @cd = Cd.find(params[:id])
     end
 
     def edit
@@ -54,7 +55,7 @@ class CdsController < ApplicationController
          redirect_to cds_path(@events)
        elsif category == "CD"
          @cds = Cd.where(cd_title: content)
-         
+
        elsif category == "アーティスト"
          @cds = Artist.where(artist_name: content)
        else

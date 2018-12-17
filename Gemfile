@@ -83,7 +83,7 @@ gem 'cocoon'
 
 gem 'ransack'
 
-
+gem 'paranoia'
 
 
 
