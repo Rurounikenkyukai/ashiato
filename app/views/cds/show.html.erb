@@ -21,6 +21,12 @@
 			</div>
 		</tr>
 
+		<tr>
+			<th><% @cd.discs.each do |n| %>
+				<%= n.disc_number %>
+				<% end %>
+			</th>
+		</tr>
 
 		<tr>
 		  <th>	<% if @cd.cd_stock == 0 %>
@@ -43,7 +49,7 @@
 			<div>
 				<% @cd.discs.each.with_index(1) do |disc, idx| %>
 				<div>
-					<h4>ディスクナンバー：<%= idx %></h4>
+					<h4>曲順：<%= idx %></h4>
 				</div>
 					<% disc.musics.each do |music| %>
 					<h4>曲名：<%= music.music_title %></h4>
