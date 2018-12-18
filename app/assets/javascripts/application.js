@@ -18,16 +18,6 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require_tree .
-$(window).scroll( function() {
-     var pager = $("#read_more");
-     var scrollBottom = $(window).scrollTop() + $(window).height();
-     if( scrollBottom > pager.offset().top ) {
-           if(!$("#read_more").hasClass("displayed")){
-               $("#read_more").addClass("displayed");
-               $('#read_more').trigger("click");
-           }
-     }
-});
 
 $(function() {
   $('[name="btn"]:radio').change( function() {
@@ -37,6 +27,6 @@ $(function() {
     } else if ($('[id=b]').prop('checked')) {
       $('.text').fadeOut();
       $('.text02').fadeIn();
-    } 
+    }
   });
 });
