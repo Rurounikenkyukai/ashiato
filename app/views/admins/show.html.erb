@@ -86,6 +86,7 @@
 
 
             <h2>ユーザー情報</h2>
+            <div>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 		<tr>
@@ -105,12 +106,23 @@
                 		</tr>
                 	</tbody>
                 	<% end %>
-                	<%= paginate @users, class: "pagenate" %>
+                	<%= paginate @users,:param_name => 'user_page', class: "pagenate" %>
                 </table>
+            </div>
             <h2>購入履歴</h2>
+            <%= search_form_for @user_search, url: admin_path do |f| %>
+            <div class="form-group">
+                <%= f.label :first_name_cont, "姓" %>
+                <%= f.text_field :first_name_cont %>
+            </div>
+                <div class="actions">
+                    <%= f.submit "Search" %>
+                </div>
+                <% end %>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 	</thead>
+                     <button>購入詳細</button>
                 	<% @purchases.each do |purchase| %>
                 	<tbody>
                 		<tr>
@@ -132,11 +144,19 @@
                 					<%= f.radio_button :send_status, "出荷済み" %>出荷済み
                 				</label>
                 				<%= f.submit "ステータスを変更" %>
-                				<% end %>
-                			</td>
-                		</tr>
-                	</tbody>
-                	<% end %>
+                                <% end %>
+                                <div class="slide-div">
+                                    <p>宛名:<%= purchase.send_name %></p>
+                                    <p>宛先郵便番号:<%= purchase.send_postal_code %></p>
+                                    <% purchase.purchase_items.each do |i| %>
+                                        CDタイトル<%= i.purchase_cd_title %>
+                                        値段<%= i.purchase_cd_price %>
+                                    <% end %>
+                                    総計<%= @total_price %> 
+                                </div>
+                			</td>                                       
+                    <% end %>                  
+                    <%= paginate @purchases, :param_name => 'purchase_page' ,class: "pagenate" %>
                 </table>
                 <h2>CD在庫管理</h2>
                 <table class="table table-striped table-bordered table-hover">
@@ -154,7 +174,9 @@
                 		</tr>
                 	</tbody>
                 	<% end %>
+                    <%= paginate @cds, :param_name => 'cd_page' ,class: "pagenate" %>                   
                 </table>
+
                 <div>
                 　<p>アクセス解析</p>
                 </div>
@@ -162,8 +184,30 @@
 		</div>
 
 
-		<div class="col-lg-2">
-		</div>
+		<div class="col-lg-2">      
+        </div>
 	</div>
 </div>
+<style type="text/css">
+.slide-div {
+  width: 150px;
+  text-align: center;
+  margin-left: 80%;
+  border: #000 1px solid;
+  display: none;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on("click", "button", function() {
+    if ( $(".slide-div").css("display") == "none" ) {
+      $("button").text("閉じる");
+      $(".slide-div").slideDown();
+    } else {
+      $("button").text("購入詳細");
+      $(".slide-div").slideUp();
+    }
+  });
+});
+</script>
 </div>

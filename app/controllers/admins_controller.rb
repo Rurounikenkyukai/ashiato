@@ -2,17 +2,28 @@ class AdminsController < ApplicationController
 
   def show
   	@cd = Cd.new
-  	@cds = Cd.all
+    @cds = Cd.page(params[:cd_page]).reverse_order
 
   	@artist = Artist.new
   	@artists = Artist.all
     
-  	@users = User.page(params[:page]).reverse_order
+  	@users = User.page(params[:user_page]).reverse_order
 
   	@event = Event.new
     @event.performers.build
 
-    @purchases = PurchaseHistory.all
+    @user_search = User.ransack(params[:q])
+    @search_result = @user_search.result
+
+    @purchase = PurchaseHistory.find(params[:id])
+    @purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
+    @purchase_items = PurchaseItem.where(purchase_history_id: @purchase.id)
+
+    @total_price = 0
+    @purchase_items.each do |c|
+    @total_price += c.purchase_cd_price * c.purchase_cd_quantity
+    end
+
 
   	@genres = []
   	@cds.each do |cd|
@@ -41,7 +52,6 @@ class AdminsController < ApplicationController
   			@artist_names_id.push([ar.artist_name,ar.id])
   		end
     end
-
   end
 
   private
