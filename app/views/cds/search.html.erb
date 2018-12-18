@@ -49,7 +49,7 @@
 					<% if cd.cd_stock == 0 %>
 						<%= "購入できません" %>
 					<% else %>
-						<%=form_for @cart_items do |f| %>
+						<%=form_for(@cart_items) do |f| %>
 
 						<%= f.hidden_field :user_id,  :value => 1 %>
 						<%# f.hidden_field :user_id, :value => current_user.id %>
