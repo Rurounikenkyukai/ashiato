@@ -1,7 +1,6 @@
 class CdsController < ApplicationController
 
     def index
-
     end
 
     def show
@@ -96,52 +95,47 @@ class CdsController < ApplicationController
 	   end
 
      def search
-      @cart_items = CartItem.new
-      category = params[:search][:category]
-                      #[:search]無くてもいい
-      content = params[:search][:content]
-                     #[:search]無くてもいい
-       if category == "イベント"
-
-              @event = Event.new
-              if    content.empty?
-                    @events = Event.page(params[:page]).reverse_order
-              else
-                    @events = Event.where(event_title: content)
-                    @events_id = []
-                    @events.each do |event|
-                    @events_id.push(event.id)
-                    end
-                    @events_page = Kaminari.paginate_array(@events_id).page(params[:page])
-
-              end
-
-       elsif category == "CD"
-              if    content.empty?
-                    @cds = Cd.page(params[:page]).reverse_order
-              else
-                    @cds = Cd.where(cd_title: content)
-                    @cds_id = []
-                    @cds.each do |cd|
-                    @cds_id.push(cd.id)
-                    end
-                    @cds_page = Kaminari.paginate_array(@cds_id).page(params[:page])
-              end
-
-
-       else category == "アーティスト"
-              if    content.empty?
-                    @cds = Cd.page(params[:page]).reverse_order
-              else
-                    @cds = Artist.where(artist_name: content)
-                    @cds_id = []
-                    @cds.each do |cd|
-                    cds_id.push(cd.id)
-                    end
-                    @cds_page = Kaminari.paginate_array(@cds_id).page(params[:page])
-              end
-       end
-                   render :index
+         category = params[:category]
+         content  = params[:content]
+         if    category == "イベント"
+               if content.empty?
+                  @events = Event.page(params[:page]).reverse_order
+               else
+                  @events = Event.where('event_title LIKE ?', "%#{content}%")
+                  #@events = Event.where(event_title: content)
+                  @events_id = []
+                  @events.each do |event|
+                    @events_id.push(Event.find(event.id))
+                  end
+                  @events = Kaminari.paginate_array(@events_id).page(params[:page])
+               end
+         elsif category == "CD"
+               if content.empty?
+                  @cdss = Cd.page(params[:page]).reverse_order
+                  @cart_items =CartItem.new
+               else
+                  @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
+                  @cds_id = []
+                  @cds.each do |cd|
+                    @cds_id.push(Cd.find(cd.id))
+                  end
+                  @cart_items =CartItem.new
+                  @cdss = Kaminari.paginate_array(@cds_id).page(params[:page])
+               end
+         else
+               if content.empty?
+                  @cdss = Cd.page(params[:page]).reverse_order
+                  @cart_items =CartItem.new
+               else
+                  @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
+                  @cds_id = []
+                  @cds.each do |cd|
+                    @cds_id.push(Cd.find(cd.id))
+                  end
+                  @cart_items =CartItem.new
+                  @cdss = Kaminari.paginate_array(@cds_id).page(params[:page])
+               end
+         end
      end
 
     private
