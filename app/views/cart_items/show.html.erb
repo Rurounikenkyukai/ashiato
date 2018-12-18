@@ -22,13 +22,12 @@
 				<div>
 				    <% cart.cd.discs.each do |d| %>
 				        <% d.musics.each do |m| %>
-				        <%binding.pry%>
-				        <%= m.artist.artist_name %>
+				        アーティスト名<%= m.artist.artist_name %>
 				        <% end %>
 				    <% end %>
 				</div>
 				<div>
-					<%= link_to "カートから削除", cart_item_path, method: :delete %>
+					<%= link_to "カートから削除", cart_item_path(cart.id), method: :delete %>
 				</div>
 			    <% end %>
 		    </div>

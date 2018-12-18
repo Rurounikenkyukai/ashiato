@@ -25,19 +25,19 @@ class PurchaseHistoriesController < ApplicationController
 		            @purchase_i.purchase_cd_price = cart.cd.cd_price  
 		            @purchase_i.purchase_cd_quantity = cart.cd_quantity
 		            @purchase_i.cd_id = cart.cd.id
-		            if  @purchase_i.save
-		                redirect_to user_path(@user.id)
-		            else
-		            	redirect_to cart_item_path(@user.id)
-		            end
+		        end
+		        if  @purchase_i.save
+		       	    @cart_items.destroy_all
+		            redirect_to user_path(@user.id)
+		        else
+		            redirect_to cart_item_path(@user.id)
 		        end
 			else
-				puts @purchase.errors.full_messages
 		        redirect_to cart_item_path(@user.id)
 			end			
 		else
 			if @purchase.save
-			   @cart_items.each do |cart|
+			    @cart_items.each do |cart|
 			   	    @purchase_i = PurchaseItem.new
 			   	    @purchase_i.purchase_history_id = @purchase.id
 		            @purchase_i.purchase_cd_title = cart.cd.cd_title
@@ -47,6 +47,7 @@ class PurchaseHistoriesController < ApplicationController
 		            @purchase_i.cd_id = cart.cd.id
 		        end
 		        if  @purchase_i.save
+		        	@cart_items.destroy_all
 			        redirect_to user_path(@user.id)
 			    else
 			    	redirect_to cart_item_path(@user.id)
@@ -56,6 +57,7 @@ class PurchaseHistoriesController < ApplicationController
 			end
 		end
 	end
+
 
 	def update
 		@purchase = PurchaseHistory.find(params[:id])
