@@ -2,34 +2,24 @@
 <h1>CD詳細画面</h1>
 
 	<table>
-		<tr>
-		  	<div>
+			<tr>
 				<th><p>CDジャケット画像</p>
-				<%= attachment_image_tag @cd, :cd_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %></th>
-		  	</div>
-		    <div>
+					<%= attachment_image_tag @cd, :cd_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %></th>
 				<th><%= @cd.cd_title %></th>
 
-				<th><% @cd.discs.each do |disc| %>
-					 <% disc.musics.each do |music| %>
-					  	<%= music.artist.artist_name %>
-				     <% end %>
-					 <% end %></th>
+				<th>
+					<ul>
+							<% @cd.discs.each do |disc| %>
+					 			<% disc.musics.each do |music| %>
+					  				アーティスト：<%= music.artist.artist_name %></br>
+				     			<% end %>
+					 		<% end %></ul>
+				</th>
 
-				<th><h4><%= @cd.cd_genre %></h4>
-				<h4><%= @cd.cd_price %>円</h4></th>
-			</div>
-		</tr>
+				<th><%= @cd.cd_genre %></th>
 
-		<tr>
-			<th><% @cd.discs.each do |n| %>
-				<%= n.disc_number %>
-				<% end %>
-			</th>
-		</tr>
-
-		<tr>
-		  <th>	<% if @cd.cd_stock == 0 %>
+				<th><%= @cd.cd_price %>円</th>
+				<th><% if @cd.cd_stock == 0 %>
 					<%= "購入できません" %>
 				<% else %>
 					<%=form_for @cart_items do |f| %>
@@ -42,20 +32,30 @@
 
 					<%= f.submit "カートに入れる" %>
 					<% end %>
-				<% end %>
-		  </th>
+				<% end %></th>
+			</tr>
+	</table>
 
-		  <th>
-			<div>
-				<% @cd.discs.each.with_index(1) do |disc, idx| %>
-				<div>
-					<h4>曲順：<%= idx %></h4>
-				</div>
-					<% disc.musics.each do |music| %>
-					<h4>曲名：<%= music.music_title %></h4>
-							<% end %>
+	<table>
+		<tr>
+		   </th>
+		   		<ul id="tab-menu" class="clearfix">
+			   		<% @cd.discs.each.with_index(1) do |disc, idx| %>
+			   			 <a href="#disc<%= idx %>" class="disc_btn">disc<%= idx%></a>
+					<% end %>
+				</ul>
+
+		   		<% @cd.discs.each.with_index(1) do |disc, idx| %>
+		   			<div id = "disc<%= idx %>" class = "disc">
+						<% disc.musics.each.with_index(1) do |music, x| %>
+							<div class = "musics">
+								<h4>曲順：<%= x %></h4>
+								<h4>曲名：<%= music.music_title %>
+							</div>
+						<% end %>
+					</div>
 				<% end %>
 		  </th>
 		</tr>
-		</table>
+	</table>
 </div>
