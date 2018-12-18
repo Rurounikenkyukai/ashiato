@@ -8,5 +8,5 @@
   # config.param_name = :page
   # config.params_on_first_page = false
 Kaminari.configure do |config|
-   config.default_per_page = 2
+   config.default_per_page = 5
 end
