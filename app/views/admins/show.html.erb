@@ -87,6 +87,12 @@
 
             <h2>ユーザー情報</h2>
             <div>
+                <div>
+                    <%= form_tag(admin_search_path, method: :get) do %>
+                    <%= text_field_tag(:content,'', :placeholder => "ユーザー名を入力") %>
+                    <%= submit_tag "検索する" %>
+                    <% end %>
+                </div>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 		<tr>
@@ -110,30 +116,21 @@
                 </table>
             </div>
             <h2>購入履歴</h2>
-            <%= search_form_for @user_search, url: admin_path do |f| %>
-            <div class="form-group">
-                <%= f.label :first_name_cont, "姓" %>
-                <%= f.text_field :first_name_cont %>
-            </div>
-                <div class="actions">
-                    <%= f.submit "Search" %>
-                </div>
-                <% end %>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 	</thead>
                      <button>購入詳細</button>
-                	<% @purchases.each do |purchase| %>
+                	<% @purchases.each do |p| %>
                 	<tbody>
                 		<tr>
                 			<td>
-                			    <%= purchase.user.first_name %>
-                			    <%= purchase.user.last_name %>
+                			    <%= p.user.first_name %>
+                			    <%= p.user.last_name %>
                 			</td> 
-                			<td><%= purchase.purchase_at %></td>
-                			<td><%= purchase.send_status %></td>
+                			<td><%= p.purchase_at %></td>
+                			<td><%= p.send_status %></td>
                 			<td>
-                				<%= form_for (purchase) do |f| %>
+                				<%= form_for (p) do |f| %>
                 				<label>
                 					<%= f.radio_button :send_status, "受注" %>受注
                 				</label>
@@ -146,16 +143,17 @@
                 				<%= f.submit "ステータスを変更" %>
                                 <% end %>
                                 <div class="slide-div">
-                                    <p>宛名:<%= purchase.send_name %></p>
-                                    <p>宛先郵便番号:<%= purchase.send_postal_code %></p>
-                                    <% purchase.purchase_items.each do |i| %>
-                                        CDタイトル<%= i.purchase_cd_title %>
-                                        値段<%= i.purchase_cd_price %>
+                                    <p>宛名:<%= p.send_name %></p>
+                                    <p>宛先郵便番号:<%= p.send_postal_code %></p>
+                                    <% p.purchase_items.each do |p| %>
+                                        CDタイトル<%= p.purchase_cd_title %>
+                                        値段<%= p.purchase_cd_price %>円
+                                        購入枚数<%= p.purchase_cd_quantity %>枚
                                     <% end %>
-                                    総計<%= @total_price %> 
+                                    総計<%= @total_price %>
                                 </div>
                 			</td>                                       
-                    <% end %>                  
+                    <% end %>  
                     <%= paginate @purchases, :param_name => 'purchase_page' ,class: "pagenate" %>
                 </table>
                 <h2>CD在庫管理</h2>

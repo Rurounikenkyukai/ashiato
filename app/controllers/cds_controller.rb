@@ -138,6 +138,7 @@ class CdsController < ApplicationController
                  @artists = Kaminari.paginate_array(artists_id).page(params[:page])
               end
          end
+
      end
 
     private
