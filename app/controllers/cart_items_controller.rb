@@ -13,17 +13,11 @@ class CartItemsController < ApplicationController
   	cart_item = CartItem.new(cart_item_params)
     cart_item.user_id = current_user.id
   	cart_item.save
-    cd = Cd.find(id = cart_item.cd_id)
-    cd.cd_stock -= cart_item.cd_quantity
-    cd.update(cd_stock: cd.cd_stock)
   	redirect_to cart_item_buy_path
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cd = Cd.find(id = cart_item.cd_id)
-    cd.cd_stock += cart_item.cd_quantity
-    cd.update(cd_stock: cd.cd_stock)
     cart_item.destroy
     redirect_to cart_item_path(current_user.id)
   end

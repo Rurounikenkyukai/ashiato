@@ -22,6 +22,7 @@
 				<div>
 				    <% cart.cd.discs.each do |d| %>
 				        <% d.musics.each do |m| %>
+				        曲名<%= m.music_title %>
 				        アーティスト名<%= m.artist.artist_name %>
 				        <% end %>
 				    <% end %>
