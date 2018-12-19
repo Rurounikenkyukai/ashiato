@@ -2,6 +2,8 @@ class AdminsController < ApplicationController
   before_action :authenticate_user!
   
   def show
+    @admin = User.find(current_user.id)
+    if user_signed_in? && current_user.admin 
   	@cd = Cd.new
     @cds = Cd.page(params[:cd_page]).reverse_order
 
@@ -14,13 +16,6 @@ class AdminsController < ApplicationController
     @event.performers.build
 
     @purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
-    @purchase = @purchases.find(params[:id])
-    @purchase_items = PurchaseItem.where(purchase_history_id: @purchase)
-
-    total_price = 0
-    @purchase_items.each do |c|
-    @total_price += c.purchase_cd_price * c.purchase_cd_quantity
-    end
 
   	@genres = []
   	@cds.each do |cd|
@@ -48,6 +43,9 @@ class AdminsController < ApplicationController
   		if !@artist_names_id.include?([ar.artist_name,ar.id])
   			@artist_names_id.push([ar.artist_name,ar.id])
   		end
+    end
+    else
+    redirect_to events_path
     end
   end
 

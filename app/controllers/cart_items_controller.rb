@@ -4,6 +4,11 @@ class CartItemsController < ApplicationController
   def show
     @purchase = PurchaseHistory.new
     @cart_items = CartItem.where(user_id: current_user.id)
+    @cart_items.each do |c|
+      if c.cd_quantity > c.cd.cd_stock
+         c.destroy
+      end
+    end
     @total_price = 0
     @cart_items.each do |c|
     @total_price += c.cd.cd_price * c.cd_quantity

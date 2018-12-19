@@ -56,37 +56,5 @@
             <% end %>
 
             <%= paginate @cds,class: "pagenate" %>
-   	<% else %>
-   		<h3>アーティスト検索結果</h3>
-            <% @artists.each do |a| %>
-            				<h4>アーティスト名：<%= a.artist_name %></h4>
-            				            		<%binding.pry%>
-            	<% a.musics.each do |m| %>
-            		<% m.discs.each do |d| %>
-           				<% d.cds.each do |cd| %>
-							<p>CDジャケット画像</p>
-             					<%= link_to cd_path(cd.id) do %>
-               						<%= attachment_image_tag cd, :cd_image, :fill, 60, 60, format: 'jpeg' %>
-             					<% end %>
-                        				<h4>CDタイトル：<%= cd.cd_title %></h4>
-                        				<h4>ジャンル名：<%= cd.cd_genre %></h4>
-                        				<h4>価格：<%= cd.cd_price %></h4>
-                        				<h4>在庫：<%= cd.cd_stock %></h4>
-                   				<% if cd.cd_stock == 0 %>
-                        			<%= "購入できません" %>
-                    			<% else %>
-                        			<%=form_for(@cart_items) do |f| %>
-                            		<%= f.hidden_field :user_id,  :value => 1 %>
-                            		<%# f.hidden_field :user_id, :value => current_user.id %>
-                            		<%= f.hidden_field :cd_id, :value => cd.id %>
-                            		<h4>枚数を選択：<%= f.select :cd_quantity,(0..cd.cd_stock).to_a %></h4>
-                            		<%= f.submit “カートに入れる” %>
-                            		<% end %>
-                    			<% end %>
-    					<% end %>
-					<% end %>
-				<% end %>
-			<% end %>
-		<%= paginate @artists,class: "pagenate" %>
     <% end %>
 </div>
