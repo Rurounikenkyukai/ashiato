@@ -17,7 +17,6 @@
 				</th>
 
 				<th><%= @cd.cd_genre %></th>
-
 				<th><%= @cd.cd_price %>円</th>
 				<th><% if @cd.cd_stock == 0 %>
 					<%= "購入できません" %>
@@ -44,17 +43,18 @@
 			   			 <a href="#disc<%= idx %>" class="disc_btn">disc<%= idx%></a>
 					<% end %>
 				</ul>
-
+  			<div style="width:300px;height:150px;overflow:scroll;">
 		   		<% @cd.discs.each.with_index(1) do |disc, idx| %>
 		   			<div id = "disc<%= idx %>" class = "disc">
 						<% disc.musics.each.with_index(1) do |music, x| %>
 							<div class = "musics">
 								<h4>曲順：<%= x %></h4>
-								<h4>曲名：<%= music.music_title %>
+								<h4>曲名：<%= music.music_title %></h4>
 							</div>
 						<% end %>
 					</div>
 				<% end %>
+			</div>
 		  </th>
 		</tr>
 	</table>
