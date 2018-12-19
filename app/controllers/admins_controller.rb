@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def show
   	@cd = Cd.new
     @cds = Cd.page(params[:cd_page]).reverse_order
@@ -12,18 +13,14 @@ class AdminsController < ApplicationController
   	@event = Event.new
     @event.performers.build
 
-    @user_search = User.ransack(params[:q])
-    @search_result = @user_search.result
-
-    @purchase = PurchaseHistory.find(params[:id])
     @purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
-    @purchase_items = PurchaseItem.where(purchase_history_id: @purchase.id)
+    @purchase = @purchases.find(params[:id])
+    @purchase_items = PurchaseItem.where(purchase_history_id: @purchase)
 
-    @total_price = 0
+    total_price = 0
     @purchase_items.each do |c|
     @total_price += c.purchase_cd_price * c.purchase_cd_quantity
     end
-
 
   	@genres = []
   	@cds.each do |cd|

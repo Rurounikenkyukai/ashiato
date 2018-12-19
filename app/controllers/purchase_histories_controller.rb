@@ -25,13 +25,16 @@ class PurchaseHistoriesController < ApplicationController
 		            @purchase_i.purchase_cd_price = cart.cd.cd_price  
 		            @purchase_i.purchase_cd_quantity = cart.cd_quantity
 		            @purchase_i.cd_id = cart.cd.id
+		            @purchase_i.save
 		        end
-		        if  @purchase_i.save
-		       	    @cart_items.destroy_all
-		            redirect_to user_path(@user.id)
-		        else
-		            redirect_to cart_item_path(@user.id)
+		        cds = Cd.where(id: @purchase_i.cd_id)
+		        cds.each do |c|
+		            @pur = PurchaseItem.find_by(cd_id: c.id)
+		            c.cd_stock -= @pur.purchase_cd_quantity
+		            c.update(cd_stock: c.cd_stock)
 		        end
+		       	@cart_items.destroy_all
+		        redirect_to user_path(@user.id)
 			else
 		        redirect_to cart_item_path(@user.id)
 			end			
@@ -45,13 +48,16 @@ class PurchaseHistoriesController < ApplicationController
 		            @purchase_i.purchase_cd_price = cart.cd.cd_price  
 		            @purchase_i.purchase_cd_quantity = cart.cd_quantity
 		            @purchase_i.cd_id = cart.cd.id
+		            @purchase_i.save
 		        end
-		        if  @purchase_i.save
-		        	@cart_items.destroy_all
-			        redirect_to user_path(@user.id)
-			    else
-			    	redirect_to cart_item_path(@user.id)
-			    end
+		        cds = Cd.where(id: @purchase_i.cd_id)
+		        cds.each do |c|
+		            @pur = PurchaseItem.find_by(cd_id: c.id)
+		            c.cd_stock -= @pur.purchase_cd_quantity
+		            c.update(cd_stock: c.cd_stock)
+		        end
+		        @cart_items.destroy_all
+			    redirect_to user_path(@user.id)
 			else				
 			   redirect_to cart_item_path(@user.id)
 			end
