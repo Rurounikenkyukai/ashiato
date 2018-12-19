@@ -5,41 +5,9 @@ class CdsController < ApplicationController
 
     def show
         @cd = Cd.find(params[:id])
-        @cart_items = CartItem.new
-
     end
 
     def edit
-        @cd = Cd.find(params[:id])
-        @cds = Cd.all
-        @artists = Artist.all
-        @genres = []
-        @cds.each do |cd|
-      if !@genres.include?([cd.cd_genre,cd.cd_genre])
-        @genres.push([cd.cd_genre,cd.cd_genre])
-        end
-      end
-
-        @labels = []
-        @cds.each do |cd|
-      if !@labels.include?([cd.cd_label,cd.cd_label])
-        @labels.push([cd.cd_label,cd.cd_label])
-        end
-      end
-
-        @artist_names = []
-        @artists.each do |ar|
-      if !@artist_names.include?([ar.artist_name,ar.artist_name])
-        @artist_names.push([ar.artist_name,ar.artist_name])
-        end
-      end
-
-        @artist_names_id = []
-        @artists.each do |ar|
-      if !@artist_names_id.include?([ar.artist_name,ar.id])
-        @artist_names_id.push([ar.artist_name,ar.id])
-        end
-      end
     end
 
   	def create
@@ -68,27 +36,6 @@ class CdsController < ApplicationController
 	   end
 
 	   def update
-       puts "start check params"
-       puts params[:cd][:cd_label]
-        if params[:cd][:cd_label].blank?
-           params[:cd][:cd_label] = params[:cdlabel]
-           puts "check params"
-           puts params[:cd][:cd_label]
-        end
-       puts "finish check params"
-       puts params[:cd][:cd_genre]
-        if params[:cd][:cd_genre].blank?
-           params[:cd][:cd_genre] = params[:cdgenre]
-        end
-        @cd = Cd.find(params[:id])
-        if @cd.update(cd_params)
-           redirect_to cd_path(@cd.id)
-        else
-            puts "------------------------------"
-            puts @cd.errors.full_messages
-            puts "------------------------------"
-            redirect_to event_path(@user.id)
-        end
      end
 
   	 def destroy
@@ -111,29 +58,29 @@ class CdsController < ApplicationController
                end
          elsif category == "CD"
                if content.empty?
-                  @cdss = Cd.page(params[:page]).reverse_order
+                  @cds = Cd.page(params[:page]).reverse_order
                   @cart_items =CartItem.new
                else
                   @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
-                  @cds_id = []
+                  cds_id = []
                   @cds.each do |cd|
-                    @cds_id.push(Cd.find(cd.id))
+                    cds_id.push(Cd.find(cd.id))
                   end
                   @cart_items =CartItem.new
-                  @cdss = Kaminari.paginate_array(@cds_id).page(params[:page])
+                  @cds = Kaminari.paginate_array(cds_id).page(params[:page])
                end
          else
                if content.empty?
-                  @cdss = Cd.page(params[:page]).reverse_order
+                  @artists = Artist.page(params[:page]).reverse_order
                   @cart_items =CartItem.new
                else
-                  @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
-                  @cds_id = []
-                  @cds.each do |cd|
-                    @cds_id.push(Cd.find(cd.id))
+                  @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
+                  artists_id = []
+                  @artists.each do |artist|
+                    artists_id.push(Artist.find(artist.id))
                   end
                   @cart_items =CartItem.new
-                  @cdss = Kaminari.paginate_array(@cds_id).page(params[:page])
+                  @artists = Kaminari.paginate_array(artists_id).page(params[:page])
                end
          end
      end

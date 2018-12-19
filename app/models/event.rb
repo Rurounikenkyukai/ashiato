@@ -9,6 +9,10 @@ class Event < ApplicationRecord
   has_many :users, through: :asiatos
   has_many :users, through: :comments
 
+	geocoded_by :event_address
+  before_validation :geocode
+
+
 	validates :event_title, presence: true
 	validates :event_day, presence: true
 	validates :event_city, presence: true

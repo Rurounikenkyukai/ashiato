@@ -1,4 +1,4 @@
-<div class="adminpage"> 
+<div class="adminpage">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2">
@@ -37,9 +37,9 @@
                     <div>
                 	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
                     </div>
-                </div> 
-                                   
-            <div><%= f.submit %></div>   
+                </div>
+
+            <div><%= f.submit %></div>
 
             <% end %>
               <h2>アーティスト追加</h2>
@@ -110,53 +110,49 @@
                 </table>
             </div>
             <h2>購入履歴</h2>
-            <%= search_form_for @user_search, url: admin_path do |f| %>
-            <div class="form-group">
-                <%= f.label :first_name_cont, "姓" %>
-                <%= f.text_field :first_name_cont %>
-            </div>
-                <div class="actions">
-                    <%= f.submit "Search" %>
-                </div>
-                <% end %>
+						<%#= form_for :content, url: admins_path(user.admin)  do |f| %>
+							  <%#= f.label_tag :first_name, "姓" %>
+							  <%#= f.text_field_tag :first_name %>
+						     <%#= submit_tag "検索する" %>
+						<%# end %>
                 <table class="table table-striped table-bordered table-hover">
                 	<thead>
                 	</thead>
                      <button>購入詳細</button>
-                	<% @purchases.each do |purchase| %>
+                	<%# @parchase.each do |f| %>
                 	<tbody>
                 		<tr>
                 			<td>
-                			    <%= purchase.user.first_name %>
-                			    <%= purchase.user.last_name %>
-                			</td> 
-                			<td><%= purchase.purchase_at %></td>
-                			<td><%= purchase.send_status %></td>
+                			    <%#= f.user.first_name %>
+                			    <%#= f.user.last_name %>
+                			</td>
+                			<td><%#= f.purchase_at %></td>
+                			<td><%#= f.send_status %></td>
                 			<td>
-                				<%= form_for (purchase) do |f| %>
+                				<%#= form_for (f) do |f| %>
                 				<label>
-                					<%= f.radio_button :send_status, "受注" %>受注
+                					<%#= f.radio_button :send_status, "受注" %>受注
                 				</label>
                 				<label>
-                					<%= f.radio_button :send_status, "商品準備中" %>商品準備中
-                				</label> 
-                				<label>
-                					<%= f.radio_button :send_status, "出荷済み" %>出荷済み
+                					<%#= f.radio_button :send_status, "商品準備中" %>商品準備中
                 				</label>
-                				<%= f.submit "ステータスを変更" %>
-                                <% end %>
+                				<label>
+                					<%#= f.radio_button :send_status, "出荷済み" %>出荷済み
+                				</label>
+                				<%#= f.submit "ステータスを変更" %>
+                                <%# end %>
                                 <div class="slide-div">
-                                    <p>宛名:<%= purchase.send_name %></p>
-                                    <p>宛先郵便番号:<%= purchase.send_postal_code %></p>
-                                    <% purchase.purchase_items.each do |i| %>
-                                        CDタイトル<%= i.purchase_cd_title %>
-                                        値段<%= i.purchase_cd_price %>
-                                    <% end %>
-                                    総計<%= @total_price %> 
+                                    <p>宛名:<%#= f.send_name %></p>
+                                    <p>宛先郵便番号:<%#= f.send_postal_code %></p>
+                                    <%# f.purchase_items.each do |i| %>
+                                        CDタイトル<%#= i.purchase_cd_title %>
+                                        値段<%#= i.purchase_cd_price %>
+                                    <%# end %>
+                                    総計<%#= @total_price %>
                                 </div>
-                			</td>                                       
-                    <% end %>                  
-                    <%= paginate @purchases, :param_name => 'purchase_page' ,class: "pagenate" %>
+                			</td>
+                    <%# end %>
+                    <%#= paginate @user_search, :param_name => 'purchase_page' ,class: "pagenate" %>
                 </table>
                 <h2>CD在庫管理</h2>
                 <table class="table table-striped table-bordered table-hover">
@@ -174,17 +170,17 @@
                 		</tr>
                 	</tbody>
                 	<% end %>
-                    <%= paginate @cds, :param_name => 'cd_page' ,class: "pagenate" %>                   
+                    <%= paginate @cds, :param_name => 'cd_page' ,class: "pagenate" %>
                 </table>
 
                 <div>
-                　<p>アクセス解析</p>
+                <p>アクセス解析</p>
                 </div>
 
 		</div>
 
 
-		<div class="col-lg-2">      
+		<div class="col-lg-2">
         </div>
 	</div>
 </div>
