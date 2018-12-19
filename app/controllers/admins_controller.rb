@@ -2,6 +2,8 @@ class AdminsController < ApplicationController
   before_action :authenticate_user!
   
   def show
+    @admin = User.find(current_user.id)
+    if user_signed_in? && current_user.admin 
   	@cd = Cd.new
     @cds = Cd.page(params[:cd_page]).reverse_order
 
@@ -41,6 +43,9 @@ class AdminsController < ApplicationController
   		if !@artist_names_id.include?([ar.artist_name,ar.id])
   			@artist_names_id.push([ar.artist_name,ar.id])
   		end
+    end
+    else
+    redirect_to events_path
     end
   end
 
