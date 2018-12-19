@@ -9,7 +9,7 @@
                     <div>
                         <p>イベント画像</p>
                         <%= link_to event_path(event.id) do %>
-                            <%= attachment_image_tag @event, :event_image, :fill, 60, 60, format: ‘jpeg’, fallback: “/images/no_image.jpg” %>
+                            <%= attachment_image_tag @event, :event_image, :fill, 60, 60, format: "jpeg", fallback: "/images/no_image.jpg" %>
                         <% end %>
                     </div>
                     <div>
@@ -20,7 +20,7 @@
 
             <% end %>
 
-            <%= paginate @events, class: “pagenate” %>
+            <%= paginate @events, class: "pagenate" %>
 
      <% elsif @cds %>
 
@@ -30,7 +30,7 @@
                     <div>
                         <p>CDジャケット画像</p>
              <%= link_to cd_path(cd.id) do %>
-               <%= attachment_image_tag cd, :cd_image, :fill, 60, 60, format: ‘jpeg’ %>
+               <%= attachment_image_tag cd, :cd_image, :fill, 60, 60, format: "jpeg" %>
              <% end %>
                         
                     </div>
