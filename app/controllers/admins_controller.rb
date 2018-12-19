@@ -15,15 +15,6 @@ class AdminsController < ApplicationController
     @user_search = User.ransack(params[:q])
     @search_result = @user_search.result
 
-    
-    #@purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
-    #@purchase_items = PurchaseItem.where(purchase_history_id: @purchase.id)
-
-    #@total_price = 0
-    #@purchase_items.each do |c|
-    #@total_price = c.purchase_cd_price(cd1枚の金額) * c.purchase_cd_quantity(cd枚数)
-    #end
-
 
   	@genres = []
   	@cds.each do |cd|

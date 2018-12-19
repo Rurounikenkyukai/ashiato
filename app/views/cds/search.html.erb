@@ -29,7 +29,10 @@
 		  		<div>
 				    <div>
 					    <p>CDジャケット画像</p>
-					    <%= attachment_image_tag cd, :cd_image, :fill, 60, 60, format: 'jpeg' %>
+              <%= link_to cd_path(cd.id) do %>
+                <%= attachment_image_tag cd, :cd_image, :fill, 60, 60, format: 'jpeg' %>
+              <% end %>
+
 				    </div>
 				    <div>
 					    <h4>CDタイトル：<%= cd.cd_title %></h4>
@@ -58,9 +61,11 @@
 			<%= paginate @cds,class: "pagenate" %>
     <% else %>
     <h3>アーティスト検索結果</h3>
-      <% @artists.each do |artist| %>
 
-          <%= artist.music.music_title %>
+
+      <% @artists.each do |artist| %>
+          <% binding.pry %>
+          <%#= artist.a %>
 
           <%# artist.music.each do |disc| %>
           <%# end %>
