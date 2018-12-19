@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def show
   	@cd = Cd.new
     @cds = Cd.page(params[:cd_page]).reverse_order

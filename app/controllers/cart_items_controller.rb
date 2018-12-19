@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_user! 
 
   def show
     @purchase = PurchaseHistory.new
