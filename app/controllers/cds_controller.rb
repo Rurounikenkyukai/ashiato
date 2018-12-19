@@ -111,7 +111,7 @@ class CdsController < ApplicationController
                   end
                   @events = Kaminari.paginate_array(@events_id).page(params[:page])
                end
-         elsif category == "CD"
+         else category == "CD"
                if content.empty?
                   @cds = Cd.page(params[:page]).reverse_order
                   @cart_items =CartItem.new
@@ -124,19 +124,6 @@ class CdsController < ApplicationController
                   @cart_items =CartItem.new
                   @cds = Kaminari.paginate_array(cds_id).page(params[:page])
                end
-         else
-               if content.empty?
-                 @artists = Artist.page(params[:page]).reverse_order
-                 @cart_items =CartItem.new
-              else
-                 @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
-                 artists_id = []
-                 @artists.each do |artist|
-                   artists_id.push(Artist.find(artist.id))
-                 end
-                 @cart_items =CartItem.new
-                 @artists = Kaminari.paginate_array(artists_id).page(params[:page])
-              end
          end
 
      end
