@@ -37,7 +37,7 @@
 
 					<h4>アーティスト名：<% cd.discs.each do |disc| %>
 					 	<% disc.musics.each do |music| %>
-						  <%= music.artist_name %>
+						  <%= music.artist.artist_name %>
 					 	<% end %>
 					<% end %>
 
