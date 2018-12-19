@@ -145,12 +145,14 @@
                                 <div class="slide-div">
                                     <p>宛名:<%= p.send_name %></p>
                                     <p>宛先郵便番号:<%= p.send_postal_code %></p>
+                                    <% total_price = 0 %>
                                     <% p.purchase_items.each do |p| %>
                                         CDタイトル<%= p.purchase_cd_title %>
                                         値段<%= p.purchase_cd_price %>円
                                         購入枚数<%= p.purchase_cd_quantity %>枚
+                                        <% total_price += p.purchase_cd_quantity * p.purchase_cd_price %>
                                     <% end %>
-                                    総計<%= @total_price %>
+                                    総計<%= total_price %>
                                 </div>
                 			</td>                                       
                     <% end %>  

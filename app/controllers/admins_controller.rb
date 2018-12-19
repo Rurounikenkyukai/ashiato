@@ -14,13 +14,6 @@ class AdminsController < ApplicationController
     @event.performers.build
 
     @purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
-    @purchase = @purchases.find(params[:id])
-    @purchase_items = PurchaseItem.where(purchase_history_id: @purchase)
-
-    total_price = 0
-    @purchase_items.each do |c|
-    @total_price += c.purchase_cd_price * c.purchase_cd_quantity
-    end
 
   	@genres = []
   	@cds.each do |cd|
