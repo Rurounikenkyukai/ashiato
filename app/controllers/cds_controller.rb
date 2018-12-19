@@ -6,7 +6,6 @@ class CdsController < ApplicationController
     def show
         @cd = Cd.find(params[:id])
         @cart_items = CartItem.new
-
     end
 
     def edit
@@ -92,6 +91,9 @@ class CdsController < ApplicationController
      end
 
   	 def destroy
+      cd = Cd.find(params[:id])
+      cd.destroy
+      redirect_to root_path
 	   end
 
      def search
@@ -111,23 +113,23 @@ class CdsController < ApplicationController
                end
          elsif category == "CD"
                if content.empty?
-                  @cdss = Cd.page(params[:page]).reverse_order
+                  @cds = Cd.page(params[:page]).reverse_order
                   @cart_items =CartItem.new
                else
                   @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
-                  @cds_id = []
+                  cds_id = []
                   @cds.each do |cd|
-                    @cds_id.push(Cd.find(cd.id))
+                    cds_id.push(Cd.find(cd.id))
                   end
                   @cart_items =CartItem.new
-                  @cdss = Kaminari.paginate_array(@cds_id).page(params[:page])
+                  @cds = Kaminari.paginate_array(cds_id).page(params[:page])
                end
          else
-         if content.empty?
+               if content.empty?
                  @artists = Artist.page(params[:page]).reverse_order
                  @cart_items =CartItem.new
               else
-                 @artists = Artist.where("artist_name LIKE ?", "%#{content}%")
+                 @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
                  artists_id = []
                  @artists.each do |artist|
                    artists_id.push(Artist.find(artist.id))
@@ -135,7 +137,8 @@ class CdsController < ApplicationController
                  @cart_items =CartItem.new
                  @artists = Kaminari.paginate_array(artists_id).page(params[:page])
               end
-                  end
+         end
+
      end
 
     private

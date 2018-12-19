@@ -92,21 +92,19 @@
   <div class="row">
   <div class="col-12" style="border: 1px solid blue;">
     <h1>コメント一覧</h1>
-    <% @users.each do |f| %>
-     <% f.comments.each do |i| %>
+    <% @event.comments.each do |f| %>
 			<div>
 				<div>
 					<p>イベント画像</p>
 					<%= link_to user_path(f.id) do %>
-						<%= attachment_image_tag  @user, :user_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+						<%= attachment_image_tag  f.user, :user_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
 					<% end %>
 				</div>
 				<div>
-					<h3><%= i.favorite_artist %></h3>
-					<h4><%= i.comment %></h4>
+					<h3><%= f.favorite_artist %></h3>
+					<h4><%= f.comment %></h4>
 				</div>
 			</div>
-      <% end %>
 		<% end %>
 		<%= paginate @users %>
 
