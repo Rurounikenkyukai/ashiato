@@ -35,6 +35,11 @@
 			</tr>
 	</table>
 
+		<% if user_signed_in? && current_user.admin %>
+			<%= link_to "編集", edit_cd_path(@cd.id) %>
+			<%= link_to "削除", cd_path(@cd.id), method: :delete,"data-confirm" => "本当に削除しますか？"%>
+		<% end %>
+
 	<table>
 		<tr>
 		   </th>
