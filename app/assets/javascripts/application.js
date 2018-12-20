@@ -10,9 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require jquery
 //= require cocoon
 //= require bootstrap-sprockets
 //= require bootstrap
@@ -27,5 +27,8 @@ $(function() {
 	    $($(this).attr("href")).show();
 	    console.log($(this).attr("href"))
 	    return false;
-	})
 })
+
+
+
+
