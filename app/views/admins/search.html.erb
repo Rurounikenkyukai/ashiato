@@ -1,0 +1,68 @@
+<div style=" margin-top:200px;">
+
+  <h2>購入履歴</h2>
+
+  <%= form_with(url: admin_search_path, method: :get, local: true) do |f| %>
+    <%= f.text_field :content %><%= f.submit %>
+  <% end %>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead></thead>
+    <button>購入詳細</button>
+    <% @users.each do |u| %>
+    <% u.purchase_historys.each do |h| %>
+    <tbody>
+      <tr>
+        <td><%= u.first_name %><%= u.last_name %></td>
+        <%# u.purchase_historys.each do |h| %>
+        <td><%= h.purchase_at %></td>
+        <td><%= h.send_status %></td>
+         <%# end %>
+        <td>
+          <%= form_for (h) do |f| %>
+            <label><%= f.radio_button :send_status, "受注" %>受注</label>
+            <label><%= f.radio_button :send_status, "商品準備中" %>商品準備中</label>
+            <label><%= f.radio_button :send_status, "出荷済み" %>出荷済み</label>
+            <%= f.submit "ステータスを変更" %>
+          <% end %>
+          <div class="slide-div">
+            <p>宛名:<%= h.send_name %></p>
+            <p>宛先郵便番号:<%= h.send_postal_code %></p>
+            <% total_price = 0 %>
+            <% h.purchase_items.each do |p| %>
+              CDタイトル<%= p.purchase_cd_title %>
+              値段<%= p.purchase_cd_price %>円
+              購入枚数<%= p.purchase_cd_quantity %>枚
+              <% total_price += p.purchase_cd_quantity * p.purchase_cd_price %>
+            <% end %>
+            総計<%= total_price %>
+          </div>
+        </td>
+        <% end %>
+        <% end %>
+    <%#= paginate @purchases,class: "pagenate" %>
+  </table>
+</div>
+
+<style type="text/css">
+.slide-div {
+  width: 150px;
+  text-align: center;
+  margin-left: 80%;
+  border: #000 1px solid;
+  display: none;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(document).on("click", "button", function() {
+    if ( $(".slide-div").css("display") == "none" ) {
+      $("button").text("閉じる");
+      $(".slide-div").slideDown();
+    } else {
+      $("button").text("購入詳細");
+      $(".slide-div").slideUp();
+    }
+  });
+});
+</script>

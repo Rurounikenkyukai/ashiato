@@ -1,4 +1,4 @@
-<div class="event_main", style="border: 1px solid red;" >
+<div class="event_main", style="border: 1px solid green;" >
 
 
 <h1>イベント一覧画面(TOP画面)</h1>
@@ -14,23 +14,24 @@
 
 
 
-
+	<div>
 	<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
 		<% @events.each do |event| %>
+			<%= link_to event_path(event.id) do %>
 
-			<div>
+			<div style= "border: 1px solid red;">
 				<div>
 					<p>イベント画像</p>
-					<%= link_to event_path(event.id) do %>
 						<%= attachment_image_tag event, :event_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
-					<% end %>
 				</div>
 				<div>
 					<h3><%= event.event_title %></h3>
 					<h4><%= event.event_day %></h4>
 				</div>
 			</div>
+			<% end %>
 		<% end %>
 		<%= paginate @events, class: "pagenate" %>
+	</div>
 
 </div>

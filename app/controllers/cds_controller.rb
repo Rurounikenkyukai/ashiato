@@ -77,6 +77,9 @@ class CdsController < ApplicationController
 
 
   	 def destroy
+      cd = Cd.find(params[:id])
+      cd.destroy
+      redirect_to root_path
 	   end
 
      def search
@@ -87,7 +90,6 @@ class CdsController < ApplicationController
                   @events = Event.page(params[:page]).reverse_order
                else
                   @events = Event.where('event_title LIKE ?', "%#{content}%")
-                  #@events = Event.where(event_title: content)
                   @events_id = []
                   @events.each do |event|
                     @events_id.push(Event.find(event.id))
@@ -109,18 +111,19 @@ class CdsController < ApplicationController
                end
          else
                if content.empty?
-                  @artists = Artist.page(params[:page]).reverse_order
-                  @cart_items =CartItem.new
-               else
-                  @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
-                  artists_id = []
-                  @artists.each do |artist|
-                    artists_id.push(Artist.find(artist.id))
-                  end
-                  @cart_items =CartItem.new
-                  @artists = Kaminari.paginate_array(artists_id).page(params[:page])
-               end
+                 @artists = Artist.page(params[:page]).reverse_order
+                 @cart_items =CartItem.new
+              else
+                 @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
+                 artists_id = []
+                 @artists.each do |artist|
+                   artists_id.push(Artist.find(artist.id))
+                 end
+                 @cart_items =CartItem.new
+                 @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+              end
          end
+
      end
 
     private

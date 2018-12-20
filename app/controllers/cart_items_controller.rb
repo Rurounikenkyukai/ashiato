@@ -1,8 +1,14 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_user! 
 
   def show
     @purchase = PurchaseHistory.new
     @cart_items = CartItem.where(user_id: current_user.id)
+    @cart_items.each do |c|
+      if c.cd_quantity > c.cd.cd_stock
+         c.destroy
+      end
+    end
     @total_price = 0
     @cart_items.each do |c|
     @total_price += c.cd.cd_price * c.cd_quantity
@@ -13,17 +19,11 @@ class CartItemsController < ApplicationController
   	cart_item = CartItem.new(cart_item_params)
     cart_item.user_id = current_user.id
   	cart_item.save
-    cd = Cd.find(id = cart_item.cd_id)
-    cd.cd_stock -= cart_item.cd_quantity
-    cd.update(cd_stock: cd.cd_stock)
   	redirect_to cart_item_buy_path
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cd = Cd.find(id = cart_item.cd_id)
-    cd.cd_stock += cart_item.cd_quantity
-    cd.update(cd_stock: cd.cd_stock)
     cart_item.destroy
     redirect_to cart_item_path(current_user.id)
   end
