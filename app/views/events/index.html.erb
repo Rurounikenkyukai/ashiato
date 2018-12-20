@@ -1,37 +1,51 @@
-<div class="event_main", style="border: 1px solid green;" >
+<div class="event_main backcolor", style="border: 1px solid white;" >
+	<div id="container">
+		<div id="theTarget">
+			<div class="image1"></div>
+			<div class="image2"></div>
+			<div class="image3"></div>
+			<div class="image4"></div>
+			<div class="image5"></div>
+		</div>
+	</div>
+	<div class="container">
+  		<div class="row">
+    		<div class="col-sm-1">
+    		</div>
+    		<div class="col-sm-10 main-backcolor">
+				<h1>イベント一覧画面(TOP画面)</h1>
+					<%=form_for @event, url: event_search_path do |f| %>
+						<%= f.date_field :event_day %>
+						<%= f.label :"区を選択" %>
+	  					<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
+						<%= f.submit "検索する" %>
+					<% end %>
 
 
-<h1>イベント一覧画面(TOP画面)</h1>
-
-	<%=form_for @event, url: event_search_path do |f| %>
-
-		<%= f.date_field :event_day %>
-		<%= f.label :"区を選択" %>
-	  	<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
-
-		<%= f.submit "検索する" %>
-	<% end %>
-
-
-
-	<div>
-	<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
-		<% @events.each do |event| %>
-			<%= link_to event_path(event.id) do %>
-
-			<div style= "border: 1px solid red;">
 				<div>
-					<p>イベント画像</p>
-						<%= attachment_image_tag event, :event_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
-				</div>
-				<div>
-					<h3><%= event.event_title %></h3>
-					<h4><%= event.event_day %></h4>
+					<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
+						<% @events.each do |event| %>
+						<%= link_to event_path(event.id) do %>
+
+						<div style= "border: 1px solid white;">
+							<div class="media">
+								<div class="media-left" >
+								<%= attachment_image_tag event, :event_image, :fill, 220, 220, format: 'jpeg' %>
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading"><%= event.event_title %></h4>
+									<%= event.event_day %>
+									<%= event.event_city %>
+								</div>
+							</div>
+						</div>
+						<% end %>
+					<% end %>
+					<%= paginate @events, class: "pagenate" %>
 				</div>
 			</div>
-			<% end %>
-		<% end %>
-		<%= paginate @events, class: "pagenate" %>
+    		<div class="col-sm-1">
+    		</div>
+		</div>
 	</div>
-
 </div>

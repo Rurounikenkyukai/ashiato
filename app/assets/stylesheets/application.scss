@@ -34,3 +34,36 @@
 .cd-show{
 	margin-top:250px;
 }
+
+.image1 {
+background-image: url(conor-samuel-787070-unsplash.jpg);
+}
+.image2 {
+background-image: url(alexander-popov-1163286-unsplash.jpg);
+}
+.image3 {
+background-image: url(top.jpg);
+}
+.image4 {
+background-image: url(matty-adame-326235-unsplash.jpg);
+}
+.image5 {
+background-image: url(artist.jpg);
+}
+
+#container{
+  height: 500px;
+}
+.backcolor{
+	background-color:black;
+}
+.main-backcolor{
+	background-color: #080C17;
+}
+.media-left{
+	height: 220px;
+	width: 220px;
+}
+.event-text{
+	float:left;
+}

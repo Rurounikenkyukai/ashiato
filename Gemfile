@@ -85,6 +85,8 @@ gem 'ransack'
 
 gem 'paranoia'
 
+gem "jquery-rails"
+
 
 
 
