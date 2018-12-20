@@ -71,6 +71,6 @@ Music.create(music_title: "サンプルミュージック１７", music_number: 
 Music.create(music_title: "サンプルミュージック１８", music_number: 1, disc_id: 9, artist_id: 4)
 Music.create(music_title: "サンプルミュージック１９", music_number: 2, disc_id: 1, artist_id: 7)
 Music.create(music_title: "サンプルミュージック２０", music_number: 3, disc_id: 1, artist_id: 10)
-PurchaseHistory.create(user_id: 1, send_address: "東京都渋谷区神南", send_name: "テストさん", send_postal_code: "3501100", send_status: "受注", purchase_at: "12/1")
+PurchaseHistory.create(user_id: 1, send_address: "東京都渋谷区神南", send_name: "テストさん", send_postal_code: "3501100", send_status: "受注", purchase_at: "2018-12-1")
 PurchaseItem.create(purchase_history_id: 1, purchase_cd_title: "僕の頭はお花畑", purchase_cd_price: 9000, purchase_cd_quantity: 2, cd_id: 6)
 PurchaseItem.create(purchase_history_id: 1, purchase_cd_title: "スイカに塩かけて食べるやつは邪道", purchase_cd_price: 6880, purchase_cd_quantity: 3, cd_id: 4)

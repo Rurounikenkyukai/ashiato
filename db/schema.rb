@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_092031) do
+ActiveRecord::Schema.define(version: 2018_12_20_095832) do
 
   create_table "artists", force: :cascade do |t|
     t.string "artist_name"
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 2018_12_18_092031) do
     t.date "event_day"
     t.string "event_title"
     t.string "event_image_id"
-    t.string "event_prefectures"
+    t.string "event_prefectures", default: "東京都"
     t.string "event_city"
-    t.string "event_address", default: "東京都"
+    t.string "event_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "longitude"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_092031) do
     t.string "send_address"
     t.string "send_name"
     t.string "send_postal_code"
-    t.string "send_status"
+    t.string "send_status", default: "受注", null: false
     t.string "purchase_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
