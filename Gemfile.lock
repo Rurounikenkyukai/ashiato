@@ -106,6 +106,7 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
+    google-analytics-rails (1.1.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.1.1)
@@ -290,6 +291,7 @@ DEPENDENCIES
   devise
   geocoder
   gmaps4rails
+  google-analytics-rails
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

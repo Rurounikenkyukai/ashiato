@@ -34,7 +34,7 @@ class PurchaseHistoriesController < ApplicationController
 		            c.update(cd_stock: c.cd_stock)
 		        end
 		       	@cart_items.destroy_all
-		        redirect_to user_path(@user.id)
+		        redirect_to new_purchase_history_path
 			else
 		        redirect_to cart_item_path(@user.id)
 			end			
@@ -57,7 +57,7 @@ class PurchaseHistoriesController < ApplicationController
 		            c.update(cd_stock: c.cd_stock)
 		        end
 		        @cart_items.destroy_all
-			    redirect_to user_path(@user.id)
+			    redirect_to new_purchase_history_path
 			else				
 			   redirect_to cart_item_path(@user.id)
 			end
