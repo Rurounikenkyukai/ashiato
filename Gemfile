@@ -85,10 +85,5 @@ gem 'ransack'
 
 gem 'paranoia'
 
-gem "jquery-rails"
-
-
-
-
-
+gem 'google-analytics-rails'
 

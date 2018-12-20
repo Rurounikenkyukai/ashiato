@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_074718) do
+ActiveRecord::Schema.define(version: 2018_12_20_095832) do
 
   create_table "artists", force: :cascade do |t|
     t.string "artist_name"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_074718) do
     t.string "send_address"
     t.string "send_name"
     t.string "send_postal_code"
-    t.string "send_status"
+    t.string "send_status", default: "受注", null: false
     t.string "purchase_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

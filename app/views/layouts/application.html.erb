@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= analytics_init if Rails.env.production? %>
   </head>
 
   <body>
@@ -56,28 +56,6 @@
             		<%= text_field_tag(:content,'', :placeholder => "検索してください") %>
             		<%= submit_tag "検索する" %>
             	<% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <%#=form_for :search, url: search_path do |f| %>
-                <%#= f.select :category, [["イベント", "イベント"], ["CD", "CD"], ["アーティスト", "アーティスト"]] %>
-            		<%#= f.text_field :content %>
-
-
-            		<%#= f.submit "検索する" %>
-            	<%# end %>
-
             </div>
           </div>
 
@@ -85,6 +63,13 @@
         </nav>
       </div>
   </header>
+  <div>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name %>">
+      <%= msg %>
+      </div>
+    <% end %>
+  </div>
     <%= yield %>
     <footer>
     <div class="container-fluid">
