@@ -48,18 +48,51 @@ class AdminsController < ApplicationController
   end
 
   def search
-    content = params[:content]
+    content   = params[:content]
+    contents  = params[:contents]
+    contentss = params[:contentss]
+
     if content.nil?
        @users = User.page(params[:page]).reverse_order
     else
-       @users = User.where('first_name LIKE ?', "%#{content}%")
-       purchase_id = []
+       @users = User.where('nick_name LIKE ?', "%#{content}%")
+       user_id = []
        @users.each do |f|
-         purchase_id.push(PurchaseHistory.find(f.id))
+         user_id.push(User.find(f.id))
        end
-       @purchases = Kaminari.paginate_array(purchase_id).page(params[:page])
+       @users = Kaminari.paginate_array(user_id).page(params[:page])
     end
+
+
+    if contents.nil?
+       @userss = User.page(params[:page]).reverse_order
+    else
+       @userss = User.where('first_name LIKE ?', "%#{contents}%")
+       user_id = []
+       @userss.each do |f|
+         user_id.push(User.find(f.id))
+       end
+       @userss = Kaminari.paginate_array(user_id).page(params[:page])
+    end
+
+    if contentss.nil?
+       @cds = Cd.page(params[:cd_page]).reverse_order
+    else
+       @cds = Cd.where('cd_title LIKE ?', "%#{contentss}%")
+       cd_id = []
+       @cds.each do |f|
+         cd_id.push(Cd.find(f.id))
+       end
+       @cds = Kaminari.paginate_array(cd_id).page(params[:page])
+    end
+
+
+
+
+
   end
+
+
 
 
 
