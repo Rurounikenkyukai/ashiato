@@ -9,7 +9,7 @@
 			<div>
 				<% @cart_items.each do |cart| %>
 				<div>
-				    <%= attachment_image_tag cart.cd, :cd_image,:fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg", size: "60x60" %>
+				    <%= attachment_image_tag cart.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
 			    </div>
 			    <div>
 				    <h4>商品名</h4>

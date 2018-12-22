@@ -1,4 +1,4 @@
-<div class="event_main backcolor", style="border: 1px solid white;" >
+<div class="event_main backcolor" >
 	<div id="container">
 		<div id="theTarget">
 			<div class="image1"></div>
@@ -13,29 +13,30 @@
     		<div class="col-sm-1">
     		</div>
     		<div class="col-sm-10 main-backcolor">
-				<h1>イベント一覧画面(TOP画面)</h1>
+				<h1 class="main-text">イベント検索</h1>
 					<%=form_for @event, url: event_search_path do |f| %>
 						<%= f.date_field :event_day %>
-						<%= f.label :"区を選択" %>
+						<h4 class="search-text"><%= f.label :"区を選択" %></h4>
 	  					<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
-						<%= f.submit "検索する" %>
+						<div class="search-btn">
+						<%= f.submit "検索する" %></div>
 					<% end %>
 
 
 				<div>
-					<h2><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
+					<h2 class="event-head"><%= @events[0].event_day %><%= @events[0].event_city %>のイベント</h2>
 						<% @events.each do |event| %>
 						<%= link_to event_path(event.id) do %>
 
-						<div style= "border: 1px solid white;">
+						<div class="event-body", style= "border: 1px solid white;">
 							<div class="media">
 								<div class="media-left" >
-								<%= attachment_image_tag event, :event_image, :fill, 220, 220, format: 'jpeg' %>
+								<%= attachment_image_tag event, :event_image, format: 'jpeg',fallback: "/images/no_image.jpg", size: "220x220" %>
 								</div>
 								<div class="media-body">
-									<h4 class="media-heading"><%= event.event_title %></h4>
-									<%= event.event_day %>
-									<%= event.event_city %>
+									<h2 class="media-heading"><%= event.event_title %></h2>
+									<div class="event-text"><%= event.event_day %></div>
+									<div class="event-text"><%= event.event_city %></div>
 								</div>
 							</div>
 						</div>
