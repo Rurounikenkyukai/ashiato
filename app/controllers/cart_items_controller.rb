@@ -27,6 +27,7 @@ class CartItemsController < ApplicationController
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     redirect_to cart_item_path(current_user.id)
+    flash[:success] = "カートの商品を削除しました。"
   end
 
 

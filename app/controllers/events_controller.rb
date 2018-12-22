@@ -38,11 +38,10 @@ class EventsController < ApplicationController
         if @event.save
            @event.errors.full_messages
            redirect_to event_path(@event.id)
+           flash[:success] = "イベントを追加しました。"
         else
-            puts "------------------------------"
-            puts @event.errors.full_messages
-            puts "------------------------------"
            redirect_to admin_path(@user.id)
+           flash[:danger] = "ERROR!イベントの追加に失敗しました。記入内容を確認してください。"
         end
 	end
 
@@ -50,8 +49,10 @@ class EventsController < ApplicationController
         @event = Event.find(params[:id])
         if @event.update(event_params)
            redirect_to event_path(@event.id)
+           flash[:success] = "イベント情報の更新に成功しました。"
         else
            redirect_to edit_event_path(@event.id)
+           flash[:danger] = "ERROR!イベント情報の更新に失敗しました。記入内容を確認してください。"
         end
     end
 
