@@ -86,3 +86,4 @@ gem 'ransack'
 gem 'paranoia'
 
 gem 'google-analytics-rails'
+
