@@ -54,26 +54,26 @@ class AdminsController < ApplicationController
     contentss = params[:contentss]
 
     if content.nil?
-       @users = User.page(params[:page]).reverse_order
+       @users = User.page(params[:user_page]).reverse_order
     else
        @users = User.where('nick_name LIKE ?', "%#{content}%")
        user_id = []
        @users.each do |f|
          user_id.push(User.find(f.id))
        end
-       @users = Kaminari.paginate_array(user_id).page(params[:page])
+       @users = Kaminari.paginate_array(user_id).page(params[:user_page])
     end
 
 
     if contents.nil?
-       @userss = User.page(params[:page]).reverse_order
+       @userss = User.page(params[:purchase_page]).reverse_order
     else
        @userss = User.where('first_name LIKE ?', "%#{contents}%")
        user_id = []
        @userss.each do |f|
          user_id.push(User.find(f.id))
        end
-       @userss = Kaminari.paginate_array(user_id).page(params[:page])
+       @userss = Kaminari.paginate_array(user_id).page(params[:purchase_page])
     end
 
     if contentss.nil?
@@ -84,7 +84,7 @@ class AdminsController < ApplicationController
        @cds.each do |f|
          cd_id.push(Cd.find(f.id))
        end
-       @cds = Kaminari.paginate_array(cd_id).page(params[:page])
+       @cds = Kaminari.paginate_array(cd_id).page(params[:cd_page])
     end
 
 
