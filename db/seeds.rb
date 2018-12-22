@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(email: "aaa@aaa", first_name: "性", last_name: "名", kana_first_name: "セイ", kana_last_name: "メイ", nick_name: "あだ名", postal_code: "0000000", address: "東京都", user_image_id: "0", deleted_at: nil, admin: true, password: "aaaaaa", phone_number: "00000000000" )
+User.create(email: "aaa@aaa", first_name: "るろう人", last_name: "研究会", kana_first_name: "ルロウニン", kana_last_name: "ケンキュウカイ", nick_name: "るろけん", postal_code: "0000000", address: "東京都", deleted_at: nil, admin: true, password: "aaaaaa", phone_number: "00000000000" )
 Event.create(event_day: "20190104", event_title:"WebCampPro発表会", event_image_id: "1", event_prefectures: "東京都", event_city:"渋谷区",event_address: "東京都渋谷区神南")
 Event.create(event_day: "20190104", event_title:"第一回WebCampFes", event_image_id: "2", event_prefectures: "東京都", event_city:"渋谷区",event_address: "東京都渋谷区神南")
 Event.create(event_day: "20190104", event_title:"サンプルイベント１", event_image_id: "3", event_prefectures: "東京都", event_city:"渋谷区",event_address: "東京都渋谷区神南")
