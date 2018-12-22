@@ -1,9 +1,22 @@
 <div style=" margin-top:200px;">
 
-<%= link_to "管理者画面に戻る", admin_path(current_user) %>
+  <%= link_to "管理者画面", "#collapseExample" , data: {toggle: "collapse" },class: "btn btn-info"%>
 
+
+<%= link_to "ユーザ情報", "#user" , data: {toggle: "collapse"},class: "btn btn-primary"%>
+<%= link_to "購入履歴", "#purchase" , data: {toggle: "collapse"},class: "btn btn-danger"%>
+<%= link_to "CD在庫管理", "#cd" , data: {toggle: "collapse"},class: "btn btn-default"%>
+
+
+
+<div class="collapse" id="collapseExample">
+<div class="well">
+		<%= link_to "管理者画面に戻る", admin_path(current_user) %>
+  </div>
+</div>
 <!-- ユーザ情報 -->
- <div>
+ <div  class="collapse" id="user">
+  <div class="well">
   <h2>ユーザー情報</h2>
   <div>
     <div>
@@ -35,9 +48,9 @@
   </div>
 
 </div>
-
+</div>
 <!-- 管理者画面 -->
-<div>
+<div class="collapse" id="purchase">
   <h2>購入履歴</h2>
 
   <%= form_with(url: admin_search_path, method: :get, local: true) do |f| %>
@@ -81,7 +94,7 @@
 </div>
 
 <!-- CD在庫画面 -->
-<div>
+<div class="collapse" id="cd">
 
   <h2 >CD在庫管理</h2>
     <%= form_with(url: admin_search_path, method: :get, local: true) do |f| %>
