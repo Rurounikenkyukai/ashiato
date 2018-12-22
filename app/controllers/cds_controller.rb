@@ -52,8 +52,10 @@ class CdsController < ApplicationController
        @cd = Cd.new(cd_params)
        if @cd.save
           redirect_to cd_path(@cd.id)
+          flash[:success] = "CDの追加に成功しました。"
        else
            redirect_to admin_path(@user.id)
+           flash[:danger] = "ERROR!CDの追加に失敗しました。記入内容を確認してください。"
        end
     end
 
@@ -69,8 +71,10 @@ class CdsController < ApplicationController
 
        if @cd.update(cd_params)
           redirect_to cd_path(@cd.id)
+          flash[:success] = "CDの編集に成功しました。"
        else
            redirect_to event_path(@user.id)
+           flash[:danger] = "ERROR!CDの編集に失敗しました。記入内容を確認してください。"
        end
 
     end
