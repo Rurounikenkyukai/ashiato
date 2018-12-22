@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 2018_12_20_095832) do
     t.date "event_day"
     t.string "event_title"
     t.string "event_image_id"
-    t.string "event_prefectures"
+    t.string "event_prefectures", default: "東京都"
     t.string "event_city"
-    t.string "event_address", default: "東京都"
+    t.string "event_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
