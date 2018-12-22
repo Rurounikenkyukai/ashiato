@@ -11,13 +11,12 @@ class EventsController < ApplicationController
             end
 
             @events = Kaminari.paginate_array(@events_array).page(params[:page])
-            
+
         end
     end
 
     def show
-        @event = Event.find(params[:id])
-        @users = User.page(params[:page]).reverse_order
+        @event   = Event.find(params[:id])
         @comment = Comment.new
     end
 
