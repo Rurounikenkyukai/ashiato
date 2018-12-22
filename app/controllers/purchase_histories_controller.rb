@@ -37,6 +37,7 @@ class PurchaseHistoriesController < ApplicationController
 		        redirect_to new_purchase_history_path
 			else
 		        redirect_to cart_item_path(@user.id)
+		        flash[:danger] = "ERROR!購入に失敗しました。登録情報をご確認ください。"
 			end			
 		else
 			if @purchase.save
@@ -60,6 +61,7 @@ class PurchaseHistoriesController < ApplicationController
 			    redirect_to new_purchase_history_path
 			else				
 			   redirect_to cart_item_path(@user.id)
+			   flash[:danger] = "ERROR!購入に失敗しました。登録情報をご確認ください。"
 			end
 		end
 	end
