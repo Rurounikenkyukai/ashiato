@@ -54,5 +54,36 @@
             <% end %>
 
             <%= paginate @cds,class: "pagenate" %>
+
+    <% else @artists %>
+        <h3>アーティスト検索結果</h3>
+        <div>
+              <% @artists.each do |a| %>
+                    <% a.recoding_artists.each do |r| %>
+                      <%= r.cd.cd_title %>
+                      <%= a.artist_name %>
+                      <%= r.cd.cd_genre %>
+                      <%= r.cd.cd_price %>円
+                      <%= r.cd.cd_stock %>枚
+                <div>
+                        <p>CDジャケット画像</p>
+                  <%= link_to cd_path(r.cd.id) do %>
+                    <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
+                  <% end %>
+                </div>
+                        <% if r.cd.cd_stock == 0 %>
+                            <%= “購入できません” %>
+                        <% else %>
+                            <%=form_for(@cart_items) do |f| %>
+                              <%= f.hidden_field :cd_id, :value => r.cd.id %>
+                              <h4>枚数を選択：<%= f.select :cd_quantity,(0..r.cd.cd_stock).to_a %></h4>
+                              <%= f.submit "カートに入れる" %>
+                             <% end %>
+                        <% end %>
+              <% end %>
+              <% end %>
+        </div>
+            <%= paginate @artists,class: "pagenate" %>
     <% end %>
 </div>
+
