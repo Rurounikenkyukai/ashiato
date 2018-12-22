@@ -9,11 +9,16 @@
 
 				<th>
 					<ul>
-							<% @cd.discs.each do |disc| %>
-					 			<% disc.musics.each do |music| %>
-					  				アーティスト：<%= music.artist.artist_name %></br>
-				     			<% end %>
-					 		<% end %></ul>
+						<% artists = [] %>
+						<% @cd.discs.each do |disc| %>
+					 		<% disc.musics.each do |music| %>
+					 		<% if !artists.include?(music.artist.artist_name)%>
+					 		    <% artists.push(music.artist.artist_name) %>
+					  			アーティスト：<%= music.artist.artist_name %></br>
+					  		<% end %>
+				     	    <% end %>
+					 	<% end %>
+					</ul>
 				</th>
 
 				<th><%= @cd.cd_genre %></th>

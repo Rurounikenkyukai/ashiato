@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment.event_id = event.id
     comment.save
     redirect_to event_path(event)
-
+    flash[:success] = "コメントを投稿しました。"
   end
 
   def destroy

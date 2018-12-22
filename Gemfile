@@ -87,3 +87,5 @@ gem 'paranoia'
 
 gem 'google-analytics-rails'
 
+gem 'devise-i18n'
+gem 'devise-i18n-views'
