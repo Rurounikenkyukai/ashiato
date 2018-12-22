@@ -3,6 +3,8 @@ class Cd < ApplicationRecord
 	has_many :discs, inverse_of: :cd
 	has_many :purchase_items
 	has_many :cart_items
+	has_many :recoding_artists
+	has_many :artists, through: :recoding_artists
 	accepts_nested_attributes_for :discs, allow_destroy: true
 	validates :cd_title, presence: true
 	validates :cd_genre, presence: true, length: { maximum:15 }
