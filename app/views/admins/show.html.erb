@@ -1,14 +1,12 @@
-<div class="adminpage"　id="main"> 
+<div class="adminpage" id="main">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2">
             <nav class="navbar" data-spy="affix" data-offset-top="60">
-                <ul>
+                <ul  style="list-style: none;">
                     <li><a href ="#a1">CD追加</a></li>
                     <li><a href="#a2">イベント追加</a></li>
-                    <li><a href="#a3">ユーザー情報</a></li>
-                    <li><a href="#a4">購入履歴</a></li>
-                    <li><a href="#a5">CD在庫管理</a></li>
+                    <li><%= link_to "ユーザ情&報購入履歴&CD在庫", admin_search_path %></li>
                     <li><a href="#a6">アクセス解析</a></li>
                 </ul>
             </nav>
@@ -38,14 +36,14 @@
                     <div>
                 	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
                     </div>
-                </div> 
-                                   
-            <div><%= f.submit %></div>   
+                </div>
+
+            <div><%= f.submit %></div>
 
             <% end %>
               <h2>アーティスト追加</h2>
               <div><%= form_for @artist do |i| %>
-		         　 <%= i.text_field :artist_name %>
+		            <%= i.text_field :artist_name %>
 		            <%= i.submit "アーティストを追加", class:"btn btn-default" %>
 	            <% end %>
 	            </div>
@@ -84,108 +82,10 @@
 			   	 <%= f.submit "イベントを追加", class:"btn btn-default" %>
                 <% end %>
             </div>
-
-
-            <h2 id="a3">ユーザー情報</h2>
-            <div>
-                <div>
-                    <%= form_tag(admin_search_path, method: :get) do %>
-                    <%= text_field_tag(:content,'', :placeholder => "ユーザー名を入力") %>
-                    <%= submit_tag "検索する" %>
-                    <% end %>
-                </div>
-                <table class="table table-striped table-bordered table-hover">
-                	<thead>
-                		<tr>
-                			<th>ユーザー画像</th>
-                			<th>名前</th>
-                			<th>編集画面</th>
-                			<th>ユーザー削除</th>
-                		</tr>
-                	</thead>
-                	<% @users.each do |user| %>
-                	<tbody>
-                		<tr>
-                			<td><%= attachment_image_tag user, :user_image,:fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg", size: "60x60" %></td>
-                			<td><%= user.nick_name %></td>
-                			<td><%= link_to "編集画面へ", edit_user_path(user.id) %></td>
-                			<td><%= link_to "削除", user_path(user.id), method: :'delete' %></td>
-                		</tr>
-                	</tbody>
-                	<% end %>
-                	<%= paginate @users,:param_name => 'user_page', class: "pagenate" %>
-                </table>
-            </div>
-            <h2 id="a4">購入履歴</h2>
-                <table class="table table-striped table-bordered table-hover">
-                	<thead>
-                	</thead>
-                     <button>購入詳細</button>
-                	<% @purchases.each do |p| %>
-                	<tbody>
-                		<tr>
-                			<td>
-                			    <%= p.user.first_name %>
-                			    <%= p.user.last_name %>
-                			</td> 
-                			<td><%= p.purchase_at %></td>
-                			<td><%= p.send_status %></td>
-                			<td>
-                				<%= form_for (p) do |f| %>
-                				<label>
-                					<%= f.radio_button :send_status, "受注" %>受注
-                				</label>
-                				<label>
-                					<%= f.radio_button :send_status, "商品準備中" %>商品準備中
-                				</label> 
-                				<label>
-                					<%= f.radio_button :send_status, "出荷済み" %>出荷済み
-                				</label>
-                				<%= f.submit "ステータスを変更" %>
-                                <% end %>
-                                <div class="slide-div">
-                                    <p>宛名:<%= p.send_name %></p>
-                                    <p>宛先郵便番号:<%= p.send_postal_code %></p>
-                                    <% total_price = 0 %>
-                                    <% p.purchase_items.each do |p| %>
-                                        CDタイトル<%= p.purchase_cd_title %>
-                                        値段<%= p.purchase_cd_price %>円
-                                        購入枚数<%= p.purchase_cd_quantity %>枚
-                                        <% total_price += p.purchase_cd_quantity * p.purchase_cd_price %>
-                                    <% end %>
-                                    総計<%= total_price %>
-                                </div>
-                			</td>                                       
-                    <% end %>  
-                    <%= paginate @purchases, :param_name => 'purchase_page' ,class: "pagenate" %>
-                </table>
-                <h2 id="a5">CD在庫管理</h2>
-                <table class="table table-striped table-bordered table-hover">
-                	<thead>
-                		<tr>
-                			<th>CD名</th>
-                			<th>在庫数</th>
-                		</tr>
-                	</thead>
-                	<% @cds.each do |cd| %>
-                	<tbody>
-                		<tr>
-                			<td><%= cd.cd_title %></td>
-                			<td><%= cd.cd_stock %></td>
-                		</tr>
-                	</tbody>
-                	<% end %>
-                    <%= paginate @cds, :param_name => 'cd_page' ,class: "pagenate" %>                   
-                </table>
-
-                <div id="a6">
-                　<p>アクセス解析</p>
-                </div>
-
 		</div>
 
 
-		<div class="col-lg-2">      
+		<div class="col-lg-2">
         </div>
 	</div>
 </div>

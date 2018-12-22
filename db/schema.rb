@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2018_12_20_095832) do
     t.string "event_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "musics", force: :cascade do |t|

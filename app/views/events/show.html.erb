@@ -69,7 +69,16 @@
           <h5>アクセス情報</h5>
           <h5>住所</h5>
           <%= @event.event_address %>
-          <!-- 地図 -->
+          <style type="text/css">
+            #map { height: 300px;
+                   margin-left:auto;
+                   margin-right:auto;
+                   text-align:left;
+                  }
+          </style>
+
+
+          <div id="map"></div>
         </div>
       </div>
     </div>
@@ -92,22 +101,56 @@
   <div class="row">
   <div class="col-12" style="border: 1px solid blue;">
     <h1>コメント一覧</h1>
+    <div style="overflow: auto; height: 200px;">
+
+
     <% @event.comments.each do |f| %>
-			<div>
-				<div>
-					<p>イベント画像</p>
+
+			<div class="media">
+				<div class="media-left">
 					<%= link_to user_path(f.id) do %>
-						<%= attachment_image_tag  f.user, :user_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+						<%= attachment_image_tag  @user, :user_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %>
 					<% end %>
 				</div>
-				<div>
-					<h3><%= f.favorite_artist %></h3>
-					<h4><%= f.comment %></h4>
+				<div class="media-body">
+					<%= f.favorite_artist %>
+					<%= f.comment %>
 				</div>
 			</div>
-		<% end %>
-		<%= paginate @users %>
 
-    </div>
+		<% end %>
+</div>
   </div>
 </div>
+
+<script type="text/javascript">
+    function initMap() {
+
+        var test ={lat: <%= @event.latitude %>, lng: <%= @event.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: test
+        });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @event.event_address %>';
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+            position:test,
+            map: map,
+            title: contentString
+        });
+
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCOR-1QVl7mxC-zGHcwDBuEFAXfK3Hy5Pc&callback=initMap">
+</script>

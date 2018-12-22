@@ -1,21 +1,19 @@
 class AdminsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @admin = User.find(current_user.id)
-    if user_signed_in? && current_user.admin 
+    if user_signed_in? && current_user.admin
   	@cd = Cd.new
     @cds = Cd.page(params[:cd_page]).reverse_order
 
   	@artist = Artist.new
   	@artists = Artist.all
-    
+
   	@users = User.page(params[:user_page]).reverse_order
 
   	@event = Event.new
     @event.performers.build
-
-    @purchases = PurchaseHistory.page(params[:purchase_page]).reverse_order
 
   	@genres = []
   	@cds.each do |cd|
@@ -49,6 +47,55 @@ class AdminsController < ApplicationController
     end
   end
 
-  private
+  def search
+    content   = params[:content]
+    contents  = params[:contents]
+    contentss = params[:contentss]
+
+    if content.nil?
+       @users = User.page(params[:page]).reverse_order
+    else
+       @users = User.where('nick_name LIKE ?', "%#{content}%")
+       user_id = []
+       @users.each do |f|
+         user_id.push(User.find(f.id))
+       end
+       @users = Kaminari.paginate_array(user_id).page(params[:page])
+    end
+
+
+    if contents.nil?
+       @userss = User.page(params[:page]).reverse_order
+    else
+       @userss = User.where('first_name LIKE ?', "%#{contents}%")
+       user_id = []
+       @userss.each do |f|
+         user_id.push(User.find(f.id))
+       end
+       @userss = Kaminari.paginate_array(user_id).page(params[:page])
+    end
+
+    if contentss.nil?
+       @cds = Cd.page(params[:cd_page]).reverse_order
+    else
+       @cds = Cd.where('cd_title LIKE ?', "%#{contentss}%")
+       cd_id = []
+       @cds.each do |f|
+         cd_id.push(Cd.find(f.id))
+       end
+       @cds = Kaminari.paginate_array(cd_id).page(params[:page])
+    end
+
+
+
+
+
+  end
+
+
+
+
+
+
 
 end
