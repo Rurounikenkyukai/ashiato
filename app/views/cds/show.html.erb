@@ -4,7 +4,7 @@
 	<table>
 			<tr>
 				<th><p>CDジャケット画像</p>
-					<%= attachment_image_tag @cd, :cd_image, :fill, 60, 60, format: 'jpeg', fallback: "/images/no_image.jpg" %></th>
+					<%= attachment_image_tag @cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %></th>
 				<th><%= @cd.cd_title %></th>
 
 				<th>
