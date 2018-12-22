@@ -1,55 +1,56 @@
 <div class="adminpage" id="main">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-2">
-            <nav class="navbar" data-spy="affix" data-offset-top="60">
-                <ul  style="list-style: none;">
-                    <li><a href ="#a1">CD追加</a></li>
-                    <li><a href="#a2">イベント追加</a></li>
-                    <li><%= link_to "ユーザ情報&購入履歴&CD在庫", admin_search_path %></li>
-                    <li><a href="#a6">アクセス解析</a></li>
-                </ul>
+		<div class="col-lg-12">
+            <nav class="navbar">
+            	<%= link_to "CD追加", "#1" , data: {toggle: "collapse"},class: "btn btn-primary"%>
+            	<%= link_to "アーティスト追加", "#2" , data: {toggle: "collapse"},class: "btn btn-danger"%>
+            	<%= link_to "イベント追加", "#3" , data: {toggle: "collapse"},class: "btn btn-default"%>
+            	<%= link_to "ユーザー情報、購入履歴、在庫一覧へ", admin_search_path ,class: "btn btn-info" %>
             </nav>
-		</div>
-		<div class="col-lg-8" style="background-color: gray;">
-			<h2 id="a1">CD追加</h2>
-	      <div>
+        </div>
+    </div>
+	<div class="row">	
+		<div class="col-lg-10">
+			<div id="1" class="collapse">
+			<div class="well">
+			<h2>CD追加</h2>
 			<%= form_for @cd do |f| %>
-			    <p><%= f.label :CD %>
-			   	  <%= f.text_field :cd_title %></p>
-			    <p><%= f.label :ジャンル %>
-			    	<input name="cdgenre">
-			   	  <%= f.select :cd_genre, @genres, :include_blank => true %>
-                <p><%= f.label :レーベル名 %>
-                	<input name="cdlabel">
-			      <%= f.select :cd_label, @labels, :include_blank => true %>
-			    <p><%= f.label :値段 %>
-			      <%= f.text_field :cd_price %>円</p>
-			    <p><%= f.label :在庫数 %>
-			      <%= f.number_field :cd_stock %>枚</p>
-			    <p><%= f.label :ジャケット画像 %>
-			      <%= f.attachment_field :cd_image %></p>
+			    <%= f.label :CD %>
+			   	<%= f.text_field :cd_title %><br>
+			    <%= f.label :ジャンル %>
+			    <input name="cdgenre">
+			   	<%= f.select :cd_genre, @genres, :include_blank => true %><br>
+                <%= f.label :レーベル名 %>
+                <input name="cdlabel">
+			    <%= f.select :cd_label, @labels, :include_blank => true %><br>
+			    <%= f.label :値段 %>
+			    <%= f.text_field :cd_price %>円<br>
+			    <%= f.label :在庫数 %>
+			    <%= f.number_field :cd_stock %>枚<br>
+			    <%= f.label :ジャケット画像 %>
+			    <%= f.attachment_field :cd_image %><br>
 	            <div>
 		            <%= f.fields_for :discs do |disc| %>
                         <%= render 'disc_fields', f: disc %>
                     <% end %>
-                    <div>
                 	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
-                    </div>
-                </div>
-
-            <div><%= f.submit %></div>
-
+                 </div>
+                <%= f.submit %>
             <% end %>
-              <h2>アーティスト追加</h2>
-              <div><%= form_for @artist do |i| %>
+            </div>
+            </div>
+
+            <div id="2" class="collapse">
+                <h2>アーティスト追加</h2>
+                <%= form_for @artist do |i| %>
 		            <%= i.text_field :artist_name %>
 		            <%= i.submit "アーティストを追加", class:"btn btn-default" %>
 	            <% end %>
-	            </div>
+	        </div>
 
-            <h2 id="a2">イベント追加</h2>
-            <div>
+            <div id="3" class="collapse">
+            <h2>イベント追加</h2>
             	<%= form_for @event do |f| %>
             	<div>
             		<%= f.label :イベント名 %>
@@ -83,8 +84,6 @@
                 <% end %>
             </div>
 		</div>
-
-
 		<div class="col-lg-2">
         </div>
 	</div>
