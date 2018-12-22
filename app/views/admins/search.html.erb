@@ -1,19 +1,12 @@
 <div style=" margin-top:200px;">
 
-  <%= link_to "管理者画面", "#collapseExample" , data: {toggle: "collapse" },class: "btn btn-info"%>
+<%= link_to "管理者画面", admin_path(current_user.id) ,class: "btn btn-info"%>
 
 
 <%= link_to "ユーザ情報", "#user" , data: {toggle: "collapse"},class: "btn btn-primary"%>
 <%= link_to "購入履歴", "#purchase" , data: {toggle: "collapse"},class: "btn btn-danger"%>
 <%= link_to "CD在庫管理", "#cd" , data: {toggle: "collapse"},class: "btn btn-default"%>
 
-
-
-<div class="collapse" id="collapseExample">
-<div class="well">
-		<%= link_to "管理者画面に戻る", admin_path(current_user) %>
-  </div>
-</div>
 <!-- ユーザ情報 -->
  <div  class="collapse" id="user">
   <div class="well">
