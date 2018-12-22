@@ -20,6 +20,7 @@ class CartItemsController < ApplicationController
     cart_item.user_id = current_user.id
   	cart_item.save
   	redirect_to cart_item_buy_path
+    flash[:success] = "カートに商品を追加しました。"
   end
 
   def destroy

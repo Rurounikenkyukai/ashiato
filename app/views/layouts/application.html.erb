@@ -58,16 +58,12 @@
             	<% end %>
             </div>
           </div>
-
-
-        </nav>
-      </div>
   </header>
-  <div>
+  <div class="flash">
     <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name %>">
+    <div class="alert alert-<%= name %>">
       <%= msg %>
-      </div>
+    </div>
     <% end %>
   </div>
     <%= yield %>

@@ -5,6 +5,7 @@ class ArtistsController < ApplicationController
 	   @artist = Artist.new(artist_params)
 	   @artist.save
 	   redirect_back(fallback_location: admin_path(@user.id))
+	   flash[:success] = "アーティストの追加に成功しました。"
 	end
 
 	def update

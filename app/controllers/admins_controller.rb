@@ -44,6 +44,7 @@ class AdminsController < ApplicationController
     end
     else
     redirect_to events_path
+    flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
     end
   end
 
