@@ -21,10 +21,28 @@
     <div class="row">
       <div class="col-lg-2">
 
+        <% if user_signed_in?%>
+
+          <%= link_to events_path do %>
+            <%= image_tag("/images/i.png", :size => "195x195", :alt => "logo") %>
+          <% end %>
+
+        <% else %>
 
         <%= link_to events_path do %>
           <%= image_tag("/images/i.png", :size => "195x195", :alt => "logo") %>
         <% end %>
+
+        <% end %>
+
+        <% flash.each  do |name, msg| %>
+
+          <%= msg  %>
+
+        <% end %>
+
+
+
       </div>
       <div class="col-lg-6" style=" padding-top: 50px;">
 
@@ -72,14 +90,7 @@
 
 </header>
 
-
-
-    <% flash.each do |name, msg| %>
-    <div class="alert alert-<%= name %>" style="margin-top: 200px;">
-      <%= msg %>
-    </div>
-    <% end %>
-    <%= yield %>
+        <%= yield %>
     <footer>
     <div class="container-fluid">
       <div class="row">
