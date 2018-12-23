@@ -1,12 +1,12 @@
 <div class="contener", style="margin-top: 200px;">
   <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-1">
 
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-10">
       <%= link_to "管理者画面に戻る", admin_path(current_user.id) ,class: "btn btn-info"%>
       <div>
-        <div>
+        <div class="well">
           <h2>ユーザー情報</h2>
           <div>
             <div>
@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="well">
         <h2>購入履歴</h2>
         <%= form_with(url: admin_search_path, method: :get, local: true) do |f| %>
         <%= f.text_field :contents, :placeholder => "ユーザー名を入力"  %><%= f.submit "探す" %>
@@ -83,8 +83,7 @@
 </div>
 
 <!-- CD在庫画面 -->
-<div>
-
+<div class="well">
   <h2 >CD在庫管理</h2>
     <%= form_with(url: admin_search_path, method: :get, local: true) do |f| %>
       <%= f.text_field :contentss, :placeholder => "CD名を入力" %><%= f.submit "探す" %>
@@ -109,7 +108,7 @@
     <%= paginate @cds, :param_name => 'cd_page',class: "pagenate" %>
 </div>
 </div>
-<div class="col-lg-2">
+<div class="col-lg-1">
 </div>
 </div>
 </div>
