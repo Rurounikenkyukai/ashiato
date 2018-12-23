@@ -29,6 +29,7 @@
  }
 
 
+
 .aaa{
 	display: block;
 }
@@ -108,4 +109,8 @@ background-image: url(/images/artist.jpg);
 	display: inline-block;
 	font-family: serif;
 	margin-left: 10px;
+}
+.back-image{
+background-image: url(/images/malcolm-lightbody-720029-unsplash.jpg);
+background-size:cover;
 }
