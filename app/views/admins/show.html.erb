@@ -1,16 +1,23 @@
 <div class="adminpage" id="main">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-lg-1">
+        </div>
+		<div class="col-lg-10">
             <nav class="navbar">
             	<%= link_to "CD追加", "#1" , data: {toggle: "collapse"},class: "btn btn-primary"%>
             	<%= link_to "アーティスト追加", "#2" , data: {toggle: "collapse"},class: "btn btn-danger"%>
-            	<%= link_to "イベント追加", "#3" , data: {toggle: "collapse"},class: "btn btn-default"%>
+            	<%= link_to "イベント追加", "#3" , data: {toggle: "collapse"},class: "btn btn-warning"%>
             	<%= link_to "ユーザー情報、購入履歴、在庫一覧へ", admin_search_path ,class: "btn btn-info" %>
+            	<a href="https://analytics.google.com/analytics/web/?hl=ja#/report-home/a101258708w190751070p186878085" class="btn btn-default">アクセス解析</a>
             </nav>
         </div>
+		<div class="col-lg-1">
+        </div>
     </div>
-	<div class="row">	
+	<div class="row">
+		<div class="col-lg-1">
+        </div>
 		<div class="col-lg-10">
 			<div id="1" class="collapse">
 			<div class="well">
@@ -34,22 +41,22 @@
 		            <%= f.fields_for :discs do |disc| %>
                         <%= render 'disc_fields', f: disc %>
                     <% end %>
-                	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-default" %>
+                	    <%= link_to_add_association 'Discを追加', f, :discs, class:"btn btn-primary" %>
                  </div>
-                <%= f.submit %>
+                <%= f.submit "CDを追加", class:"btn btn-success" %>
             <% end %>
             </div>
             </div>
 
-            <div id="2" class="collapse">
+            <div id="2" class="collapse well">
                 <h2>アーティスト追加</h2>
                 <%= form_for @artist do |i| %>
 		            <%= i.text_field :artist_name %>
-		            <%= i.submit "アーティストを追加", class:"btn btn-default" %>
+		            <%= i.submit "アーティストを追加", class:"btn btn-success" %>
 	            <% end %>
 	        </div>
 
-            <div id="3" class="collapse">
+            <div id="3" class="collapse well">
             <h2>イベント追加</h2>
             	<%= form_for @event do |f| %>
             	<div>
@@ -74,21 +81,20 @@
                     <% end %>
 			   	</div>
 			   	<div>
-			   		<%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
+			   		<%= link_to_add_association '行を追加', f, :performers, class:"btn btn-primary" %>
 			   	</div>
 			   	<div>
 			   		<%= f.label :MAP表示させたい位置情報の住所 %>
 			   		<%= f.text_field :event_address %>
 			   	</div>
-			   	 <%= f.submit "イベントを追加", class:"btn btn-default" %>
+			   	 <%= f.submit "イベントを追加", class:"btn btn-success" %>
                 <% end %>
             </div>
 		</div>
-		<div class="col-lg-2">
+		<div class="col-lg-1">
         </div>
 	</div>
 </div>
-
 
 <style type="text/css">
 .slide-div {
