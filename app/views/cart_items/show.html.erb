@@ -1,4 +1,4 @@
-<div class="cartpage">
+<div class="cartpage" style="margin-top: 200px;">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-2">
@@ -32,13 +32,14 @@
 				</div>
 			    <% end %>
 		    </div>
-		     <ul>
-		     	<li><input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る</li>
-		     	<li><input type="radio" name="btn" id="b">他の住所に送る</li>
-		     </ul>
+		    <% if @cart_items.empty? %>
+		     <h3>カートに商品がありません。</h3>
+		     <% else %>
+		     	<input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る
+		     	<input type="radio" name="btn" id="b">他の住所に送る
 		     <div class="text text01">
-		     	<%= current_user.address %>に送る
-		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post %>
+		     	<strong><%= current_user.address %></strong>に送る<br>
+		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post, class: "btn btn-default" %>
 		     </div>
 		     <div class="text text02">
 		     	<%= form_for @purchase do |f| %>
@@ -49,8 +50,10 @@
 		     	<% end %>
 		     </div>
 		     <div>
-		     	総計<%= @total_price %>
+		     	<h3>総計:<%= @total_price %>円</h3>
 		     </div>
+
+		     <% end %>
 		</div>
 		<div class="col-lg-2">
 
