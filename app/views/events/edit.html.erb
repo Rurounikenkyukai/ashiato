@@ -1,5 +1,10 @@
-<h2>イベント編集画面</h2>
-<div>
+<div class="container" style="margin-top: 200px;">
+	<div class="row">
+		<div class="col-lg-1">
+		</div>
+		<div class="col-lg-10 well">
+		<h2>イベント編集画面</h2>
+
 	<%= form_for @event do |f| %>
 	<div>
 		<%= f.label :イベント名 %><%= f.text_field :event_title %>	
@@ -22,12 +27,16 @@
         <% end %>
 	</div>
 	<div>
-	    <%= link_to_add_association '行を追加', f, :performers, class:"btn btn-default" %>
+	    <%= link_to_add_association '行を追加', f, :performers, class:"btn btn-info" %>
 	</div>
 	<div>
 	    <%= f.label :MAP表示させたい位置情報の住所 %>
 	    <%= f.text_field :event_address %>
 	</div>
-		<%= f.submit "イベントを更新", class:"btn btn-default" %>
+		<%= f.submit "イベントを更新", class:"btn btn-success" %>
 	    <% end %>
+	    <div class="col-lg-1">
+	    </div>
+</div>
+</div>
 </div>
