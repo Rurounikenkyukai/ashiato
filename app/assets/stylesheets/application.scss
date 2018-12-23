@@ -18,8 +18,13 @@
  li{
    float: left;
    padding: 10px;
+   list-style: none;
  }
-
+ .clearfix::after {
+   content: "";
+   display: block;
+   clear: both;
+ }
 
 
 .aaa{
