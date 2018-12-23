@@ -1,56 +1,49 @@
-<div class="container" style="margin-top: 250px;">
+<div class="container" style="margin-top: 250px; border: 1px solid white;">
 
-  <div class="row" style="border: 1px solid red">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-1">
-      <%= attachment_image_tag @event, :event_image, :fill, 100, 100, format: 'jpeg', fallback: "/images/no_image.jpg" %>
+  <div class="row" style="color: white;">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10 media" >
+      <div class="media-left" >
+        <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/no_image.jpg" ,size: "150x150" %>
+      </div>
+      <div class="media-body"  style="color: white;">
+        <h1 style="color: white; padding-top: 90px;  "><%= @event.event_title %> <%= @event.event_day%>
+
+
+          <% if user_signed_in? %>
+          <% if @event.favorited_by?(current_user) %>
+              <%= link_to event_asiatos_path(@event), method: :delete, style: "color: white;" do %>
+                <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= @event.asiatos.count %> いいね
+              <% end %>
+        <% else %>
+            <%= link_to event_asiatos_path(@event), method: :post, style: "color: white;" do %>
+              <i class="fa fa-heart-o" aria-hidden="true"></i>
+              <%= @event.asiatos.count  %> いいね
+            <% end %>
+         <% end %>
+         <% end %>
+       </h1>
+      </div>
     </div>
-    <div class="col-lg-5">
-     <%= @event.event_title %>
-    </div>
-    <div class="col-lg-2">
-     <div class="row">
-       <div class="col-lg-12">
-         <% if user_signed_in? %>
-         <% if @event.favorited_by?(current_user) %>
-           <div>
-             <%= link_to event_asiatos_path(@event), method: :delete do %>
-               <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-               <%= @event.asiatos.count %> いいね
-             <% end %>
-         </div>
-       <% else %>
-         <div>
-           <%= link_to event_asiatos_path(@event), method: :post do %>
-             <i class="fa fa-heart-o" aria-hidden="true"></i>
-             <%= @event.asiatos.count %> いいね
-           <% end %>
-         </div>
-        <% end %>
-        <% end %>
-       </div>
-     </div>
-     <div class="row">
-       <div class="col-lg-12">
-         <%= @event.event_day%>
-       </div>
-     </div>
-    </div>
-    <div class="col-lg-2"></div>
+    <div class="col-lg-1"></div>
   </div>
 
   <div class="row">
 
-    <div class="col-lg-8" style="border: 1px solid blue;">
+    <div class="col-lg-8" style="color: white;">
       <h1>出演アーティスト一覧</h1>
       <% @event.performers.each do |f| %>
-  			<div>
 
-  				<div>
-  					<h3><%= f.artist.artist_name %></h3>
+      <%= link_to user_path(f.id), style: "color: white; border: 1px" do %>
+        	<%= f.artist.artist_name %>
+      <% end %>
 
-  				</div>
-  			</div>
+
+
+
+
+
 
   	<% end %>
     </div>
