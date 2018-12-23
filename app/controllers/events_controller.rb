@@ -3,6 +3,7 @@ class EventsController < ApplicationController
           if params[:events_id].nil?
             @event = Event.new
             @events = Event.page(params[:page]).reverse_order
+            flash[:danger] = "検索結果が見つかりませんでした"
         else
             @event = Event.new
             @events_array = []
