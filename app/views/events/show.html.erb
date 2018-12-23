@@ -37,11 +37,11 @@
       <% @event.performers.each do |f| %>
 
         <li style="font-size: 30px;">
-          <div style="color: white;">
+          
             <%= link_to  controller: 'cds', action: 'search',id: f.artist.id  do %>
                 <%= f.artist.artist_name %>
             <% end %>
-          </div>
+
 
         </li>
   	<% end %>
