@@ -1,37 +1,46 @@
 <div class="cartpage" style="margin-top: 200px;">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-2">
+		<div class="col-lg-1">
 
 		</div>
-		<div class="col-lg-8" style="background-color: gray;">
+		<div class="col-lg-10" style="background-color: rgba(0,0,0,0.7); color: white;">
 			<h2>カートの中身</h2>
-			<div>
+			<div class="row">
 				<% @cart_items.each do |cart| %>
-				<div>
-				    <%= attachment_image_tag cart.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
-			    </div>
-			    <div>
-				    <h4>商品名</h4>
+				<div class="col-lg-3">
+				    <%= attachment_image_tag cart.cd, :cd_image, format: 'jpeg',fallback: "/images/no_image.jpg", size: "180x180" %>
+				</div>
+				<div class="col-lg-9">
+				    <h4>CDタイトル</h4>
 				    <%= cart.cd.cd_title %>
 				    <h4>値段</h4>
 				    <%= cart.cd.cd_price %>円
 				    <h4>購入枚数</h4>
 				    <%= cart.cd_quantity %>枚
 				</div>
-				<div>
+			</div>
+			<div class="row">
+				　　<h3>収録曲リスト</h3>
+				<div class="col-lg-12">
+					<ol type="1">
 				    <% cart.cd.discs.each do |d| %>
 				        <% d.musics.each do |m| %>
-				        曲名<%= m.music_title %>
-				        アーティスト名<%= m.artist.artist_name %>
+				        <li><%= m.music_title %><%= m.artist.artist_name %></li>
 				        <% end %>
 				    <% end %>
+				    </ol>
 				</div>
 				<div>
-					<%= link_to "カートから削除", cart_item_path(cart.id), method: :delete %>
+					<%= link_to "カートから削除", cart_item_path(cart.id), method: :delete, class: "btn btn-danger" %>
 				</div>
 			    <% end %>
 		    </div>
+
+		    <div>
+		     	<h3>総計:<%= @total_price %>円</h3>
+		    </div>
+		    
 		    <% if @cart_items.empty? %>
 		     <h3>カートに商品がありません。</h3>
 		     <% else %>
@@ -39,23 +48,20 @@
 		     	<input type="radio" name="btn" id="b">他の住所に送る
 		     <div class="text text01">
 		     	<strong><%= current_user.address %></strong>に送る<br>
-		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post, class: "btn btn-default" %>
+		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post, class: "btn btn-success" %>
 		     </div>
 		     <div class="text text02">
 		     	<%= form_for @purchase do |f| %>
 		     	<p>送付先郵便番号<%= f.text_field :send_postal_code %></p>
 		     	<p>送付先宛名<%= f.text_field :send_name %></p>
 		     	<p>送付先住所<%= f.text_field :send_address %></p>
-		     	<%= f.submit "購入する" %>
+		     	<%= f.submit "購入する", class: "btn btn-success" %>
 		     	<% end %>
-		     </div>
-		     <div>
-		     	<h3>総計:<%= @total_price %>円</h3>
 		     </div>
 
 		     <% end %>
 		</div>
-		<div class="col-lg-2">
+		<div class="col-lg-1">
 
 		</div>
 	</div>

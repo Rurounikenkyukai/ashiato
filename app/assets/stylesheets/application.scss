@@ -15,15 +15,17 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- li{
-   float: left;
-   padding: 10px;
-   list-style: none;
- }
+
  .clearfix::after {
    content: "";
    display: block;
    clear: both;
+ }
+
+ .header li{
+   float: left;
+   padding: 10px;
+   list-style: none;
  }
 
 
@@ -114,6 +116,7 @@ background-image: url(/images/artist.jpg);
 background-image: url(/images/malcolm-lightbody-720029-unsplash.jpg);
 background-size:cover;
 }
+
 .event-search{
 	margin-bottom: 20px;
 }

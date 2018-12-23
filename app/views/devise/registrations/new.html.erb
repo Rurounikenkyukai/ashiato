@@ -3,12 +3,12 @@
 </div>
 
 
-<div class="clearfix" style="text-align: center;  color: white; margin-top: 150px;">
+<div class="clearfix" style="text-align: center;   margin-top: 150px;">
 
 
 
 
-<h2>Sign up</h2>
+<h2 style="color: white">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
@@ -18,12 +18,12 @@
   <div class="field  clearfix" style="padding-left: 500px;"  >
    <ul>
      <li>
-       <%= f.label :姓 %><br />
+       <%= f.label :姓 ,style: "color: white;" %><br />
        <%= f.text_field :first_name, autofocus: true, autocomplete: "(姓)" %>
 
      </li>
      <li>
-       <%= f.label :名 %><br />
+       <%= f.label :名 , style: "color: white;" %><br />
        <%= f.text_field :last_name, autofocus: true, autocomplete: "(名)" %>
 
      </li>
@@ -37,11 +37,11 @@
   <div class="field  clearfix" style="padding-left: 500px;" >
    <ul>
      <li>
-       <%= f.label :"カナ(姓)" %><br />
+       <%= f.label :"カナ(姓)",style: "color: white;"  %><br />
        <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "(カナ姓)" %><br />
      </li>
      <li>
-       <%= f.label :"カナ(名)" %><br />
+       <%= f.label :"カナ(名)",style: "color: white;"  %><br />
        <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "(カナ名)" %>
      </li>
    </ul>
@@ -52,42 +52,42 @@
   </div>
 
   <div class="field">
-    <%= f.label :ニックネーム %><br />
+    <%= f.label :ニックネーム,style: "color: white;"  %><br />
     <%= f.text_field :nick_name, autofocus: true, autocomplete: "ニックネーム" %>
   </div>
 
 
 
   <div class="field">
-    <%= f.label :郵便番号 %><br />
+    <%= f.label :郵便番号,style: "color: white;"  %><br />
     <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号" %>
   </div>
 
   <div class="field">
-    <%= f.label :住所 %><br />
+    <%= f.label :住所,style: "color: white;"  %><br />
     <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
   </div>
 
   <div class="field">
-    <%= f.label :電話番号 %><br />
+    <%= f.label :電話番号,style: "color: white;"  %><br />
     <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email,style: "color: white;"  %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password,style: "color: white;"  %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em style="color: white;">(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation ,style: "color: white;" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
