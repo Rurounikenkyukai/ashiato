@@ -1,89 +1,96 @@
-<div class = “cds-index”, style=“border: 1px solid red;” >
+<div class = "cds-index", style=“border: 1px solid red;” >
+  <div class="container">
+      <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-10 main-back">
+   	      <% if @events %>
+   		         <h3>イベント検索結果</h3>
+                <% @events.each do |event| %>
+                <div class="event-search", style= "border: 1px solid white;">
+               <div class="media">
+                      <div>
+                         <div class="media-left">
+                        	       <%= link_to event_path(event.id) do %>
+                            	     <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
+                        	       <% end %>
+                    	     </div>
+                		        <div class="media-body">
+                        	     <h3 class="media-heading" ><%= event.event_title %></h3>
+                        	     <h4><%= event.event_day %></h4>
+                            </div>
+                		      </div>
+                	       </div>
+              </div>
+                <% end %>
+                  <%= paginate @events, class: "pagenate" %>
 
-   	<% if @events %>
-   		<h3>イベント検索結果</h3>
-           <% @events.each do |event| %>
-                <div>
-                    <div>
-                        <p>イベント画像</p>
-                        	<%= link_to event_path(event.id) do %>
-                            	<%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
-                        	<% end %>
-                    	</div>
-                		<div>
-                        	<h3><%= event.event_title %></h3>
-                        	<h4><%= event.event_day %></h4>
-                		</div>
-                	</div>
-            <% end %>
-            <%= paginate @events, class: "pagenate" %>
-
-    <% elsif @cds %>
-
-   			<h3>CD検索結果</h3>
-   			<div>
-            	<% @cds.each do |cd| %>
+          <% elsif @cds %>
+   			      <h3>CD検索結果</h3>
+   			      <div>
+            	    <% @cds.each do |cd| %>
                     <div>
                         <p>CDジャケット画像</p>
-             			<%= link_to cd_path(cd.id) do %>
-             				<%= attachment_image_tag cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
-            	<% end %>
+             			      <%= link_to cd_path(cd.id) do %>
+             				         <%= attachment_image_tag cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
+            	          <% end %>
                     </div>
                     <div>
-                        <h4>CDタイトル：<%= cd.cd_title %></h4>
-                        <h4>アーティスト名：
-                        	<% cd.discs.each do |disc| %>
+                          <h4>CDタイトル：<%= cd.cd_title %></h4>
+                          <h4>アーティスト名：
+                        	  <% cd.discs.each do |disc| %>
                             	<% disc.musics.each do |music| %>
-                              		<%= music.artist.artist_name %></h4>
+                              	<%= music.artist.artist_name %></h4>
                             	<% end %>
-                        	<% end %>
-                        <h4>ジャンル名：<%= cd.cd_genre %></h4>
-                        <h4>価格：<%= cd.cd_price %></h4>
-                        <h4>在庫：<%= cd.cd_stock %></h4>
+                        	   <% end %>
+                          <h4>ジャンル名：<%= cd.cd_genre %></h4>
+                          <h4>価格：<%= cd.cd_price %></h4>
+                          <h4>在庫：<%= cd.cd_stock %></h4>
                     </div>
                       	<% if cd.cd_stock == 0 %>
                           	<%= “購入できません” %>
                         <% else %>
                           	<%=form_for(@cart_items) do |f| %>
                             	<%= f.hidden_field :cd_id, :value => cd.id %>
-                            	<h4>枚数を選択：<%= f.select :cd_quantity,(0..cd.cd_stock).to_a %></h4>
+                            	 <h4>枚数を選択：<%= f.select :cd_quantity,(0..cd.cd_stock).to_a %></h4>
                             	<%= f.submit "カートに入れる" %>
+                              <% end %>
                         <% end %>
-           		<% end %>
-            </div>
-            <% end %>
-
-            <%= paginate @cds,class: "pagenate" %>
-
-    <% else @artists %>
-        <h3>アーティスト検索結果</h3>
-        <div>
-              <% @artists.each do |a| %>
-                    <% a.recoding_artists.each do |r| %>
-                      <%= r.cd.cd_title %>
-                      <%= a.artist_name %>
-                      <%= r.cd.cd_genre %>
-                      <%= r.cd.cd_price %>円
-                      <%= r.cd.cd_stock %>枚
-                <div>
-                        <p>CDジャケット画像</p>
-                  <%= link_to cd_path(r.cd.id) do %>
-                    <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
                   <% end %>
                 </div>
-                        <% if r.cd.cd_stock == 0 %>
-                            <%= “購入できません” %>
-                        <% else %>
-                            <%=form_for(@cart_items) do |f| %>
-                              <%= f.hidden_field :cd_id, :value => r.cd.id %>
-                              <h4>枚数を選択：<%= f.select :cd_quantity,(0..r.cd.cd_stock).to_a %></h4>
-                              <%= f.submit "カートに入れる" %>
-                             <% end %>
-                        <% end %>
-              <% end %>
-              <% end %>
-        </div>
-            <%= paginate @artists,class: "pagenate" %>
-    <% end %>
-</div>
+                <%= paginate @cds,class: "pagenate" %>
 
+          <% else @artists %>
+              <h3>アーティスト検索結果</h3>
+              <div>
+                    <% @artists.each do |a| %>
+                          <% a.recoding_artists.each do |r| %>
+                            <%= r.cd.cd_title %>
+                            <%= a.artist_name %>
+                            <%= r.cd.cd_genre %>
+                            <%= r.cd.cd_price %>円
+                            <%= r.cd.cd_stock %>枚
+                      <div>
+                              <p>CDジャケット画像</p>
+                        <%= link_to cd_path(r.cd.id) do %>
+                          <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
+                        <% end %>
+                      </div>
+                              <% if r.cd.cd_stock == 0 %>
+                                  <%= “購入できません” %>
+                              <% else %>
+                                  <%=form_for(@cart_items) do |f| %>
+                                    <%= f.hidden_field :cd_id, :value => r.cd.id %>
+                                    <h4>枚数を選択：<%= f.select :cd_quantity,(0..r.cd.cd_stock).to_a %></h4>
+                                    <%= f.submit "カートに入れる" %>
+                                  <% end %>
+                              <% end %>
+                           <% end %>
+                    <% end %>
+              </div>
+                  <%= paginate @artists,class: "pagenate" %>
+        </div>
+        <div class="col-sm-1">
+        </div>
+          <% end %>
+</div>
