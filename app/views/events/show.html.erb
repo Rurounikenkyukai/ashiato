@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 250px; border: 1px solid white;">
+<div class="container" style="margin-top: 250px;  background-color: rgba(0,0,0,0.7);">
 
   <div class="row" style="color: white;">
     <div class="col-lg-1"></div>
@@ -33,11 +33,15 @@
 
     <div class="col-lg-8" style="color: white;">
       <h1>出演アーティスト一覧</h1>
+      <ol type="1">
       <% @event.performers.each do |f| %>
 
-      <%= link_to user_path(f.id), style: "color: white; border: 1px" do %>
-        	<%= f.artist.artist_name %>
-      <% end %>
+        <li style="font-size: 50px;">
+          <%= link_to  controller: 'cds', action: 'search',id:  f.artist.id do %>
+              <%= f.artist.artist_name %>
+          <% end %>
+        </li>
+
 
 
 
@@ -46,6 +50,7 @@
 
 
   	<% end %>
+    </ol>
     </div>
 
     <div class="col-lg-4">
