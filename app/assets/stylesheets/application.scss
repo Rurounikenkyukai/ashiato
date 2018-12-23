@@ -79,10 +79,12 @@ background-image: url(/images/artist.jpg);
 }
 
 .media-heading{
-	font-size:50px;
+	font-size:40px;
+	color:white;
 }
 .event-text{
 	font-size:30px;
+	color:white;
 }
 .main-text{
 	font-size:50px;
@@ -115,6 +117,38 @@ background-image: url(/images/malcolm-lightbody-720029-unsplash.jpg);
 background-size:cover;
 }
 
-.artist_name{
-  color: white;
+.event-search{
+	margin-bottom: 20px;
+}
+.main-back{
+	padding-right:0px;
+	padding-left:0px;
+}
+.cd-text{
+	font-size:20px;
+	color:white;
+	display: inline-block;
+}
+.cart-text{
+	font-size:20px;
+	display: inline-block;
+	float:left;
+}
+.cd-text1{
+	font-size:20px;
+	color:white;
+	display: inline-block;
+}
+.cd-price{
+	font-size:20px;
+	color:white;
+	display: inline-block;
+	margin-right:20px;
+}
+.cart-choice{
+	float:right;
+}
+.simple-text{
+	color:white;
+	display: inline-block;
 }
