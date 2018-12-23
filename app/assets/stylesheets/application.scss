@@ -15,7 +15,7 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- 
+
  .clearfix::after {
    content: "";
    display: block;
@@ -113,4 +113,8 @@ background-image: url(/images/artist.jpg);
 .back-image{
 background-image: url(/images/malcolm-lightbody-720029-unsplash.jpg);
 background-size:cover;
+}
+
+.artist_name{
+  color: white;
 }
