@@ -24,31 +24,26 @@
          <% end %>
          <% end %>
        </h1>
-      </div>
+     </div>
     </div>
     <div class="col-lg-1"></div>
   </div>
 
   <div class="row">
 
-    <div class="col-lg-8" style="color: white;">
-      <h1>出演アーティスト一覧</h1>
+    <div class="col-lg-8" style="color:white;">
+      <h1 style="color: white;">出演アーティスト一覧</h1>
       <ol type="1">
       <% @event.performers.each do |f| %>
 
-        <li style="font-size: 50px;">
-          <%= link_to  controller: 'cds', action: 'search',id:  f.artist.id do %>
-              <%= f.artist.artist_name %>
-          <% end %>
+        <li style="font-size: 30px;">
+          <div style="color: white;">
+            <%= link_to  controller: 'cds', action: 'search',id: f.artist.id  do %>
+                <%= f.artist.artist_name %>
+            <% end %>
+          </div>
+
         </li>
-
-
-
-
-
-
-
-
   	<% end %>
     </ol>
     </div>
