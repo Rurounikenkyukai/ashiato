@@ -58,14 +58,21 @@ class CdsController < ApplicationController
        if params[:cd][:cd_genre].blank?
           params[:cd][:cd_genre] = params[:cdgenre]
        end
-       @cd = Cd.new(cd_params)
-       if @cd.save
-          redirect_to cd_path(@cd.id)
-          flash[:success] = "CDの追加に成功しました。"
-       else
-           redirect_to admin_path(@user.id)
-           flash[:danger] = "ERROR!CDの追加に失敗しました。記入内容を確認してください。"
-       end
+
+          @cd = Cd.new(cd_params)
+          if @cd.cd_stock < 0
+            redirect_to admin_path(@user.id)
+            flash[:danger] = "ERROR!CDの追加に失敗しました。在庫数は0以下に指定できません。"
+          elsif @cd.cd_price < 0
+            redirect_to admin_path(@user.id)
+            flash[:danger] = "ERROR!CDの追加に失敗しました。値段は0以下に指定できません。"           
+          elsif @cd.save
+            redirect_to cd_path(@cd.id)
+            flash[:success] = "CDの追加に成功しました。"
+          else
+            redirect_to admin_path(@user.id)
+            flash[:danger] = "ERROR!CDの追加に失敗しました。記入内容を確認してください。"
+          end
     end
 
     def update
