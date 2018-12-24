@@ -16,18 +16,7 @@
 //= require cocoon
 //= require bootstrap-sprockets
 //= require bootstrap
-//= require jquery_ujs
 //= require_tree .
-
-$(function() {
-	$('.disc').hide();
-	$('#disc1').show();
-	$('.disc_btn').on('click',function(){
-	    $('.disc').hide();
-	    $($(this).attr("href")).show();
-	    console.log($(this).attr("href"))
-	    return false;
-})
 
 
 
