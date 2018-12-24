@@ -20,7 +20,7 @@
 
         <div style=" overflow: scroll; height: 200px;">
           <% @user.asiatos.each do |f| %>
-            <div style="border: 1px solid black">
+            <div style="border: 1px solid white">
               <%= link_to event_path(f.id) do %>
                 <%= attachment_image_tag f.event, :event_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "100x100" %>
               <% end %>
