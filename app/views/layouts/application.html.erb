@@ -63,7 +63,7 @@
                            <li><%=link_to "マイページ", user_path(current_user.id), class: "glyphicon glyphicon-user users", style: "color: white;" %></li>
                            <li>
                              <%= link_to cart_item_path(current_user.id), class: "glyphicon glyphicon-shopping-cart", style: "color: white;" do %>
-                               <%#= @cart_items.count %>
+                               <%= @carts.count %>
                              <% end %>
                            </li>
                            <li><%=link_to "ログアウト", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout ", style: "color: white;" %></li>
@@ -73,9 +73,9 @@
                             <li><%=link_to "マイページ", user_path(current_user.id), class: "glyphicon glyphicon-user users",style: "color: white" %></li>
                             <li>
                               <%= link_to cart_item_path(current_user.id), class: "glyphicon glyphicon-shopping-cart", style: "color: white;" do %>
-                                <%#= @cart_items.count %>
-                              <% end %>
-                            </li>
+                               <%= @carts.count %>
+                             <% end %>
+                             </li>
                             <li><%=link_to "ログアウト", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout", style: "color: white;" %></li>
 
                         <% else %>

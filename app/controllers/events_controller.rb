@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
     def index
+        if user_signed_in?
+        @carts = CartItem.where(user_id: current_user.id)
+        end
           if params[:events_id].nil?
             @event = Event.new
             @events = Event.page(params[:page]).reverse_order
@@ -19,17 +22,25 @@ class EventsController < ApplicationController
     def show
         @event   = Event.find(params[:id])
         @comment = Comment.new
+        if user_signed_in?
+        @carts = CartItem.where(user_id: current_user.id)
+        end
     end
 
     def edit
+        @carts = CartItem.where(user_id: current_user.id)
+        if user_signed_in? && current_user.admin
         @event = Event.find(params[:id])
-
         @artists = Artist.all
         @artist_names_id = []
         @artists.each do |ar|
             if !@artist_names_id.include?([ar.artist_name,ar.id])
             @artist_names_id.push([ar.artist_name,ar.id])
             end
+        end
+        else
+        redirect_to events_path
+        flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
         end
     end
 
