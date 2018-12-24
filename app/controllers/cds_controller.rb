@@ -6,18 +6,23 @@ class CdsController < ApplicationController
     def show
         @cd = Cd.find(params[:id])
         @cart_items = CartItem.new
+      if user_signed_in?
+        @carts = CartItem.where(user_id: current_user.id)
+      end
     end
 
     def edit
+       @carts = CartItem.where(user_id: current_user.id)
+      if user_signed_in? && current_user.admin
        @cd = Cd.find(params[:id])
        @cds = Cd.all
        @artists = Artist.all
        @genres = []
        @cds.each do |cd|
-     if !@genres.include?([cd.cd_genre,cd.cd_genre])
-       @genres.push([cd.cd_genre,cd.cd_genre])
+         if !@genres.include?([cd.cd_genre,cd.cd_genre])
+         @genres.push([cd.cd_genre,cd.cd_genre])
+         end
        end
-     end
 
        @labels = []
        @cds.each do |cd|
@@ -39,6 +44,10 @@ class CdsController < ApplicationController
        @artist_names_id.push([ar.artist_name,ar.id])
        end
      end
+    else
+      redirect_to events_path
+      flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
+    end
    end
 
      def create
@@ -87,6 +96,9 @@ class CdsController < ApplicationController
 	   end
 
      def search
+      if user_signed_in?
+      @carts = CartItem.where(user_id: current_user.id)
+      end
          category = params[:category]
          content  = params[:content]
          if    category == "イベント"
