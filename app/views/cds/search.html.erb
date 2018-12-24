@@ -42,7 +42,7 @@
                             	<% disc.musics.each do |music| %>
                               <% if !artists.include?(music.artist.artist_name)%>
                               <% artists.push(music.artist.artist_name) %>
-                              	<div class="cd-text1"><%= music.artist.artist_name %></div>
+                              	<div class="cd-text1"><%= music.artist.artist_name %></div></br>
                               <% end %>
                             	<% end %>
                         	   <% end %>
@@ -78,7 +78,7 @@
                                     <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %><% end %></div>
                                   <div class="media-body">
                                         <h2 class="media-heading media-title"><%= link_to cd_path(r.cd.id), style: "color:white;" do %><%= r.cd.cd_title %><% end %></h2>
-                                        <div class="cd-text"><%= a.artist_name %></div>
+                                        <div class="cd-text"><%= a.artist_name %></div></br>
                                         <div class="cd-text">【<%= r.cd.cd_genre %>】</div></br>
                                         <div class="cd-price"><%= r.cd.cd_price %>円</div>
                                         <div class="cd-text"><%= r.cd.cd_stock %>枚</div>
