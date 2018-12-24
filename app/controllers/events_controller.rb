@@ -6,7 +6,6 @@ class EventsController < ApplicationController
           if params[:events_id].nil?
             @event = Event.new
             @events = Event.page(params[:page]).reverse_order
-            flash[:danger] = "検索結果が見つかりませんでした"
         else
             @event = Event.new
             @events_array = []
@@ -85,6 +84,9 @@ class EventsController < ApplicationController
         events_id.push(event.id)
         end
         redirect_to events_path(events_id: events_id)
+        if events_id.blank?
+           flash[:danger] = "検索結果が見つかりませんでした"
+        end
     end
 
     private
