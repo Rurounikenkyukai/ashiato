@@ -80,7 +80,7 @@ background-image: url(/images/artist.jpg);
 	background-color:black;
 }
 .main-backcolor{
-	background-color: #080C17;
+    background-image: linear-gradient(-90deg, #140024, #240005);
 }
 .media-image{
 	height: 220px;
@@ -167,4 +167,21 @@ background-size:cover;
 .admin-btn{
 	display: inline-block;
 	float:right;
+}
+.music-text{
+	display: inline-block;
+}
+.my-page{
+	margin-top:150px;
+	padding-bottom:30px;
+	font-size: 40px;
+	text-align: center;
+}
+.finish-text{
+	color:white;
+	font-size: 60px;
+	text-align: center;
+}
+.cd-table{
+	display: block;
 }

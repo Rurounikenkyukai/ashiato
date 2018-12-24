@@ -4,7 +4,6 @@
         <div class="col-sm-1">
         </div>
         <div class="col-sm-10 main-back", style="background-color: rgba(0,0,0,0.7);">
-        </style>>
    	      <% if @events %>
    		         <h1 class="main-text">イベント検索結果</h1>
                 <% @events.each do |event| %>
@@ -38,9 +37,13 @@
                           <h2 class="media-heading media-title">
                             <%= link_to cd_path(cd.id), style: "color:white;" do %>
                             <%= cd.cd_title %><% end %></h2>
+                            <% artists = [] %>
                         	  <% cd.discs.each do |disc| %>
                             	<% disc.musics.each do |music| %>
+                              <% if !artists.include?(music.artist.artist_name)%>
+                              <% artists.push(music.artist.artist_name) %>
                               	<div class="cd-text1"><%= music.artist.artist_name %></div>
+                              <% end %>
                             	<% end %>
                         	   <% end %>
                           <div class="cd-text">【<%= cd.cd_genre %>】</div></br>

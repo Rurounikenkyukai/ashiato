@@ -19,10 +19,20 @@ class CartItemsController < ApplicationController
   def create
   	cart_item = CartItem.new(cart_item_params)
     cart_item.user_id = current_user.id
-  	cart_item.save
+    cart_items = CartItem.where(user_id: current_user.id)
+    cart_items.each do |i|
+      if i.cd.id = cart_item.cd.id
+        cart_item.destroy
+       flash[:danger] = "ERROR!すでに同一商品がカートに入っています！"
+      end
+    end
+  	if cart_item.save
   	redirect_to cart_item_buy_path
     flash[:success] = "カートに商品を追加しました。"
-  end
+    else
+       redirect_to cart_item_path(current_user.id)
+     end
+ end
 
   def destroy
     cart_item = CartItem.find(params[:id])
