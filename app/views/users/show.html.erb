@@ -59,10 +59,13 @@
 
     <div style=" overflow: scroll; height: 200px;">
     <% @user.purchase_historys.each do |f| %>
-      <div class="media " style="width:800px; ">
             <% f.purchase_items.each do |a| %>
+              <div class="media " style="width:800px; ">
+            <div class="media-left media-image" >
+            <%= attachment_image_tag event, :event_image, format: 'jpeg',fallback: "/images/no_image.jpg", size: "220x220" %>
+            </div>
             <%= a.purchase_cd_title %>
-            <%#= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
+            <%= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
 
 
             <% end %>
