@@ -2,6 +2,7 @@ class CartItemsController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @carts = CartItem.where(user_id: current_user.id)
     @purchase = PurchaseHistory.new
     @cart_items = CartItem.where(user_id: current_user.id)
     @cart_items.each do |c|
