@@ -60,18 +60,16 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                     <p>  CD名 ：<%= a.purchase_cd_title %>購入日 ：   <%= a.purchase_history.purchase_at %></p>
-                    <% total_price =+ a.purchase_cd_quantity * a.purchase_cd_price %>
                   </div>
                   <div class="panel-body">
                   </div>
                   <p style="color: black; font-size: 25px;">CD価格<%= a.purchase_cd_price %>円<%= a.purchase_cd_quantity %>枚 <%= a.purchase_cd_quantity * a.purchase_cd_price %> 円       <%= a.purchase_history.send_status %></p>
                   </div>
                 </div>
-
+                <% total_price =+ a.purchase_cd_quantity * a.purchase_cd_price %>
             <% end %>
-            <%= total_price %>
         </div>
-
+            <%= total_price %>
     <% end %>
 </div>
 
