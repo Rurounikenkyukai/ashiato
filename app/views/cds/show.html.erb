@@ -47,23 +47,39 @@
 			</div>
 		<table>
 			<tr>
-		   		</th>
-		   			<ul id="tab-menu" class="clearfix">
+		   		<th>
+		   			<ul class="nav nav-tabs">
 			   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
-			   			 	<a href="#disc<%= idx %>" class="disc_btn">disc<%= idx%></a>
+			   				<% if idx == 1 %>
+			   					<li class="active"><a href="#sampleContent<%= idx%>" data-toggle="tab">Disc<%= idx%></a></li>
+			   				<% else %>
+			   					<li class=""><a href="#sampleContent<%= idx%>" data-toggle="tab">Disc<%= idx%></a></li>
+			   				<% end %>
 						<% end %>
 					</ul>
   				<div style="width:300px;height:150px;overflow:scroll;">
+  					<div class="tab-content">
 		   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
-		   				<div id = "disc<%= idx %>" class = "disc">
-							<% disc.musics.each.with_index(1) do |music, x| %>
-								<div class = "musics">
-									<h4>曲順：<%= x %></h4>
-									<h4>曲名：<%= music.music_title %></h4>
-								</div>
-							<% end %>
-						</div>
+		   			<% if idx == 1 %>
+		   			<div class = "tab-pane active" id="sampleContent<%= idx%>">
+		   			<% else %>
+		   			<div class = "tab-pane" id="sampleContent<%= idx%>">
+		   			<% end %>
+		   			<% if idx == 1 %>
+						<% disc.musics.each.with_index(1) do |music, x| %>
+								<h4 class="music-text simple-text"><%= x %>、</h4>
+								<h4 class="music-text simple-text"><%= music.music_title %></h4></br>
+						<% end %>
+					<% else %>
+						<% disc.musics.each.with_index(1) do |music, x| %>
+								<h4 class="music-text simple-text"><%= x %>、</h4>
+								<h4 class="music-text simple-text"><%= music.music_title %></h4></br>
+						<% end %>
 					<% end %>
+					</div>
+					<% end %>
+					</div>
+				</div>
 				</div>
 		  		</th>
 			</tr>
