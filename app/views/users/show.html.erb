@@ -50,6 +50,7 @@
 
     <div style=" overflow: scroll; height: 200px;">
     <% @user.purchase_historys.each do |f| %>
+     購入日 ：   <%= f.purchase_at %>
         <% total_price = 0 %>
             <% f.purchase_items.each do |a| %>
               <div class="media " style="width:800px; ">
@@ -59,14 +60,15 @@
                 <div class="media-body">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                    <p>  CD名 ：<%= a.purchase_cd_title %>購入日 ：   <%= a.purchase_history.purchase_at %></p>
+                    <p>  CD名 ：<%= a.purchase_cd_title %></p>
                   </div>
                   <div class="panel-body">
                   </div>
-                  <p style="color: black; font-size: 25px;">CD価格<%= a.purchase_cd_price %>円<%= a.purchase_cd_quantity %>枚 <%= a.purchase_cd_quantity * a.purchase_cd_price %> 円       <%= a.purchase_history.send_status %></p>
+                  <p style="color: black; font-size: 25px;">CD価格<%= a.purchase_cd_price %>円<%= a.purchase_cd_quantity %>枚 <%= a.purchase_cd_quantity * a.purchase_cd_price %> 円
+                    <%= a.purchase_history.send_status %></p>
                   </div>
                 </div>
-                <% total_price =+ a.purchase_cd_quantity * a.purchase_cd_price %>
+                <% total_price += a.purchase_cd_quantity * a.purchase_cd_price %>
             <% end %>
         </div>
             <%= total_price %>
