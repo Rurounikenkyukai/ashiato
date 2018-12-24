@@ -2,6 +2,7 @@ class AdminsController < ApplicationController
   before_action :authenticate_user!
 
   def show
+    @carts = CartItem.where(user_id: current_user.id)
     @admin = User.find(current_user.id)
     if user_signed_in? && current_user.admin
   	@cd = Cd.new
@@ -49,6 +50,7 @@ class AdminsController < ApplicationController
   end
 
   def search
+    @carts = CartItem.where(user_id: current_user.id)
     content   = params[:content]
     contents  = params[:contents]
     contentss = params[:contentss]

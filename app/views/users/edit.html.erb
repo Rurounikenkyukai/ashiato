@@ -1,51 +1,64 @@
-<div class="container" style="margin-top: 200px;">
-  <div class="row">
-    <div class="col-lg-12">
-      <%= form_for(@user) do |f| %>
-        <div class="field">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name %>
-        </div>
-        <div class="field">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name %>
-        </div>
-        <div class="field">
-          <%= f.label :kana_first_name %>
-          <%= f.text_field :kana_first_name %>
-        </div>
-        <div class="field">
-          <%= f.label :kana_last_name %>
-          <%= f.text_field :kana_last_name%>
-        </div>
-        <div class="field">
-          <%= f.label :nick_name %>
-          <%= f.text_field :nick_name%>
-        </div>
-        <div class="field">
-          <%= f.label :image, class: "user_image" %>
-          <%= f.attachment_field :user_image , class: "user_image"%>
-        </div>
-        <div class="field">
-          <%= f.label :postal_code %><br />
-          <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号" %>
-        </div>
 
-        <div class="field">
-          <%= f.label :address %><br />
-          <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :phone_number %><br />
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit '更新する' %>
-        </div>
-      <% end %>
-      <%= link_to "戻る", user_path %>
-    </div>
+<div class="clearfix" style="margin-top: 150px; text-align: center;">
+<h2 style="color: white;">ユーザー情報編集</h2>
+<%= form_for @user do |f| %>
+  <div class="log_in field  clearfix" style="padding: 0 34%;" >
+    <ul>
+      <li>
+       <%= f.label :姓 ,style: "color: white;" %><br>
+       <%= f.text_field :first_name, autofocus: true, autocomplete: "(姓)" %>
+      </li>
+      <li>
+       <%= f.label :名 , style: "color: white;" %><br>
+       <%= f.text_field :last_name, autofocus: true, autocomplete: "(名)" %>
+      </li>
+    </ul>
   </div>
+
+  <div class="log_in field  clearfix" style="padding: 0 34%;" >
+    <ul>
+     <li>
+       <%= f.label :"カナ(姓)",style: "color: white;"  %><br>
+       <%= f.text_field :kana_first_name, autofocus: true, autocomplete: "(カナ姓)" %><br>
+     </li>
+     <li>
+       <%= f.label :"カナ(名)",style: "color: white;"  %><br>
+       <%= f.text_field :kana_last_name, autofocus: true, autocomplete: "(カナ名)" %>
+     </li>
+   </ul>
+  </div>
+
+  <div class="field">
+    <%= f.label :ニックネーム,style: "color: white;"  %><br>
+    <%= f.text_field :nick_name, autofocus: true, autocomplete: "ニックネーム" %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :郵便番号,style: "color: white;"  %><br>
+    <%= f.text_field :postal_code, autofocus: true, autocomplete: "郵便番号" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :住所,style: "color: white;"  %><br>
+    <%= f.text_field :address, autofocus: true, autocomplete: "住所" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :電話番号,style: "color: white;"  %><br>
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "電話番号" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email,style: "color: white;"  %><br>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions" style="margin-top: 25px; ">
+    <%= f.submit "ユーザー情報を更新" %>
+  </div>
+
+<% end %>
 </div>
+

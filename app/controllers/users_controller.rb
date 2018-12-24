@@ -1,11 +1,23 @@
 class UsersController < ApplicationController
   
   def show
+    @carts = CartItem.where(user_id: current_user.id)
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+    redirect_to events_path
+    flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
+    end
   end
 
   def edit
+    @carts = CartItem.where(user_id: current_user.id)
     @user = User.find(params[:id])
+    if current_user.admin
+
+    elsif @user.id != current_user.id
+    flash[:danger] = "ERROR!このページにアクセスする権限がありません。"
+    redirect_to events_path
+    end
   end
 
   def update
