@@ -37,13 +37,14 @@
 			    <% end %>
 		    </div>
 
+		    <% if @cart_items.empty? %>
+		     <h3>カートに商品がありません。</h3>
+		     <% else %>
+
 		    <div>
 		     	<h3>総計:<%= @total_price %>円</h3>
 		    </div>
 		    
-		    <% if @cart_items.empty? %>
-		     <h3>カートに商品がありません。</h3>
-		     <% else %>
 		     	<input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る
 		     	<input type="radio" name="btn" id="b">他の住所に送る
 		     <div class="text text01">
