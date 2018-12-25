@@ -106,23 +106,19 @@ class CdsController < ApplicationController
       if user_signed_in?
       @carts = CartItem.where(user_id: current_user.id)
       end
+      @cart_items =CartItem.new
+      category = params[:category]
+      content  = params[:content]
 
-         category = params[:category]
-         content  = params[:content]
-
-         if params[:id] != nil?
-           artist = params[:id]
-           @artists = Artist.where('id LIKE ?', "%#{artist}%")
-           artists_id = []
-           @artists.each do |artist|
-             artists_id.push(Artist.find(artist.id))
-           end
-           @cart_items =CartItem.new
-           @artists = Kaminari.paginate_array(artists_id).page(params[:page])
-
-         end
-
-         if    category == "イベント"
+         if params[:id]
+                  @artist = Artist.where(id: params[:id])
+                  artists_id = []
+                  @artist.each do |artist|
+                    artists_id.push(Artist.find(artist.id))
+                  end
+                  @cart_items =CartItem.new
+                  @artist = Kaminari.paginate_array(artists_id).page(params[:page])             
+         elsif category == "イベント"
                if content.empty?
                   @events = Event.page(params[:page]).reverse_order
                else
