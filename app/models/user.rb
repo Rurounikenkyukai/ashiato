@@ -28,6 +28,6 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :postal_code, presence: true, format: { with: /\A\d{7}\z/, message: "ハイフンなしの数字7桁で入力してください" }
   validates :address, presence: true
-  validates :phone_number, presence: true, format: { with: /\A\d{10}\zA|\A\d{11}\z/, message: "ハイフンなしの数字10桁or11桁で入力してください" }
+  validates :phone_number, presence: true, format: { with: /\A\d{10}\zA|\A\d{11}\z/, message: "ハイフンなしの11桁で入力してください" }
 
 end
