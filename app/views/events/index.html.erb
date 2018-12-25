@@ -24,9 +24,10 @@
 
 
 				<div>
-          
-						<h2 class="event-head"><%= @events[0].event_day.year %>年<%= @events[0].event_day.month %>月<%= @events[0].event_day.day %>日<%= @events[0].event_city %>のイベント</h2>
-
+					<% if @search == "true" %>
+					  <h2 class="event-head"><%= @events[0].event_day.year %>年<%= @events[0].event_day.month %>月<%= @events[0].event_day.day %>日<%= @events[0].event_city %>のイベント</h2>
+					<% else %>
+					 <% end %>
 
 						<% @events.each do |event| %>
 						<%= link_to event_path(event.id) do %>

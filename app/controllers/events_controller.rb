@@ -7,15 +7,14 @@ class EventsController < ApplicationController
           if params[:events_id].nil?
             @event = Event.new
             @events = Event.page(params[:page]).reverse_order
-        else
+          else
             @event = Event.new
             @events_array = []
             params[:events_id].each do |a|
             @events_array.push(Event.find(a))
-            end
-
             @events = Kaminari.paginate_array(@events_array).page(params[:page])
-
+            @search = "true"
+          end
         end
     end
 

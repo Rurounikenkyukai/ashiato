@@ -106,12 +106,19 @@ class CdsController < ApplicationController
       if user_signed_in?
       @carts = CartItem.where(user_id: current_user.id)
       end
+      @cart_items =CartItem.new
+      category = params[:category]
+      content  = params[:content]
 
-         category = params[:category]
-         content  = params[:content]
-         
-
-         if    category == "イベント"
+         if params[:id]
+                  @artist = Artist.where(id: params[:id])
+                  artists_id = []
+                  @artist.each do |artist|
+                    artists_id.push(Artist.find(artist.id))
+                  end
+                  @cart_items =CartItem.new
+                  @artist = Kaminari.paginate_array(artists_id).page(params[:page])
+         elsif category == "イベント"
                if content.empty?
                   @events = Event.page(params[:page]).reverse_order
                else
@@ -132,26 +139,36 @@ class CdsController < ApplicationController
                  @cds = Cd.page(params[:page]).reverse_order
                  @cart_items =CartItem.new
                else
+                  @cart_items =CartItem.new
                   @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
                   cds_id = []
                   @cds.each do |cd|
                     cds_id.push(Cd.find(cd.id))
                   end
-                  @cart_items =CartItem.new
+                  if @cds.empty?
+                    flash.now[:danger] = "ERROR!検索結果はありません。"
                   @cds = Kaminari.paginate_array(cds_id).page(params[:page])
+                  else
+                  @cds = Kaminari.paginate_array(cds_id).page(params[:page])
+                  end
                end
           elsif category == "アーティスト"
                if content.empty?
                   @artists = Artist.page(params[:page]).reverse_order
                   @cart_items =CartItem.new
                else
+                  @cart_items =CartItem.new
                   @artists = Artist.where('artist_name LIKE ?', "%#{content}%")
                   artists_id = []
                   @artists.each do |artist|
                     artists_id.push(Artist.find(artist.id))
                   end
-                  @cart_items =CartItem.new
+                  if @artists.empty?
+                    flash.now[:danger] = "ERROR!検索結果はありません。"
+                     @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+                  else
                   @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+                  end
                end
             else
                 @events = Event.page(params[:page]).reverse_order
