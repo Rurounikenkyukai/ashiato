@@ -15,11 +15,13 @@
     		<div class="col-sm-10 main-backcolor">
 				<h1 class="main-text">イベント検索</h1>
 					<%=form_for @event, url: event_search_path do |f| %>
+					<div class="event-search-text">
 						<%= f.date_field :event_day %>
 						<h4 class="search-text"><%= f.label :"区を選択" %></h4>
 	  					<%= f.select :event_city, [["渋谷区", "渋谷区"], ["新宿区", "新宿区"], ["港区", "港区"]] ,class:"form-control" %>
 						<div class="search-btn">
-						<%= f.submit "検索する" %></div>
+						<%= f.submit "検索する" %></div><div class="note">（※日付と区は両方選択して下さい）</div>
+					</div>
 					<% end %>
 
 
