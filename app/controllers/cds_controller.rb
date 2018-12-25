@@ -109,18 +109,7 @@ class CdsController < ApplicationController
 
          category = params[:category]
          content  = params[:content]
-
-         if params[:id] != nil?
-           artist = params[:id]
-           @artists = Artist.where('id LIKE ?', "%#{artist}%")
-           artists_id = []
-           @artists.each do |artist|
-             artists_id.push(Artist.find(artist.id))
-           end
-           @cart_items =CartItem.new
-           @artists = Kaminari.paginate_array(artists_id).page(params[:page])
-
-         end
+         
 
          if    category == "イベント"
                if content.empty?
