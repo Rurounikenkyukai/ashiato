@@ -32,10 +32,10 @@
 					<%#= f.hidden_field :user_id, :value => current_user.id %>
 
 					<%= f.hidden_field :cd_id, :value => @cd.id %>
+					<div class="cart-choice">
 					<div class="cart-text"><%= f.select :cd_quantity,(0..@cd.cd_stock).to_a %><div class="simple-text">枚</div></div>
-
-
 					<div class="cart-text"><%= f.submit "カートに入れる" %></div>
+					</div>
 					<% end %>
 				<% end %>
 		</div>
@@ -58,7 +58,7 @@
 			   				<% end %>
 						<% end %>
 					</ul>
-  				<div style="width:300px;height:150px;overflow:scroll;">
+  				<div style="width:1000px;height:200px;overflow:scroll;">
   					<div class="tab-content">
 		   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
 		   			<% if idx == 1 %>

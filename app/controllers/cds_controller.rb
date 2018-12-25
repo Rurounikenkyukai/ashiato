@@ -117,7 +117,7 @@ class CdsController < ApplicationController
                     artists_id.push(Artist.find(artist.id))
                   end
                   @cart_items =CartItem.new
-                  @artist = Kaminari.paginate_array(artists_id).page(params[:page])             
+                  @artist = Kaminari.paginate_array(artists_id).page(params[:page])
          elsif category == "イベント"
                if content.empty?
                   @events = Event.page(params[:page]).reverse_order
