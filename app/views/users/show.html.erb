@@ -49,14 +49,16 @@
     <h2>購入履歴</h2>
 
     <div style=" overflow: scroll; height: 200px;">
+
     <% @user.purchase_historys.each do |f| %>
      購入日 ：   <%= f.purchase_at %>
         <% total_price = 0 %>
             <% f.purchase_items.each do |a| %>
-              <div class="media " style="width:800px; ">
-                <div class="media-left media-image" >
-                <%= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
-                </div>
+            <div class="media " style="width:800px; ">
+              <div class="media-left media-image" >
+              <%= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
+              </div>
+
                 <div class="media-body">
                   <div class="panel panel-default">
                     <div class="panel-heading">
@@ -70,8 +72,9 @@
                 </div>
                 <% total_price += a.purchase_cd_quantity * a.purchase_cd_price %>
             <% end %>
+            <p style="color :white;"><%= total_price %></p>
         </div>
-            <%= total_price %>
+
     <% end %>
 </div>
 
