@@ -13,6 +13,7 @@ class EventsController < ApplicationController
             params[:events_id].each do |a|
             @events_array.push(Event.find(a))
             @events = Kaminari.paginate_array(@events_array).page(params[:page])
+            @search = "true"
           end
         end
     end
