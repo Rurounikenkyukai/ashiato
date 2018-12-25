@@ -4,27 +4,30 @@
 
     <div class="col-lg-12 media" >
       <div class="media-left" >
-        <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/no_image.jpg" ,size: "150x150" %>
+        <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/alexander-popov-522100-unsplash.jpg" ,size: "300x300", class: "event-show-image"%>
       </div>
       <div class="media-body"  style="color: white;">
-        <h1 style="color: white; padding-top: 50px;  "><%= @event.event_title %> <%= @event.event_day%>
+        <h1 style="color: white; padding-top: 50px; "><div class="event-show-title">【<%= @event.event_title %>】</div></br>
+          <div class="event-show-text">
+           <%= @event.event_day.year%>年<%= @event.event_day.month%>月<%= @event.event_day.day%>日</br>
 
 
           <% if user_signed_in? %>
           <% if @event.favorited_by?(current_user) %>
               <%= link_to  event_asiatos_path(@event), method: :delete do %>
-                <%= image_tag("/images/good.png", :size => "50x50") %>
+                <%= image_tag("/images/good.png", :size => "60x60") %>
 
               <% end %>
               <%= @event.asiatos.count %>
               あしあと
         <% else %>
             <%= link_to  event_asiatos_path(@event), method: :post do %>
-                  <%= image_tag("/images/nogood.png", :size => "50x50" ) %>
+                  <%= image_tag("/images/nogood.png", :size => "60x60" ) %>
 
             <% end %>
             <%= @event.asiatos.count  %>
             あしあと
+          </div>
          <% end %>
          <% end %>
        </h1>
@@ -56,10 +59,11 @@
       <% if user_signed_in? && current_user.admin? %>
       <div class="row" style="color: white;">
         <div class="col-lg-12" style="text-align:center;">
-          <%= link_to "編集", edit_event_path, class: "btn btn-primary",style: "width: 110px; margin-right:  10px ; "%>
+          <div class="admin-show-btn">
+          <%= link_to "イベント編集", edit_event_path, class: "btn btn-primary",style: "width: 110px; margin-right:  10px ; "%>
 
 
-          <%=link_to "削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？", method: :delete, class: "btn btn-danger",style: "width: 110px; " %>
+          <%=link_to "イベント削除", event_path(@event), method: :delete, "data-confirm" => "本当に削除しますか？", method: :delete, class: "btn btn-danger",style: "width: 110px; " %></div>
         </div>
       </div>
       <% end %>
