@@ -38,8 +38,6 @@
         </div>
 
 
-  if event_path
-
 
 
 
@@ -65,7 +63,7 @@
                   </div>
                   <div class="panel-body">
                   </div>
-                  <p style="color: black; font-size: 25px;"><%= a.purchase_cd_price %>円を<%= a.purchase_cd_quantity %>枚購入／計<%= a.purchase_cd_quantity * a.purchase_cd_price %> 円
+                  <p style="color: black; font-size: 25px;"><%= a.purchase_cd_price %>円／購入枚数:<%= a.purchase_cd_quantity %>枚／計<%= a.purchase_cd_quantity * a.purchase_cd_price %> 円
                     <%= a.purchase_history.send_status %></p>
                   </div>
                 </div>
