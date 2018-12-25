@@ -2,32 +2,33 @@
 
 
   <div class="row">
-    <div class="col-lg-4" >
-     <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg', fallback: "/images/no_image.jpg" %>
-     <br />
-       <h1 style="background-color: rgba(255,255,255,1); border-radius: 20px; text-align:center;"><%= @user.nick_name %></h1>
+    <div class="col-lg-4 user-main-image" >
+        <%= attachment_image_tag @user, :user_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "300x300", class: "user-image" %>
+        <br />
+        <h1 style="background-color: rgba(255,255,255,1); border-radius: 20px; text-align:center;", class="user-nickname"><%= @user.nick_name %></h1>
 
-     <%= link_to "ユーザ編集", edit_user_path,class: "btn btn-primary" ,style: "color: black; width: 100%;" %>
+     <%= link_to "ユーザ情報を編集", edit_user_path,class: "btn btn-primary user-edit" ,style: "color: black; width: 100%;" %>
      <br />
-     <%=link_to "退会", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "width:90px; margin-top: 10px;" %>
+     <%=link_to "退会する", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "width:90px; margin-top: 10px;" %>
    </div>
 
 
-    <div class="col-lg-8" style="color:white;">
+    <div class="col-lg-8" style="color:white; width:700px;">
 
 
         <h1>行ったイベント</h1>
 
-        <div style=" overflow: scroll; height: 400px;">
+        <div style=" overflow: scroll; height: 400px; border: 3px solid rgba(222,6,6,0.5);">
           <% @user.asiatos.each do |f| %>
-            <div class="mdia" style="margin-top: 10px;">
+            <div class="mdia event-purchase" style="width:665px;">
               <%= link_to   event_path(f.id), class:"media-left" do %>
                 <%= attachment_image_tag f.event, :event_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
               <% end %>
               <div class="media-body">
-                <div class="panel panel-default">
+                <div class="panel panel-default media-heading">
                   <%= link_to event_path(f.event.id), style: "color:black;" do %>
-                    <%= f.event.event_title %>
+                    【<%= f.event.event_title %>】
+                    <%= f.event.event_city %>〜<%= f.event.event_day.year %>年<%= f.event.event_day.month %>月<%= f.event.event_day.day %>日に開催されたイベント〜
                   <% end %>
                 </div>
               </div>
@@ -49,22 +50,22 @@
     <h2>購入履歴</h2>
 
 
-    <div style=" overflow: scroll; height: 400px;">
+    <div style=" overflow: scroll; height: 400px; border: 3px solid rgba(222,6,6,0.5);">
     <% @user.purchase_historys.each do |f| %>
         <% total_price = 0 %>
             <% f.purchase_items.each do |a| %>
-              <div class="media " style="width:700px; ">
-                <div class="media-left media-image" >
+              <div class="media " style="width:665px; ">
+                <div class="media-left media-image purchase-text" >
                 <%= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
                 </div>
-                <div class="media-body">
+                <div class="media-body purchase-text">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                    <p>  購入日 ：   <%= a.purchase_history.purchase_at.year %>年<%= a.purchase_history.purchase_at.month %>月<%= a.purchase_history.purchase_at.day %>日 CD名 ：<%= a.purchase_cd_title %></p>
+                    <p>購入日：<%= a.purchase_history.purchase_at.year %>年<%= a.purchase_history.purchase_at.month %>月<%= a.purchase_history.purchase_at.day %>日【<%= a.purchase_cd_title %>】</p>
                   </div>
                   <div class="panel-body">
                   </div>
-                  <p style="color: black; font-size: 25px;">CD価格<%= a.purchase_cd_price %>円<%= a.purchase_cd_quantity %>枚 <%= a.purchase_cd_quantity * a.purchase_cd_price %> 円
+                  <p style="color: black; font-size: 25px;"><%= a.purchase_cd_price %>円を<%= a.purchase_cd_quantity %>枚購入／計<%= a.purchase_cd_quantity * a.purchase_cd_price %> 円
                     <%= a.purchase_history.send_status %></p>
                   </div>
                 </div>
