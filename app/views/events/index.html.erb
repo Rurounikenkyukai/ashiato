@@ -24,7 +24,10 @@
 
 
 				<div>
-					<h2 class="event-head"><%= @events[0].event_day.year %>年<%= @events[0].event_day.month %>月<%= @events[0].event_day.day %>日<%= @events[0].event_city %>のイベント</h2>
+
+					  <h2 class="event-head"><%= @events[0].event_day.year %>年<%= @events[0].event_day.month %>月<%= @events[0].event_day.day %>日<%= @events[0].event_city %>のイベント</h2>
+
+						
 						<% @events.each do |event| %>
 						<%= link_to event_path(event.id) do %>
 
@@ -35,7 +38,7 @@
 								</div>
 								<div class="media-body">
 									<h2 class="media-heading media-title"><%= event.event_title %></h2>
-									<div class="event-text"><%= @events[0].event_day.year %>年<%= @events[0].event_day.month %>月<%= @events[0].event_day.day %>日</div>
+									<div class="event-text"><%= event.event_day.year %>年<%= event.event_day.month %>月<%= event.event_day.day %>日</div>
 									<div class="event-text"><%= event.event_city %></div>
 								</div>
 							</div>

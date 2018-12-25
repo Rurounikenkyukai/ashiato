@@ -16,7 +16,7 @@
 					 		<% disc.musics.each do |music| %>
 					 		<% if !artists.include?(music.artist.artist_name)%>
 					 		    <% artists.push(music.artist.artist_name) %>
-					  			<div class="cd-text"><%= music.artist.artist_name %></div>
+					  			<div class="cd-text"><%= music.artist.artist_name %></div></br>
 					  		<% end %>
 				     	    <% end %>
 					 	<% end %>
@@ -45,6 +45,7 @@
 					<%= link_to "このCDを削除", cd_path(@cd.id), method: :delete,"data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 				<% end %>
 			</div>
+		<div class="cd-table">
 		<table>
 			<tr>
 		   		<th>
@@ -84,6 +85,7 @@
 		  		</th>
 			</tr>
 		</table>
+		</div>
 	   </div>
       <div class="col-sm-1">
       </div>
