@@ -18,7 +18,7 @@
 
         <h1>行ったイベント</h1>
 
-        <div style=" overflow: scroll; height: 200px;">
+        <div style=" overflow: scroll; height: 400px;">
           <% @user.asiatos.each do |f| %>
             <div class="mdia" style="margin-top: 10px;">
               <%= link_to   event_path(f.id), class:"media-left" do %>
@@ -48,19 +48,18 @@
 
     <h2>購入履歴</h2>
 
-    <div style=" overflow: scroll; height: 200px;">
+    <div style=" overflow: scroll; height: 400px;">
     <% @user.purchase_historys.each do |f| %>
-     購入日 ：   <%= f.purchase_at %>
         <% total_price = 0 %>
             <% f.purchase_items.each do |a| %>
-              <div class="media " style="width:800px; ">
+              <div class="media " style="width:700px; ">
                 <div class="media-left media-image" >
                 <%= attachment_image_tag  a, :purchase_cd_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
                 </div>
                 <div class="media-body">
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                    <p>  CD名 ：<%= a.purchase_cd_title %></p>
+                    <p>  購入日 ：   <%= a.purchase_history.purchase_at.year %>年<%= a.purchase_history.purchase_at.month %>月<%= a.purchase_history.purchase_at.day %>日 CD名 ：<%= a.purchase_cd_title %></p>
                   </div>
                   <div class="panel-body">
                   </div>
@@ -70,10 +69,11 @@
                 </div>
                 <% total_price += a.purchase_cd_quantity * a.purchase_cd_price %>
             <% end %>
-        </div>
-            <%= total_price %>
+              </div>
+        <div class="total-price-right">
+            <h2>総計：<%= total_price %>円</h2></div>
     <% end %>
-</div>
+    </div>
 
 
     </div>

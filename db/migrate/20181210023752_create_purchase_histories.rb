@@ -6,7 +6,7 @@ class CreatePurchaseHistories < ActiveRecord::Migration[5.2]
        t.string    :send_name
        t.string    :send_postal_code
        t.string    :send_status
-       t.string    :purchase_at
+       t.date    :purchase_at
       t.timestamps
     end
   end
