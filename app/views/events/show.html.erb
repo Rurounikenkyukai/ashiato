@@ -104,10 +104,10 @@
     <h1 style="color:white;">コメント一覧</h1>
     <div style="overflow: auto; height: 600px;">
       <% @event.comments.each do |f| %>
-        <div class="media " style="width:800px; ">
-          <%= link_to user_path(f.id), class: "media-left" do %>
+        <div class="media " style="width:800px;">
+          <div class="media-left">
             <%= attachment_image_tag  f.user, :user_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
-          <% end %>
+          </div>
         	<div class="media-body">
             <div class="panel panel-default">
 	            <div class="panel-heading">
@@ -145,9 +145,9 @@
     <div style="overflow: auto; height: 200px;">
       <% @event.comments.each do |f| %>
         <div class="media " style="width:800px; ">
-          <%= link_to user_path(f.id), class: "media-left" do %>
+          <div class="media-left">
             <%= attachment_image_tag  f.user, :user_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
-          <% end %>
+          </div>
         	<div class="media-body">
             <div class="panel panel-default">
 	            <div class="panel-heading">
