@@ -65,6 +65,41 @@
                 </div>
                   <% end %>
                 <%= paginate @cds,class: "pagenate" %>
+         <% elsif @artist %>
+              <h1 class="main-text">アーティスト検索結果</h1>
+              <div>
+                    <% @artist.each do |a| %>
+                          <% a.recoding_artists.each do |r| %>
+                          <div class="event-search", style= "border: 1px solid white;">
+                            <div class="media">
+                                  <div class="media-left media-image">
+                                    <%= link_to cd_path(r.cd.id) do %>
+                                    <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %><% end %></div>
+                                  <div class="media-body">
+                                        <h2 class="media-heading media-title"><%= link_to cd_path(r.cd.id), style: "color:white;" do %><%= r.cd.cd_title %><% end %></h2>
+                                        <div class="cd-text"><%= a.artist_name %></div></br>
+                                        <div class="cd-text">【<%= r.cd.cd_genre %>】</div></br>
+                                        <div class="cd-price"><%= r.cd.cd_price %>円</div>
+                                        <div class="cd-text"><%= r.cd.cd_stock %>枚</div>
+                                    <% if r.cd.cd_stock == 0 %>
+                                        <div class="cd-text"><%= “購入できません” %></div>
+                                    <% else %>
+                                        <%=form_for(@cart_items) do |f| %>
+                                          <%= f.hidden_field :cd_id, :value => r.cd.id %>
+                                        <div class="cart-choice">
+                                          <div class="cart-text"><%= f.select :cd_quantity,(0..r.cd.cd_stock).to_a %><div class="simple-text">枚</div></div>
+                                          <div class="cart-text"><%= f.submit "カートに入れる" %></div>
+                                        </div>
+                                        <% end %>
+                                    <% end %>
+                                  </div>
+                            </div>
+                          </div>
+                          <% end %>
+                    <% end %>
+              </div>
+                  <%= paginate @artist,class: "pagenate" %>
+        </div>
 
           <% else @artists %>
               <h1 class="main-text">アーティスト検索結果</h1>
