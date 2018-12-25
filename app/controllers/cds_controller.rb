@@ -65,7 +65,7 @@ class CdsController < ApplicationController
             flash[:danger] = "ERROR!CDの追加に失敗しました。在庫数は0以下に指定できません。"
           elsif @cd.cd_price < 0
             redirect_to admin_path(@user.id)
-            flash[:danger] = "ERROR!CDの追加に失敗しました。値段は0以下に指定できません。"           
+            flash[:danger] = "ERROR!CDの追加に失敗しました。値段は0以下に指定できません。"
           elsif @cd.save
             redirect_to cd_path(@cd.id)
             flash[:success] = "CDの追加に成功しました。"
@@ -106,23 +106,42 @@ class CdsController < ApplicationController
       if user_signed_in?
       @carts = CartItem.where(user_id: current_user.id)
       end
+
          category = params[:category]
          content  = params[:content]
+
+         if params[:id] != nil?
+           artist = params[:id]
+           @artists = Artist.where('id LIKE ?', "%#{artist}%")
+           artists_id = []
+           @artists.each do |artist|
+             artists_id.push(Artist.find(artist.id))
+           end
+           @cart_items =CartItem.new
+           @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+
+         end
+
          if    category == "イベント"
                if content.empty?
                   @events = Event.page(params[:page]).reverse_order
                else
                   @events = Event.where('event_title LIKE ?', "%#{content}%")
-                  @events_id = []
+                  events_id = []
                   @events.each do |event|
-                    @events_id.push(Event.find(event.id))
+                    events_id.push(Event.find(event.id))
                   end
-                  @events = Kaminari.paginate_array(@events_id).page(params[:page])
+                  if @events.empty?
+                    flash.now[:danger] = "ERROR!検索結果はありません。"
+                    @events = Kaminari.paginate_array(events_id).page(params[:page])
+                  else
+                    @events = Kaminari.paginate_array(events_id).page(params[:page])
+                  end
                end
          elsif category == "CD"
                if content.empty?
-                  @cds = Cd.page(params[:page]).reverse_order
-                  @cart_items =CartItem.new
+                 @cds = Cd.page(params[:page]).reverse_order
+                 @cart_items =CartItem.new
                else
                   @cds = Cd.where('cd_title LIKE ?', "%#{content}%")
                   cds_id = []
@@ -146,14 +165,7 @@ class CdsController < ApplicationController
                   @artists = Kaminari.paginate_array(artists_id).page(params[:page])
                end
             else
-                artist = params[:id]
-                @artists = Artist.where('id LIKE ?', "%#{artist}%")
-                artists_id = []
-                @artists.each do |artist|
-                  artists_id.push(Artist.find(artist.id))
-                end
-                @cart_items =CartItem.new
-                @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+                @events = Event.page(params[:page]).reverse_order
          end
 
      end
