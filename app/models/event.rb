@@ -3,8 +3,8 @@ class Event < ApplicationRecord
 	has_many :performers, dependent: :destroy, inverse_of: :event
 	has_many :artists, through: :performers
 	accepts_nested_attributes_for :performers, allow_destroy: true
-	has_many :comments
-	has_many :asiatos
+	has_many :comments, dependent: :destroy
+	has_many :asiatos, dependent: :destroy
 
   has_many :users, through: :asiatos
   has_many :users, through: :comments
