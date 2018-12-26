@@ -6,7 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create(email: "aaa@aaa", first_name: "るろう人", last_name: "研究会", kana_first_name: "ルロウニン", kana_last_name: "ケンキュウカイ", nick_name: "るろけん", postal_code: "0000000", address: "東京都", deleted_at: nil, admin: true, password: "aaaaaa", phone_number: "00000000000" )
-User.create(email: "bbb@bbb", first_name: "通行",     last_name: "人",     kana_first_name: "ツウコウ",   kana_last_name: "ニン",           nick_name: "少年A",    postal_code: "1111111", address:  "埼玉",  deleted_at: nil, admin: true, password: "bbbbbb", phone_number: "11111111111" )
+User.create(email: "ccc@ccc", first_name: "通行", last_name: "人", kana_first_name: "ツウコウ", kana_last_name: "ニン", nick_name: "少年A", postal_code: "1111111", address: "埼玉", phone_number: "11111111111", user_image_id: nil,, password: "cccccc", admin: false)
+User.create(email:"eee@eee", first_name: "度羅湖",last_name: "丸フォイ",kana_first_name: "ドラコ",   kana_last_name: "マルフォイ",nick_name: "マルフォイ",    postal_code: "4444444", address:  "埼玉",  deleted_at: nil, admin: false, password: "dddddd", phone_number: "44444444444" )
+User.create(email: "fff@fff", first_name:"針” ,last_name: "歩ったー",kana_first_name: ”ハリー”,kana_last_name:"ポッター",nick_name: "ハリーポッ ター",    postal_code: "5555555", address:  "山口",  deleted_at: nil, admin: false, password: "ffffff", phone_number: "09000000000" )
+User.create(email: "ggg@ggg", first_name:"歯舞鬼" ,last_name: "紅蓮じゃあ",kana_first_name: ”ハーマイオニー”,kana_last_name:"グレンジャー",nick_name: "ハーマイオニーグレンジャー",postal_code: "6666666", address:  "熊本",  deleted_at: nil, admin: false, password: "gggggg", phone_number: "66666666666" )
+User.create(email: "hhh@hhh", first_name:"流那” ,last_name: "羅部具度",kana_first_name: ”ルーナ”,kana_last_name:"ラブグッド",nick_name: "ルーナ ラブグッド",postal_code: "hhhhhhh", address:  "福岡",  deleted_at: nil, admin: false, password: "hhhhhh", phone_number: "77777777777" )
+
 Event.create(event_day: "20190104", event_title:"WebCampPro発表会", event_image_id: "", event_prefectures: "東京都", event_city:"渋谷区",event_address: "代々木公園")
 Event.create(event_day: "20190104", event_title:"第一回WebCampFes", event_image_id: "", event_prefectures: "東京都", event_city:"渋谷区",event_address: "代々木公園")
 Event.create(event_day: "20190104", event_title:"サンプルイベント１", event_image_id: "", event_prefectures: "東京都", event_city:"渋谷区",event_address: "代々木公園")
