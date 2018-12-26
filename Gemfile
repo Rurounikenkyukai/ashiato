@@ -83,8 +83,6 @@ gem 'cocoon'
 
 gem 'ransack'
 
-gem 'paranoia'
-
 gem 'google-analytics-rails'
 
 gem 'devise-i18n'

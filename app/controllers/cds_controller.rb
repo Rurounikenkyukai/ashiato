@@ -129,7 +129,7 @@ class CdsController < ApplicationController
                   end
                   if @events.empty?
                     flash.now[:danger] = "ERROR!検索結果はありません。"
-                    @events = Kaminari.paginate_array(events_id).page(params[:page])
+                    @events = Event.page(params[:page]).reverse_order
                   else
                     @events = Kaminari.paginate_array(events_id).page(params[:page])
                   end
@@ -147,7 +147,7 @@ class CdsController < ApplicationController
                   end
                   if @cds.empty?
                     flash.now[:danger] = "ERROR!検索結果はありません。"
-                  @cds = Kaminari.paginate_array(cds_id).page(params[:page])
+                  @cds = Cd.page(params[:page]).reverse_order
                   else
                   @cds = Kaminari.paginate_array(cds_id).page(params[:page])
                   end
@@ -165,7 +165,7 @@ class CdsController < ApplicationController
                   end
                   if @artists.empty?
                     flash.now[:danger] = "ERROR!検索結果はありません。"
-                     @artists = Kaminari.paginate_array(artists_id).page(params[:page])
+                    @artists = Artist.page(params[:page]).reverse_order
                   else
                   @artists = Kaminari.paginate_array(artists_id).page(params[:page])
                   end

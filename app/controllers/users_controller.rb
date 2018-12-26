@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    @user.deleted_at = "true"
     redirect_to events_path(@user)
   end
 
