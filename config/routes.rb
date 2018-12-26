@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   root 'events#index'
 
-  devise_for :users
-
+  devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
+  devise_scope :user do
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
+  end
 
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :admins, only: [:show]

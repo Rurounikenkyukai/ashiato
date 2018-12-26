@@ -1,17 +1,16 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  acts_as_paranoid
 
   attachment :user_image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,:trackable, :validatable
 
-  has_many :asiatos
+  has_many :asiatos, dependent: :destroy
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
 
   has_many :purchase_historys
 
