@@ -11,7 +11,7 @@
                     <div class="event-search", style= "border: 1px solid white;">
                     <div class="media">
                          <div class="media-left media-image">
-                            	     <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %>
+                            	     <%= attachment_image_tag @event, :event_image, format: 'jpeg', fallback: "/images/alexander-popov-522100-unsplash.jpg", size: "220x220" %>
                     	     </div>
                 		        <div class="media-body">
                         	     <h2 class="media-heading media-title" ><%= event.event_title %></h2>
@@ -31,7 +31,7 @@
                     <div class="media">
                       <div class="media-left media-image">
                         <%= link_to cd_path(cd.id) do %>
-             				         <%= attachment_image_tag cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %><% end %>
+             				         <%= attachment_image_tag cd, :cd_image, format: 'jpeg', fallback: "/images/41334.jpg", size: "220x220" %><% end %>
                       </div>
                         <div class="media-body">
                           <h2 class="media-heading media-title">
@@ -75,7 +75,7 @@
                             <div class="media">
                                   <div class="media-left media-image">
                                     <%= link_to cd_path(r.cd.id) do %>
-                                    <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/no_image.jpg", size: "220x220" %><% end %></div>
+                                    <%= attachment_image_tag r.cd, :cd_image, format: 'jpeg', fallback: "/images/41334.jpg", size: "220x220" %><% end %></div>
                                   <div class="media-body">
                                         <h2 class="media-heading media-title"><%= link_to cd_path(r.cd.id), style: "color:white;" do %><%= r.cd.cd_title %><% end %></h2>
                                         <div class="cd-text"><%= a.artist_name %></div></br>
