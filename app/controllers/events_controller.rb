@@ -6,7 +6,7 @@ class EventsController < ApplicationController
         end
           if params[:events_id].nil?
             @event = Event.new
-            @events = Event.page(params[:page]).reverse_order
+            @events = Event.page(params[:page])
           else
             @event = Event.new
             @events_array = []
