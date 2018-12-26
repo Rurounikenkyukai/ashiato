@@ -107,7 +107,7 @@
   <div class="col-lg-12">
     <h1 style="color:white;">コメント一覧</h1>
     <div style="overflow: auto; height: 600px;">
-      <% @event.comments.each do |f| %>
+      <% @event.comments.order(created_at: :desc).each do |f| %>
         <div class="media " style="width:800px;">
           <div class="media-left">
             <%= attachment_image_tag  f.user, :user_image,  format: 'jpeg', fallback: "/images/no_image.jpg", size: "95x95" %>
@@ -206,5 +206,5 @@
 </script>
 
 <script async defer
-  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCOR-1QVl7mxC-zGHcwDBuEFAXfK3Hy5Pc&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?v=[]&callback=initMap">
 </script>

@@ -5,6 +5,13 @@
 
 		</div>
 		<div class="col-lg-10" style="background-color: rgba(0,0,0,0.7); color: white;">
+			<% if @no_cds.nil? %>
+			<% else %>
+			<h3>在庫が切れてしまった商品</h3>
+			    <% @no_cds.each do |n| %>
+			    <%= n %>
+			    <% end %> 
+			<% end %>
 			<h2>カートの中身</h2>
 			<div class="row">
 				<% @cart_items.each do |cart| %>

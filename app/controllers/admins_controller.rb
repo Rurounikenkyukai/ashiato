@@ -68,14 +68,19 @@ class AdminsController < ApplicationController
 
 
     if contents.nil?
-       @userss = User.page(params[:purchase_page]).reverse_order
+       @userss = PurchaseHistory.page(params[:purchase_page])
     else
-       @userss = User.where('first_name LIKE ?', "%#{contents}%")
-       user_id = []
-       @userss.each do |f|
-         user_id.push(User.find(f.id))
+       userss = User.where('first_name LIKE ?', "%#{contents}%") 
+       users_id = []
+       userss.each do |f|
+         users_id.push(User.find(f.id))
        end
-       @userss = Kaminari.paginate_array(user_id).page(params[:purchase_page])
+       purchase_id = []
+       purchases = PurchaseHistory.where(user_id: users_id)
+       purchases.each do |pur|
+         purchase_id.push(PurchaseHistory.find(pur.id))
+       end
+       @userss = Kaminari.paginate_array(purchase_id).page(params[:purchase_page])
     end
 
     if contentss.nil?
@@ -94,11 +99,5 @@ class AdminsController < ApplicationController
 
 
   end
-
-
-
-
-
-
 
 end
