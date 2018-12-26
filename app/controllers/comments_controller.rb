@@ -9,7 +9,8 @@ class CommentsController < ApplicationController
        flash[:success] = "コメントを投稿しました。"
      else
        redirect_to event_path(event)
-       flash[:danger] = "コメントの内容の記述は必須です。"
+
+       flash[:danger] = "アーティスト名とコメントの内容の記述は必須です。"
      end
   end
 
