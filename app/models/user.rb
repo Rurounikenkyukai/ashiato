@@ -6,11 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable,:trackable, :validatable
 
-  has_many :asiatos
+  has_many :asiatos, dependent: :destroy
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :cart_items
+  has_many :cart_items, dependent: :destroy
 
   has_many :purchase_historys
 
