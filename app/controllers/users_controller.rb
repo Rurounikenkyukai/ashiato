@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action :check_login
+
+  def check_login
+    redirect_to logout_path if current_user.deleted_at.present?
+  end
   
   def show
     @carts = CartItem.where(user_id: current_user.id)
@@ -32,9 +37,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.deleted_at = "true"
-    redirect_to events_path(@user)
+    user = User.find(params[:id])
+    user.deleted_at = DateTime.now
+    user.save
+    if current_user.admin?
+      redirect_to admin_path(current_user.id)
+    else
+      redirect_to user_path(user.id)
+    end
   end
 
   private

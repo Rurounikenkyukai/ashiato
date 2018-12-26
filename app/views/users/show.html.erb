@@ -9,7 +9,7 @@
 
      <%= link_to "ユーザ情報を編集", edit_user_path,class: "btn btn-primary user-edit" ,style: "color: black; width: 100%;" %>
      <br />
-     <%=link_to "退会する", user_path(@user), method: :delete, "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "width:90px; margin-top: 10px;" %>
+     <%=link_to "退会する", user_path(@user), "data-confirm" => "本当に退会しますか？", method: :delete, class: "btn btn-danger",style: "width:90px; margin-top: 10px;" %>
    </div>
 
 
