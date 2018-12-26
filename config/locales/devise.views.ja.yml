@@ -23,7 +23,11 @@ ja:
             address:
               blank: "が入力されていません。"
             phone_number:
-              blank: "が入力されていません。"              
+              blank: "が入力されていません。"
+            password_confirmation:
+              confirmation: "が違います。"
+            password:
+              too_short: "が短いです。"       
     attributes:
       user:
         current_password: "現在のパスワード"
