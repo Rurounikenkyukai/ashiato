@@ -32,7 +32,7 @@
 					<% else %>
 					 <% end %>
 
-						<% @events.each do |event| %>
+						<% @events.order(created_at: :desc).each do |event| %>
 						<%= link_to event_path(event.id) do %>
 
 						<div class="event-body", style= "border: 1px solid white;">
