@@ -48,33 +48,32 @@
           <thead></thead>
           <button>購入詳細</button>
           <% @userss.each do |u| %>
-          <% u.purchase_historys.each do |h| %>
           <tbody>
             <tr>
-              <td><%= u.first_name %><%= u.last_name %></td>
-              <td><%= h.purchase_at %></td>
-              <td><%= h.send_status %></td>
+              <td><%= u.user.first_name %><%= u.user.last_name %></td>
+              <td><%= u.purchase_at %></td>
+              <td><%= u.send_status %></td>
               <td>
-                <%= form_for (h) do |f| %>
+                <%= form_for (u) do |f| %>
                 <label><%= f.radio_button :send_status, "受注" %>受注</label>
                 <label><%= f.radio_button :send_status, "商品準備中" %>商品準備中</label>
                 <label><%= f.radio_button :send_status, "出荷済み" %>出荷済み</label>
                 <%= f.submit "ステータスを変更" %>
                 <% end %>
               <div class="slide-div">
-                <p>宛名:<%= h.send_name %></p>
-                <p>宛先郵便番号:<%= h.send_postal_code %></p>
+                <p>宛名:<%= u.send_name %></p>
+                <p>宛先郵便番号:<%= u.send_postal_code %></p>
                 <% total_price = 0 %>
-                <% h.purchase_items.each do |p| %>
-                  CDタイトル<%= p.purchase_cd_title %>
-                  値段<%= p.purchase_cd_price %>円
-                  購入枚数<%= p.purchase_cd_quantity %>枚
-                  <% total_price += p.purchase_cd_quantity * p.purchase_cd_price %>
+                <% u.purchase_items.each do |p| %>
+                  CDタイトル<br>
+                  <%= p.purchase_cd_title %><br>
+                  値段:<%= p.purchase_cd_price %>円<br>
+                  購入枚数:<%= p.purchase_cd_quantity %>枚<br>
+                  <% total_price += p.purchase_cd_quantity * p.purchase_cd_price %><br>
                 <% end %>
-                総計<%= total_price %>
+                <p>総計<%= total_price %>円</p>
               </div>
               </td>
-          <% end %>
           <% end %>
         </tr>
     </tbody>
@@ -116,10 +115,11 @@
 
 <style type="text/css">
 .slide-div {
-  width: 150px;
+  width: 300px;
   text-align: center;
-  margin-left: 75%;
+  margin-left: 55%;
   border: #000 1px solid;
+  background-color: white;
   display: none;
 }
 </style>
