@@ -10,18 +10,18 @@
 					</div>
 		<div class="media-body">
 					<h2 class="media-heading media-title"><%= @cd.cd_title %></h2>
-
+          <div class="cd-text">ジャンル：<%= @cd.cd_genre %>/ レーベル：<%= @cd.cd_label %></div><br>
 						<% artists = [] %>
 						<% @cd.discs.each do |disc| %>
 					 		<% disc.musics.each do |music| %>
 					 		<% if !artists.include?(music.artist.artist_name)%>
 					 		    <% artists.push(music.artist.artist_name) %>
-					  			<div class="cd-text"><%= music.artist.artist_name %></div></br>
+					  			<div class="cd-text">・<%= music.artist.artist_name %></div></br>
 					  		<% end %>
 				     	    <% end %>
 					 	<% end %>
 
-				<div class="cd-text">【<%= @cd.cd_genre %>】</div></br>
+
 				<div class="cd-price"><%= @cd.cd_price %>円</div>
 				<div class="cd-text"><%= @cd.cd_stock %><div class="simple-text">枚</div></div>
 				<% if @cd.cd_stock == 0 %>
@@ -64,8 +64,10 @@
 		   			  <div class = "tab-pane" id="sampleContent<%= idx%>">
 		   			<% end %>
 						  <% disc.musics.each.with_index(1) do |music, x| %>
-								<h4 class="music-text simple-text"><%= x %>、</h4>
-								<h4 class="music-text simple-text"><%= music.music_title %></h4></br>
+							<% a = music %>
+								<h4 class="music-text simple-text"><%= x %></h4>
+								<h4 class="music-text simple-text"><%= music.music_title %>／<%= a.artist.artist_name %></h4></br>
+
 						  <% end %>
 					</div>
 					<% end %>
