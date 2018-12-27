@@ -81,7 +81,7 @@
   <div class="field">
     <%= f.label :password,style: "color: white;"  %>
     <% if @minimum_password_length %>
-    <em style="color: white;">(<%= @minimum_password_length %> characters minimum)</em>
+    <em style="color: white;">(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -92,7 +92,7 @@
   </div>
 
   <div class="actions" style="margin-top: 25px; ">
-    <%= f.submit "Sign up", class: "btn btn-default" %>
+    <%= f.submit "登録", class: "btn btn-default" %>
   </div>
 <% end %>
 

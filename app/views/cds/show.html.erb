@@ -49,12 +49,12 @@
 		<table>
 			<tr>
 		   		<th>
-		   			<ul class="nav nav-tabs">
+		   			<ul class="nav nav-tabs" >
 			   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
 			   				<% if idx == 1 %>
-			   					<li class="active"><a href="#sampleContent<%= idx%>" data-toggle="tab">Disc<%= idx%></a></li>
+			   					<li class="active"><a href="#sampleContent<%= idx%>" data-toggle="tab" style="color:gray;">Disc<%= idx%></a></li>
 			   				<% else %>
-			   					<li class=""><a href="#sampleContent<%= idx%>" data-toggle="tab">Disc<%= idx%></a></li>
+			   					<li class="" ><a href="#sampleContent<%= idx%>" data-toggle="tab"style="color: gray;" >Disc<%= idx%></a></li>
 			   				<% end %>
 						<% end %>
 					</ul>
