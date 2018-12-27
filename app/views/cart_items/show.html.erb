@@ -10,7 +10,7 @@
 			<h3>在庫が切れてしまった商品</h3>
 			    <% @no_cds.each do |n| %>
 			    <%= n %>
-			    <% end %> 
+			    <% end %>
 			<% end %>
 			<h2>カートの中身</h2>
 			<div class="row">
@@ -51,19 +51,19 @@
 		    <div>
 		     	<h3>総計:<%= @total_price %>円</h3>
 		    </div>
-		    
+
 		     	<input type="radio" name="btn" id="a" checked="checked">登録されている住所に送る
 		     	<input type="radio" name="btn" id="b">他の住所に送る
 		     <div class="text text01">
 		     	<strong><%= current_user.address %></strong>に送る<br>
 		     	<%= link_to "購入する",purchase_histories_path(buy1: ""), method: :post, class: "btn btn-success" %>
 		     </div>
-		     <div class="text text02">
+		     <div class="text text02" style="color: black; margin-top: 20px;">
 		     	<%= form_for @purchase do |f| %>
-		     	<p>送付先郵便番号<%= f.text_field :send_postal_code %></p>
-		     	<p>送付先宛名<%= f.text_field :send_name %></p>
-		     	<p>送付先住所<%= f.text_field :send_address %></p>
-		     	<%= f.submit "購入する", class: "btn btn-success" %>
+		     	<p style="color :white;">送付先郵便番号</p><%= f.text_field :send_postal_code %>
+		     	<p style="color :white;">送付先宛名</p><%= f.text_field :send_name %>
+		     	<p style="color :white;">送付先住所</p><%= f.text_field :send_address %><br />
+		     	<%= f.submit "購入する", class: "btn btn-success", style: "margin-top: 20px;" %>
 		     	<% end %>
 		     </div>
 

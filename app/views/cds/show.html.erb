@@ -46,9 +46,6 @@
 				<% end %>
 			</div>
 		<div class="cd-table">
-		<table>
-			<tr>
-		   		<th>
 		   			<ul class="nav nav-tabs" >
 			   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
 			   				<% if idx == 1 %>
@@ -62,29 +59,20 @@
   					<div class="tab-content">
 		   			<% @cd.discs.each.with_index(1) do |disc, idx| %>
 		   			<% if idx == 1 %>
-		   			<div class = "tab-pane active" id="sampleContent<%= idx%>">
+		   			  <div class = "tab-pane active" id="sampleContent<%= idx%>">
 		   			<% else %>
-		   			<div class = "tab-pane" id="sampleContent<%= idx%>">
+		   			  <div class = "tab-pane" id="sampleContent<%= idx%>">
 		   			<% end %>
-		   			<% if idx == 1 %>
-						<% disc.musics.each.with_index(1) do |music, x| %>
+						  <% disc.musics.each.with_index(1) do |music, x| %>
 								<h4 class="music-text simple-text"><%= x %>、</h4>
 								<h4 class="music-text simple-text"><%= music.music_title %></h4></br>
-						<% end %>
-					<% else %>
-						<% disc.musics.each.with_index(1) do |music, x| %>
-								<h4 class="music-text simple-text"><%= x %>、</h4>
-								<h4 class="music-text simple-text"><%= music.music_title %></h4></br>
-						<% end %>
-					<% end %>
+						  <% end %>
 					</div>
 					<% end %>
 					</div>
 				</div>
 				</div>
-		  		</th>
-			</tr>
-		</table>
+
 		</div>
 	   </div>
       <div class="col-sm-1">
