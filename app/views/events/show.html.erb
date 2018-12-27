@@ -87,13 +87,14 @@
 
   </div>
   <% if user_signed_in?  %>
-  <div class="row">
+  <div class="row" style="width: 800px;">
 
       <%= form_for [@event, @comment] do |f| %>
-      <div class="col-lg-12 comments" >
-        <h1 style="color: white;">コメント記入</h1>
+      <div class="col-lg-12 comments">
+        <h1 style="color: white; margin-left:10px;">コメント記入</h1>
 
-        <%= f.text_field :favorite_artist,class: "form-control " ,placeholder: "好きなアーティスト",style: "width: 200px" %>
+        <div class="col-lg-12 comments" style=" ">
+        <%= f.text_field :favorite_artist,class: "form-control " ,placeholder: "好きなアーティスト",style: "width: 200px; " %>
         <ul>
           <li><%= f.text_area :comment ,class: "form-control", placeholder: "コメントをここに", style: "width: 400px; margin-left: -50px;" %></li>
           <li><%= f.submit "送信する", class: "btn btn-lg btn-base-1", style: "margin-top: 10px;" %></li>
@@ -104,9 +105,9 @@
 </div>
   <div class="row" >
 
-  <div class="col-lg-12">
-    <h1 style="color:white;">コメント一覧</h1>
-    <div style="overflow: auto; height: 600px;">
+  <div class="col-lg-12" >
+    <h1 style="color:white; margin-left: 25px; ">コメント一覧</h1>
+    <div style="overflow: auto; height: 200px; border: 3px solid rgba(222,6,6,0.5); width: 800px; margin-left: 27px;">
       <% @event.comments.order(created_at: :desc).each do |f| %>
         <div class="media " style="width:800px;">
           <div class="media-left">
@@ -146,7 +147,7 @@
 
   <div class="col-lg-12">
     <h1 style="color:white;">コメント一覧</h1>
-    <div style="overflow: auto; height: 200px;">
+    <div style="overflow: auto; height: 200px; border: 3px solid rgba(222,6,6,0.5); width: 800px;">
       <% @event.comments.each do |f| %>
         <div class="media " style="width:800px; ">
           <div class="media-left">
