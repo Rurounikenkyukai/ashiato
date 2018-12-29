@@ -8,8 +8,8 @@ class PurchaseHistoriesController < ApplicationController
 		if params[:purchase_history].blank?
 			@purchase = PurchaseHistory.new
 		else
-            @purchase = PurchaseHistory.new(purchase_params)
-        end
+      @purchase = PurchaseHistory.new(purchase_params)
+    end
         @purchase.purchase_at = Date.today
 		@purchase.user_id = current_user.id
 		@cart_items = CartItem.where(user_id: current_user.id)
@@ -30,7 +30,7 @@ class PurchaseHistoriesController < ApplicationController
 			   	    @purchase_i.purchase_history_id = @purchase.id
 		            @purchase_i.purchase_cd_title = cart.cd.cd_title
 		            @purchase_i.purchase_cd_image_id = cart.cd.cd_image_id
-		            @purchase_i.purchase_cd_price = cart.cd.cd_price  
+		            @purchase_i.purchase_cd_price = cart.cd.cd_price
 		            @purchase_i.purchase_cd_quantity = cart.cd_quantity
 		            @purchase_i.cd_id = cart.cd.id
 		            @purchase_i.save
@@ -48,7 +48,7 @@ class PurchaseHistoriesController < ApplicationController
 			else
 		        redirect_to cart_item_path(@user.id)
 		        flash[:danger] = "ERROR!購入に失敗しました。登録情報をご確認ください。"
-			end			
+			end
 		else
 			if @purchase.save
 			    @cart_items.each do |cart|
@@ -56,7 +56,7 @@ class PurchaseHistoriesController < ApplicationController
 			   	    @purchase_i.purchase_history_id = @purchase.id
 		            @purchase_i.purchase_cd_title = cart.cd.cd_title
 		            @purchase_i.purchase_cd_image_id = cart.cd.cd_image_id
-		            @purchase_i.purchase_cd_price = cart.cd.cd_price  
+		            @purchase_i.purchase_cd_price = cart.cd.cd_price
 		            @purchase_i.purchase_cd_quantity = cart.cd_quantity
 		            @purchase_i.cd_id = cart.cd.id
 		            @purchase_i.save
@@ -69,7 +69,7 @@ class PurchaseHistoriesController < ApplicationController
 		        end
 		        @cart_items.destroy_all
 			    redirect_to new_purchase_history_path
-			else				
+			else
 			   redirect_to cart_item_path(@user.id)
 			   flash[:danger] = "ERROR!購入に失敗しました。登録情報をご確認ください。"
 			end
@@ -92,7 +92,7 @@ class PurchaseHistoriesController < ApplicationController
 		@purchase.update(purchase_params)
 		redirect_back(fallback_location: admin_path(@user.id))
 	end
-    
+
 	private
 	def purchase_params
 		params.require(:purchase_history).permit(:send_status,:send_name,:send_postal_code,:send_address,:purchase_at, purchase_items_attributes: [:id,:purchase_history_id,:purchase_history_image,:purchase_cd_price,:purchase_cd_quantity,:cd_id,:_destroy])
