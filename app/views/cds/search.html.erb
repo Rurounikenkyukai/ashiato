@@ -50,7 +50,7 @@
                           <div class="cd-price"><%= cd.cd_price %>円</div>
                           <div class="cd-text">在庫：<%= cd.cd_stock %>枚</div>
                       	<% if cd.cd_stock == 0 %>
-                          	<div class="cd-text"><p>購入できません</p></div>
+                          	<div class="cd-text">購入できません</div>
                         <% else %>
                           	<%=form_for(@cart_items) do |f| %>
                             	<%= f.hidden_field :cd_id, :value => cd.id %>
@@ -83,7 +83,7 @@
                                         <div class="cd-price"><%= r.cd.cd_price %>円</div>
                                         <div class="cd-text"><%= r.cd.cd_stock %>枚</div>
                                     <% if r.cd.cd_stock == 0 %>
-                                        <div class="cd-text"><p>購入できません</p></div>
+                                        <div class="cd-text">購入できません</div>
                                     <% else %>
                                         <%=form_for(@cart_items) do |f| %>
                                           <%= f.hidden_field :cd_id, :value => r.cd.id %>
